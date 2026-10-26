@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guida IPL Gestionale v8</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;color:#0f172a;max-width:860px;margin:0 auto;padding:24px;line-height:1.55;font-size:15px}
+  h1{font-size:24px;margin:0 0 4px;color:#0c4a6e}
+  h2{font-size:18px;margin:28px 0 8px;padding:6px 10px;background:#0c4a6e;color:#fff;border-radius:6px}
+  h3{font-size:15.5px;margin:16px 0 6px;color:#0c4a6e}
+  ol,ul{margin:6px 0 6px 22px;padding:0}
+  li{margin:4px 0}
+  code{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:4px;padding:1px 5px;font-size:13px;word-break:break-all}
+  .box{border:1px solid #cbd5e1;border-radius:8px;padding:10px 14px;margin:10px 0;background:#f8fafc}
+  .ok{border-color:#86efac;background:#f0fdf4}
+  .warn{border-color:#fdba74;background:#fff7ed}
+  .sub{color:#475569;font-size:13.5px}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+  th,td{border:1px solid #cbd5e1;padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9}
+  @media print{h2{break-after:avoid}.box{break-inside:avoid}body{padding:0}}
+</style>
+</head>
+<body>
+<h1>IPL Gestionale v8 – Guida completa</h1>
+<p class="sub">Pubblicazione, configurazione, installazione su Windows, Android e iPhone, account, backup ed emergenze.</p>
+
+<div class="box ok"><b>Cosa serve (tutto gratuito):</b>
+<ul>
+<li>il progetto <b>Supabase</b> che usi già (piano gratuito);</li>
+<li>un account <b>GitHub</b> gratuito: pubblica il programma e fa il backup ogni notte;</li>
+<li>consigliato: <b>Google Drive</b> o <b>OneDrive</b> installato sul PC dell'ufficio, per la copia giornaliera in cartella.</li>
+</ul></div>
+
+<h2>Parte 1 – Pubblica il programma (una volta, circa 10 minuti)</h2>
+<ol>
+<li>Vai su <b>github.com</b>, accedi (o crea l'account gratuito) e premi <b>New repository</b>.</li>
+<li>Nome: <code>ipl-gestionale</code>, visibilità <b>Public</b>, spunta <b>Add a README file</b>, poi <b>Create repository</b>.</li>
+<li>Premi <b>Add file → Upload files</b> e trascina <b>tutti i file</b> della cartella <code>1_PUBBLICA_SU_GITHUB</code>. Poi premi <b>Commit changes</b>.</li>
+<li>Apri <b>Settings → Pages</b>. In “Build and deployment” scegli <b>Deploy from a branch</b>, branch <b>main</b>, cartella <b>/ (root)</b> e premi <b>Save</b>.</li>
+<li>Dopo 1-2 minuti, in cima alla stessa pagina compare l'indirizzo, del tipo <code>https://TUO-NOME.github.io/ipl-gestionale/</code>. È l'indirizzo del gestionale per tutti: salvalo.</li>
+</ol>
+<div class="box">Il codice del programma è visibile a chi conosce l'indirizzo, ma <b>i dati no</b>: per vederli servono nome utente e password, controllati dal server.</div>
+
+<h2>Parte 2 – Configurazione guidata (una volta, 20-30 minuti, dal PC)</h2>
+<div class="box warn"><b>Prima di iniziare:</b> nella versione 7.02 che usi oggi apri “Cloud &amp; Backup” e premi <b>Scarica File di Backup Completo</b>. Conserva il file: è la tua copia di sicurezza durante il passaggio.</div>
+<p>Apri l'indirizzo del gestionale con <b>Chrome</b> o <b>Edge</b> sul PC: si apre la <b>Configurazione guidata</b>. Ogni passaggio ha i pulsanti <b>📋 Copia</b> per i testi da incollare e mostra una spunta verde quando è a posto. In sintesi:</p>
+<table>
+<tr><th>Passo</th><th>Cosa fai</th></tr>
+<tr><td>1. Server</td><td>Indirizzo e chiave pubblica del progetto Supabase (già compilati con quelli attuali): premi <b>Salva e verifica</b>.</td></tr>
+<tr><td>2. Database</td><td>Supabase → SQL Editor → New query: incolli lo script e premi <b>Run</b>.</td></tr>
+<tr><td>3. Funzione account</td><td>Supabase → Edge Functions → Deploy a new function → Via Editor: nome <code>admin-users</code>, incolli il codice, <b>Deploy</b>.</td></tr>
+<tr><td>4. Primo amministratore</td><td>Disattivi le iscrizioni libere, crei il tuo utente in Supabase → Authentication → Users e accedi al gestionale con il tuo <b>nome utente</b>: diventi amministratore.</td></tr>
+<tr><td>5. Importa i dati</td><td>Dal vecchio salvataggio cloud oppure dal file di backup. Si può ripetere senza creare doppioni; alla fine i conteggi vengono verificati sul server.</td></tr>
+<tr><td>6. Chiudi il vecchio archivio</td><td>Elimini la vecchia tabella, che conteneva anche le password leggibili. Fallo <b>solo dopo</b> aver importato i dati.</td></tr>
+<tr><td>7. Backup notturno</td><td>Repository privato <code>ipl-backup</code> su GitHub, file del backup, segreto <code>SUPABASE_DB_URL</code>, prima esecuzione.</td></tr>
+<tr><td>8. Cartella backup</td><td>Sul PC dell'ufficio scegli una cartella dentro Google Drive o OneDrive.</td></tr>
+<tr><td>9. Installa l'app</td><td>Vedi Parte 3.</td></tr>
+</table>
+<p class="sub">La configurazione guidata resta disponibile in “Cloud &amp; Backup” e nella schermata di accesso (⚙️ Configurazione).</p>
+
+<h2>Parte 3 – Installa l'app su ogni dispositivo</h2>
+<h3>💻 PC Windows (Edge o Chrome)</h3>
+<ol>
+<li>Apri l'indirizzo del gestionale con <b>Edge</b> o <b>Chrome</b>.</li>
+<li>Premi <b>📲 Installa sul dispositivo</b> nella schermata di accesso, oppure l'icona <b>Installa</b> a destra nella barra degli indirizzi.</li>
+<li>Conferma con <b>Installa</b>: l'icona <b>IPL Gestionale</b> compare sul desktop e nel menu Start. Da lì si apre in una finestra sua, come un programma.</li>
+</ol>
+<h3>📱 Telefoni e tablet Android (Chrome)</h3>
+<ol>
+<li>Apri l'indirizzo con <b>Chrome</b>.</li>
+<li>Premi <b>📲 Installa sul dispositivo</b>, oppure il menu <b>⋮</b> in alto a destra → <b>Installa app</b> (o “Aggiungi a schermata Home”).</li>
+<li>Conferma: l'icona compare tra le app.</li>
+</ol>
+<h3>🍏 iPhone e iPad (Safari)</h3>
+<ol>
+<li>Apri l'indirizzo con <b>Safari</b> (su iPhone l'installazione funziona solo da Safari).</li>
+<li>Tocca <b>Condividi</b> (il quadrato con la freccia verso l'alto).</li>
+<li>Scorri e tocca <b>Aggiungi alla schermata Home</b>, poi <b>Aggiungi</b>.</li>
+<li>Usa sempre l'icona <b>IPL Gestionale</b> sulla Home, non il sito in Safari.</li>
+</ol>
+<div class="box">Su telefono la mappa è nascosta per lasciare spazio alle schermate di lavoro; tutte le altre funzioni sono disponibili. Gli aggiornamenti arrivano da soli: non bisogna reinstallare nulla.</div>
+
+<h2>Parte 4 – Account e password</h2>
+<ul>
+<li><b>➕ Nuovo utente</b> (scheda Profili): nome utente, nome e cognome, ruolo, schermate visibili e una password provvisoria proposta dal programma. Comunicali alla persona: al primo accesso sceglierà la sua password.</li>
+<li><b>✏️ Modifica</b>: ruolo e schermate. <b>🔑</b> nuova password provvisoria. <b>⏸ Disattiva</b>: l'accesso si blocca subito su tutti i dispositivi (si può riattivare). <b>🗑️ Elimina</b>: cancella l'account; i documenti che ha creato restano.</li>
+<li>Non serve nessuna email: si accede con il nome utente.</li>
+<li>Tieni <b>almeno due amministratori</b>: se uno dimentica la password, l'altro gliela reimposta.</li>
+</ul>
+<div class="box warn"><b>Emergenza: nessun amministratore riesce più ad accedere.</b>
+<ol>
+<li>Supabase → Authentication → Users → <b>Add user → Create new user</b>, con email <code>nuovo@utenti.ipl-gestionale.it</code>, una password e <b>Auto Confirm User</b> attivo.</li>
+<li>Supabase → SQL Editor, esegui:<br><code>insert into public.ipl_profiles (user_id, username, role) select id, 'nuovo', 'admin' from auth.users where email = 'nuovo@utenti.ipl-gestionale.it' on conflict (user_id) do update set role = 'admin', active = true;</code></li>
+<li>Accedi al gestionale come <b>nuovo</b> e sistema gli altri account dalla scheda Profili.</li>
+</ol></div>
+
+<h2>Parte 5 – Come sono protetti i dati</h2>
+<ul>
+<li>Ogni modifica viene salvata subito sul dispositivo e inviata al server. L'indicatore in alto mostra lo stato: 🟢 sincronizzato, 🟠 modifiche in attesa o offline, 🔴 errore.</li>
+<li><b>Senza internet si lavora lo stesso</b>: le modifiche partono appena torna la rete.</li>
+<li>Ogni azione si può annullare subito con <b>↩ Annulla</b> (in alto) o <b>Ctrl+Z</b>.</li>
+</ul>
+<table>
+<tr><th>Copia</th><th>Dove</th><th>Quanto dura</th></tr>
+<tr><td>Dati vivi</td><td>Server Supabase</td><td>sempre aggiornati</td></tr>
+<tr><td>Backup notturno</td><td>GitHub → repository <code>ipl-backup</code> → <b>Releases</b> (copia del database + dati in CSV leggibili con Excel)</td><td>ultimi 7 giorni + una copia al mese per sempre</td></tr>
+<tr><td>Backup giornaliero in cartella</td><td>PC dell'ufficio → cartella scelta (dentro Google Drive o OneDrive)</td><td>ultimi 30 giorni + il primo di ogni mese + archivio completo mensile</td></tr>
+<tr><td>Punti di ripristino</td><td>Su ogni dispositivo (Cloud &amp; Backup → Integrità)</td><td>ultimi 7 giorni</td></tr>
+</table>
+<div class="box"><b>Ogni tre mesi (5 minuti):</b> apri Cloud &amp; Backup → <b>Verifica integrità</b> e controlla che “Backup notturno GitHub” abbia la data di oggi o di ieri. Il pannello mostra anche lo spazio usato: il piano gratuito ne ha 500 MB e il programma avvisa a 400 MB.</div>
+<div class="box"><b>Documenti firmati:</b> continua a conservare le copie firmate dei DDT come fai ora (carta o scansione). L'archivio digitale le affianca, non le sostituisce.</div>
+
+<h2>Parte 6 – Se qualcosa va storto</h2>
+<table>
+<tr><th>Situazione</th><th>Cosa fare</th></tr>
+<tr><td>Ho cancellato o modificato qualcosa per sbaglio</td><td>Subito <b>↩ Annulla</b>. Se è passato tempo: Cloud &amp; Backup → Integrità → punti di ripristino; oppure un backup.</td></tr>
+<tr><td>Un PC o un telefono si rompe o viene perso</td><td>Installa l'app su un altro dispositivo e accedi: i dati scendono dal server. Se è stato rubato, <b>disattiva</b> subito l'account in Profili.</td></tr>
+<tr><td>Internet o il server non funzionano</td><td>Continua a lavorare: l'indicatore diventa arancione e le modifiche partono quando torna la connessione.</td></tr>
+<tr><td>Il progetto Supabase risulta “in pausa”</td><td>Supabase → apri il progetto → <b>Restore project</b>. Succede solo se nessuno lo usa per una settimana e il backup notturno è fermo.</td></tr>
+<tr><td>Serve ricostruire tutti i dati</td><td>Dal programma: Configurazione guidata → passo 5 → file di backup (.json o .json.gz dalla cartella del PC).<br>Per un tecnico, dal backup GitHub: <code>pg_restore --clean --if-exists --no-owner -d "STRINGA_SESSION_POOLER" ipl_AAAA-MM-GG.dump</code></td></tr>
+</table>
+
+<h2>Parte 7 – Aggiornamenti</h2>
+<ol>
+<li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
+<li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
+</ol>
+<p class="sub">IPL Gestionale v8.00</p>
+</body>
+</html>
