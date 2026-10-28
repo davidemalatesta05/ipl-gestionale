@@ -1,5 +1,5 @@
 /* IPL Gestionale v8 — service worker: app installabile e funzionamento senza internet */
-const CACHE = 'ipl-v8.02';
+const CACHE = 'ipl-v8.03';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'favicon-64.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'Guida_IPL_Gestionale.html'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); });
 self.addEventListener('activate', e => {
@@ -13,7 +13,7 @@ self.addEventListener('fetch', e => {
   if (url.origin === self.location.origin) {
     const page = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('.html');
     if (page) {
-      e.respondWith(fetch(req).then(r => { if (r.ok) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); } return r; })
+      e.respondWith(fetch(req.url, { cache: 'no-store', credentials: 'same-origin' }).then(r => { if (r.ok) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); } return r; })
         .catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match('index.html'))));
     } else {
       e.respondWith(caches.match(req).then(r => r || fetch(req)));
