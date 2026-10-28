@@ -80,6 +80,7 @@
 <li>Scorri e tocca <b>Aggiungi alla schermata Home</b>, poi <b>Aggiungi</b>.</li>
 <li>Usa sempre l'icona <b>IPL Gestionale</b> sulla Home, non il sito in Safari.</li>
 </ol>
+<div class="box ok"><b>Il modo più veloce per telefoni e altri PC:</b> nella schermata di accesso premi <b>📱 Altri dispositivi</b> (oppure in Cloud &amp; Backup → <b>📱 QR per altri dispositivi</b>) e inquadra il QR code con la fotocamera del telefono. Da lì puoi anche copiare il link, inviarlo o stampare un foglio con il QR da lasciare in ufficio.</div>
 <div class="box">Su telefono la mappa è nascosta per lasciare spazio alle schermate di lavoro; tutte le altre funzioni sono disponibili. Gli aggiornamenti arrivano da soli: non bisogna reinstallare nulla.</div>
 
 <h2>Parte 4 – Account e password</h2>
@@ -122,7 +123,18 @@
 <tr><td>Serve ricostruire tutti i dati</td><td>Dal programma: Configurazione guidata → passo 5 → file di backup (.json o .json.gz dalla cartella del PC).<br>Per un tecnico, dal backup GitHub: <code>pg_restore --clean --if-exists --no-owner -d "STRINGA_SESSION_POOLER" ipl_AAAA-MM-GG.dump</code></td></tr>
 </table>
 
-<h2>Parte 7 – Aggiornamenti</h2>
+<h2>Parte 7 – Fatturazione e commercialista</h2>
+<p>Scheda <b>📈 Statistiche &amp; Fatture → 🧾 Fatturazione</b> (di solito con il periodo “Mese scorso”):</p>
+<ol>
+<li><b>Regime IVA per cliente</b>: nella colonna “Regime IVA” scegli ordinaria, IVA 10%, 5%, 4%, <b>split payment</b> (enti pubblici: si incassa solo l'imponibile) o esente. Si imposta una volta e resta salvato. L'aliquota ordinaria e il giorno di scadenza si cambiano in <b>⚙️ IVA e scadenze</b>.</li>
+<li>Per ogni cliente trovi DDT, imponibile, IVA e totale. Con <b>▸</b> vedi i <b>riferimenti dei DDT</b> da riportare in fattura (“DDT n. … del …”).</li>
+<li>Quando hai emesso la fattura, premi <b>🧾 Segna fatturato</b> e scrivi numero e data: i DDT risultano fatturati e non verranno conteggiati due volte. Si può togliere con <b>↩ Togli fattura</b> o con ↩ Annulla.</li>
+<li>In alto il programma avvisa se ci sono DDT dei mesi passati ancora da fatturare e la scadenza (il 15 del mese successivo).</li>
+<li>Per il commercialista premi <b>📦 Pacchetto per il commercialista</b>: scarica un file .zip con il prospetto stampabile e i file per Excel (prospetto per cliente, elenco documenti, riepilogo IVA, dettaglio articoli). In alternativa <b>⬇ CSV documenti</b> o <b>🖨️ Stampa prospetto</b>.</li>
+</ol>
+<div class="box warn">Regimi e aliquote dei singoli clienti vanno sempre confermati con il commercialista.</div>
+
+<h2>Parte 8 – Aggiornamenti</h2>
 <ol>
 <li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
 <li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
