@@ -152,11 +152,35 @@
 <li>Se una quantità è molto diversa dal solito (es. 300 invece di 30) il programma chiede conferma prima di salvare.</li>
 </ul>
 
-<h2>Parte 9 – Aggiornamenti</h2>
+<h2>Parte 9 – Documenti, Direzione, Preventivi e profilo Ufficio</h2>
+<h3>📄 DDT e schede di lavorazione</h3>
+<ul>
+<li>Nel Centro Documenti ogni DDT ha i campi <b>Causale del trasporto</b> (proposta in base al cliente: conto lavorazione per i capi del cliente, noleggio per i vostri), <b>Trasporto a cura del</b> (mittente, destinatario o vettore con i suoi dati) e <b>N° colli</b>. Le diciture delle causali concordatele con il commercialista.</li>
+<li>Prima della stampa il programma avvisa se mancano dati obbligatori (P.IVA e indirizzo del cliente, dati aziendali, causale).</li>
+<li>Un <b>DDT già numerato non si cancella</b>: dallo storico si <b>annulla</b> (🚫) indicando il motivo. Resta in archivio con il suo numero e la scritta ANNULLATO ed esce da fatturazione e statistiche. Solo l'amministratore può ripristinarlo.</li>
+<li><b>📑 Registro numerazione</b> (Centro Documenti → storico): tutti i DDT dell'anno in sequenza, con numeri mancanti e doppioni evidenziati.</li>
+<li>Le <b>schede di lavorazione</b> hanno numerazione libera: si eliminano con una semplice conferma e non entrano nel registro.</li>
+</ul>
+<h3>📊 Direzione</h3>
+<ul>
+<li><b>Cruscotto settimanale</b>: fatturato, kg lavati, DDT, clienti (anche nuovi), giri e margine, con il confronto con la settimana prima e con l'anno scorso. A inizio settimana compare l'avviso “È pronto il riepilogo”. Si stampa (anche in PDF) o si copia il testo; il programma non invia email.</li>
+<li><b>Budget e consuntivo</b>: l'amministratore scrive gli obiettivi mese per mese (o li crea dall'anno precedente con una percentuale); l'ufficio inserisce i <b>costi del mese</b> (energia, gas, acqua, detersivi, personale, mezzi, altro). Il fatturato e i kg reali si calcolano da soli dai DDT; ne escono scostamenti, margine e costo per kg.</li>
+</ul>
+<h3>📋 Preventivi</h3>
+<ul>
+<li>Per un cliente esistente o un nuovo potenziale cliente: articoli, quantità per consegna, prezzo proposto e sconto, consegne a settimana. Il programma calcola il valore per consegna, mensile e annuo e, se i costi sono inseriti in Direzione, il <b>margine stimato</b> di ogni riga.</li>
+<li>Il numero (PRV-001/anno) si assegna alla prima stampa. Stampa o salva in PDF e consegnalo al cliente; poi “📤 Segna come inviato”. Le offerte non accettate scadono da sole.</li>
+<li>Con <b>✅ Accettato</b> il programma crea il cliente (se è nuovo) con il suo listino dedicato e apre l'ordine ricorrente già compilato. Con <b>❌ Rifiutato</b> registri il motivo.</li>
+</ul>
+<h3>🗂️ Profilo Ufficio</h3>
+<p>Vede Home, clienti, articoli e listini, zone, tute, statistiche e fatture, preventivi e direzione. Non vede Profili e Cloud; non imposta il budget e non ripristina documenti annullati.</p>
+
+<h2>Parte 10 – Aggiornamenti</h2>
+<div class="box warn"><b>Aggiornamento v8.04 (profilo Ufficio):</b> dopo aver caricato i nuovi file su GitHub, apri la <b>Configurazione guidata</b>: ti chiederà di <b>rieseguire lo script del database</b> (passo 2, non tocca i dati) e di <b>aggiornare la funzione admin-users</b> (passo 3: apri la funzione → Code → incolla il nuovo codice → Deploy).</div>
 <ol>
 <li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
 <li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
 </ol>
-<p class="sub">IPL Gestionale v8.03</p>
+<p class="sub">IPL Gestionale v8.04</p>
 </body>
 </html>

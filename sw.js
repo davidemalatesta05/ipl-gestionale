@@ -1,5 +1,5 @@
 /* IPL Gestionale v8 — service worker: app installabile e funzionamento senza internet */
-const CACHE = 'ipl-v8.03';
+const CACHE = 'ipl-v8.04';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'favicon-64.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'Guida_IPL_Gestionale.html'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); });
 self.addEventListener('activate', e => {
