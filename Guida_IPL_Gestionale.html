@@ -83,6 +83,7 @@
 <div class="box ok"><b>Il modo più veloce per telefoni e altri PC:</b> nella schermata di accesso premi <b>📱 Altri dispositivi</b> (oppure in Cloud &amp; Backup → <b>📱 QR per altri dispositivi</b>) e inquadra il QR code con la fotocamera del telefono. Da lì puoi anche copiare il link, inviarlo o stampare un foglio con il QR da lasciare in ufficio.</div>
 <div class="box">Su telefono la mappa è nascosta per lasciare spazio alle schermate di lavoro; tutte le altre funzioni sono disponibili. Gli aggiornamenti arrivano da soli: non bisogna reinstallare nulla.</div>
 
+<div class="box"><b>Posizione dei clienti sulla mappa:</b> nella scheda cliente scrivi l'indirizzo (es. “Via Roma 10, Potenza”) e premi <b>🔍 GPS da Via</b>. Il programma ti dice se ha trovato la via o solo il comune e ti chiede se salvare subito. Se un campo impedisce il salvataggio, compare un messaggio che dice quale.</div>
 <h2>Parte 4 – Account e password</h2>
 <ul>
 <li><b>➕ Nuovo utente</b> (scheda Profili): nome utente, nome e cognome, ruolo, schermate visibili e una password provvisoria proposta dal programma. Comunicali alla persona: al primo accesso sceglierà la sua password.</li>
@@ -184,6 +185,14 @@
 <li>Il numero (PRV-001/anno) si assegna alla prima stampa. Stampa o salva in PDF e consegnalo al cliente; poi “📤 Segna come inviato”. Le offerte non accettate scadono da sole.</li>
 <li>Con <b>✅ Accettato</b> il programma crea il cliente (se è nuovo) con il suo listino dedicato e apre l'ordine ricorrente già compilato. Con <b>❌ Rifiutato</b> registri il motivo.</li>
 </ul>
+<h3>📦 Importa / Esporta (migrazione dei dati)</h3>
+<ul>
+<li>Menu <b>☰ Sezioni → Sistema → 📦 Importa / Esporta</b> (amministratore e ufficio).</li>
+<li><b>Importare</b>: trascina i file del vecchio gestionale (<b>Anagrafica_Articoli</b>, <b>Lista_DDT</b>, <b>Lista_Schede_di_lavoro</b>), un file clienti o listini, oppure uno ZIP esportato da qui. Il programma riconosce da solo ogni file e mostra un'anteprima: numero di documenti, periodo, imponibile, articoli e clienti nuovi, eventuali avvisi. Nulla viene salvato finché non premi <b>✅ Importa</b>.</li>
+<li>I documenti già importati vengono saltati (puoi reimportare senza creare doppioni). I DDT con stato “F” vengono segnati come già fatturati (opzione). La numerazione di DDT e schede riparte dopo l'ultimo numero importato.</li>
+<li>I clienti presenti nei documenti ma non in anagrafica vengono creati con codice e ragione sociale e segnalati con <b>📍</b>: completa indirizzo e posizione (oppure importa il file dei clienti).</li>
+<li><b>Esportare</b>: articoli, DDT e schede di lavoro escono con le <b>stesse colonne del vecchio gestionale</b> (riesportando dati importati si ottengono file identici agli originali); inoltre clienti, listini dedicati, ordini in corso, tute e preventivi. <b>📦 Esporta tutto</b> crea uno ZIP con tutti i file, reimportabile.</li>
+</ul>
 <h3>🗂️ Profilo Ufficio</h3>
 <p>Vede Home, clienti, articoli e listini, zone, tute, statistiche e fatture, preventivi e direzione. Non vede Profili e Cloud; non imposta il budget e non ripristina documenti annullati.</p>
 
@@ -193,6 +202,6 @@
 <li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
 <li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
 </ol>
-<p class="sub">IPL Gestionale v8.06</p>
+<p class="sub">IPL Gestionale v8.07</p>
 </body>
 </html>
