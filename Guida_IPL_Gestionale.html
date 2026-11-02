@@ -95,8 +95,7 @@
 <li><b>Dati di trasporto</b>: aspetto dei beni, peso (stimato o scritto a mano), data e ora di inizio trasporto, mezzo/targa, luogo di destinazione diverso, firme complete (conducente, vettore, destinatario con data/ora e riserve).</li>
 <li><b>Nuovi documenti</b>: DDT di ritiro sporco (serie RIT, proposto da solo per gli ordini di ritiro), DDT di reso (numerazione DDT, fuori dal fatturato), nota di consegna senza prezzi (non fiscale), riepilogo mensile per cliente (anche solo DDT da fatturare).</li>
 <li><b>Copie</b>: mittente, destinatario (anche senza prezzi) e vettore stampate insieme, una per pagina.</li>
-<li><b>Unisci ordini</b> dello stesso cliente in un solo DDT e <b>crea un DDT da una scheda</b> di lavorazione con un clic.</li>
-<li><b>QR code</b> sul documento: inquadrandolo si apre il documento nell'archivio.</li>
+<li><b>Crea un DDT da una scheda</b> di lavorazione con un clic.</li>
 <li><b>Stampa per giro</b>: nella finestra dei giri, “🖨️ Emetti e stampa i DDT del giro” emette tutti i documenti nell'ordine di consegna con il foglio di viaggio in testa.</li>
 <li><b>Archivio</b>: ricerca avanzata (periodo, tipo, cliente, numero/note, articolo, importo, fatturazione), elenco CSV, stampa di tutti i risultati (anche come PDF unico) e <b>ZIP con un PDF per documento</b> più indice, utile ogni mese per la conservazione.</li>
 </ul></div>
@@ -196,7 +195,7 @@
 <h3>📊 Direzione</h3>
 <ul>
 <li><b>Cruscotto settimanale</b>: fatturato, kg lavati, DDT, clienti (anche nuovi), giri e margine, con il confronto con la settimana prima e con l'anno scorso. A inizio settimana compare l'avviso “È pronto il riepilogo”. Si stampa (anche in PDF) o si copia il testo; il programma non invia email.</li>
-<li><b>Budget e consuntivo</b>: l'amministratore scrive gli obiettivi mese per mese (o li crea dall'anno precedente con una percentuale); l'ufficio inserisce i <b>costi del mese</b> (energia, gas, acqua, detersivi, personale, mezzi, altro). Il fatturato e i kg reali si calcolano da soli dai DDT; ne escono scostamenti, margine e costo per kg.</li>
+<li><b>💶 Costi e margini</b>: l'ufficio inserisce i <b>costi del mese</b> (energia, gas, acqua, detersivi, personale, mezzi, altro) con un clic sul mese; fatturato e kg arrivano da soli dai DDT. Il programma mostra mese per mese <b>margine</b> e <b>costo per kg</b>, che servono anche al margine del cruscotto settimanale e al margine stimato nei preventivi.</li>
 </ul>
 <h3>📋 Preventivi</h3>
 <ul>
@@ -213,7 +212,7 @@
 <li><b>Esportare</b>: articoli, DDT e schede di lavoro escono con le <b>stesse colonne del vecchio gestionale</b> (riesportando dati importati si ottengono file identici agli originali); inoltre clienti, listini dedicati, ordini in corso, tute e preventivi. <b>📦 Esporta tutto</b> crea uno ZIP con tutti i file, reimportabile.</li>
 </ul>
 <h3>🗂️ Profilo Ufficio</h3>
-<p>Vede Home, clienti, articoli e listini, zone, tute, statistiche e fatture, preventivi e direzione. Non vede Profili e Cloud; non imposta il budget e non ripristina documenti annullati.</p>
+<p>Vede Home, clienti, articoli e listini, zone, tute, statistiche e fatture, preventivi e direzione. Non vede Profili e Cloud; non ripristina documenti annullati.</p>
 
 <h2>Parte 10 – Aggiornamenti</h2>
 <div class="box warn"><b>Aggiornamento v8.04 (profilo Ufficio):</b> dopo aver caricato i nuovi file su GitHub, apri la <b>Configurazione guidata</b>: ti chiederà di <b>rieseguire lo script del database</b> (passo 2, non tocca i dati) e di <b>aggiornare la funzione admin-users</b> (passo 3: apri la funzione → Code → incolla il nuovo codice → Deploy).</div>
@@ -221,6 +220,6 @@
 <li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
 <li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
 </ol>
-<p class="sub">IPL Gestionale v8.11</p>
+<p class="sub">IPL Gestionale v8.12</p>
 </body>
 </html>
