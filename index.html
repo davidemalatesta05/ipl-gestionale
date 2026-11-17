@@ -1119,6 +1119,86 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
 .wpl-body .form-grid-4 small{display:block;color:#64748b;font-size:11px}
 @media (max-width:700px){.wpl-top{padding:8px}.wpl-title{flex-basis:100%}.wpl-tabs button{padding:8px 10px}.wpl-body{padding:8px}.wpl-menu{right:-40px}}
 .wpl-ev small.wpl-id{display:inline;margin-left:4px}
+
+/* =====================================================================
+   v8.25 — Aspetto e semplicità (IPLLook): pagine larghe, grafica più leggibile, “Da sistemare”
+   ===================================================================== */
+/* ↔️ pagine larghe dove la mappa non serve */
+@media screen and (min-width: 900px) {
+  body.ipl-wide:not(.fullscreen-mode):not(.map-only-mode) #left-panel { width: 100vw; border-right: none; }
+  body.ipl-wide:not(.fullscreen-mode):not(.map-only-mode) #right-panel { display: none; }
+  body.ipl-wide:not(.fullscreen-mode) .module-content.active > * { max-width: 1320px; margin-left: auto; margin-right: auto; }
+}
+/* 🎨 grafica più leggibile (solo a schermo: le stampe restano identiche) */
+@media screen {
+body.ipl-clean { --text-muted: #475569; --border: #d5dde8; }
+body.ipl-clean .module-content { padding: 20px 22px 40px; background: #f4f7fb; }
+body.ipl-clean .card { border: 1px solid #e3e9f1; border-radius: 14px; padding: 18px 20px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 14px rgba(15,23,42,.03); }
+body.ipl-clean .card-header { border-bottom-color: #eef2f7; padding-bottom: 10px; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+body.ipl-clean .card-title { font-size: 16.5px; letter-spacing: -.01em; color: #0f172a; }
+body.ipl-clean .tute-mini { font-size: 12.5px; color: #475569; line-height: 1.45; }
+body.ipl-clean label { font-size: 12.5px; color: #334155; }
+body.ipl-clean input, body.ipl-clean select, body.ipl-clean textarea { font-size: 14px; border-radius: 8px; border-color: #cfd8e3; }
+body.ipl-clean input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]), body.ipl-clean select { min-height: 36px; }
+body.ipl-clean input:focus, body.ipl-clean select:focus, body.ipl-clean textarea:focus { outline: 3px solid #bae6fd; border-color: var(--accent); }
+body.ipl-clean button, body.ipl-clean .btn { border-radius: 8px; }
+body.ipl-clean table { font-size: 13.5px; }
+body.ipl-clean th { color: #334155; font-size: 11.5px; letter-spacing: .02em; background: #f1f5f9; }
+body.ipl-clean td { font-variant-numeric: tabular-nums; }
+body.ipl-clean tbody tr:nth-child(even) > td { background-color: #fafcfe; }
+body.ipl-clean tbody tr:hover > td { background-color: #f0f7ff; }
+body.ipl-clean .nav-tab { font-size: 14px; }
+/* pianificatore: più aria e gerarchia */
+body.ipl-clean .wpl-top { padding: 10px 14px; gap: 10px; }
+body.ipl-clean .wpl-title { font-size: 18px; }
+body.ipl-clean .wpl-tabs button { font-size: 14px; padding: 10px 16px; }
+body.ipl-clean .wpl-body { padding: 16px 18px; }
+body.ipl-clean .wpl-eff { font-size: 13.5px; padding: 8px 12px; }
+body.ipl-clean .wpl-kpis { grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: 10px; margin: 10px 0; }
+body.ipl-clean .wpl-k { padding: 10px 12px; border-radius: 12px; background: #fff; }
+body.ipl-clean .wpl-k span { font-size: 12px; color: #475569; font-weight: 600; }
+body.ipl-clean .wpl-k b { font-size: 18px; line-height: 1.25; }
+body.ipl-clean .wpl-k small { font-size: 12px; color: #475569; }
+body.ipl-clean .wpl-warn { font-size: 13.5px; padding: 8px 12px; line-height: 1.5; border-radius: 10px; }
+body.ipl-clean .wpl-lanes { grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); gap: 12px; margin-top: 12px; }
+body.ipl-clean .wpl-lane { border-color: #e3e9f1; border-radius: 12px; padding: 10px 12px; }
+body.ipl-clean .wpl-lh b { font-size: 15px; }
+body.ipl-clean .wpl-ev { font-size: 13.5px; grid-template-columns: 104px 1fr auto; padding: 7px 0; border-bottom: 1px solid #eef2f7; }
+body.ipl-clean .wpl-ev small { font-size: 12px; color: #475569; }
+body.ipl-clean .wpl-tab { font-size: 13px; } body.ipl-clean .wpl-tab th, body.ipl-clean .wpl-tab td { padding: 6px 8px; }
+body.ipl-clean .wpl-h { font-size: 15.5px; margin: 0 0 6px; }
+body.ipl-clean .og-al { font-size: 13.5px; padding: 9px 12px; border-radius: 10px; }
+}
+/* blocchi delle regole del pianificatore */
+.wpl-sec { border: 1px solid #e9eef5; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; background: #fff; }
+.wpl-sec .do-tg { margin: 6px 0; }
+.wpl-adv > summary { font-size: 14px; padding: 8px 0; }
+.wpl-fixed { font-size: 12.5px; color: #334155; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px 10px; margin: 8px 0 4px; }
+.wpl-changed { font-size: 13px; color: #075985; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 7px 10px; margin: 4px 0 8px; line-height: 1.5; }
+.wpl-changed small { color: #475569; }
+.wpl-auto { display: inline-block !important; background: #ecfdf5; color: #047857 !important; border: 1px solid #a7f3d0; border-radius: 999px; padding: 0 7px; font-size: 11px !important; font-weight: 700; margin-left: 4px; }
+.wpl-more-w summary { cursor: pointer; color: #92400e; font-weight: 700; margin-top: 4px; }
+/* Home: “Da sistemare” */
+#hm-exc { margin: 0 0 12px; }
+.hm-exc { background: #fff; border: 1px solid #fde68a; border-left: 5px solid #f59e0b; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.hm-exc.ok { flex-direction: row; align-items: center; gap: 8px; border-color: #bbf7d0; border-left-color: #16a34a; padding: 8px 12px; font-size: 13.5px; color: #166534; }
+.hm-exc-t { font-weight: 800; font-size: 14px; color: #92400e; display: flex; gap: 8px; align-items: center; }
+.hm-exc-t .tute-mini { background: #fef3c7; color: #92400e; border-radius: 999px; padding: 0 8px; font-weight: 800; }
+/* giri e preparazione */
+.rt-ll { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #334155; margin: 0 4px; cursor: pointer; }
+.rt-ll input { width: auto; min-height: 0 !important; }
+.prep-print { padding: 4px 9px; font-size: 12px; }
+.look-card .plus-sw { margin-top: 4px; }
+.hm-exc .og-al { border: 0; border-radius: 8px; padding: 6px 10px; }
+@media screen and (max-width: 700px) {
+  body.ipl-clean .module-content { padding: 12px 10px 32px; }
+  body.ipl-clean .card { padding: 14px 12px; border-radius: 12px; }
+  body.ipl-clean .wpl-body { padding: 12px 10px; }
+  body.ipl-clean .wpl-kpis { grid-template-columns: 1fr 1fr; }
+  body.ipl-clean .wpl-ev { grid-template-columns: 1fr auto; }
+  body.ipl-clean .wpl-ev .wpl-t { grid-column: 1 / -1; }
+  .wpl-sec { padding: 10px; }
+}
 </style>
 </head>
 <body>
@@ -1149,7 +1229,7 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
         <button type="button" class="btn-light" onclick="CloudEngine.showQR()">📱 Altri dispositivi</button>
         <button type="button" class="btn-light" onclick="CloudEngine.openWizard()">⚙️ Configurazione</button>
       </div>
-      <div class="login-foot">IPL Gestionale v8.22 · <span id="login-server"></span></div>
+      <div class="login-foot">IPL Gestionale v8.25 · <span id="login-server"></span></div>
     </div>
   </div>
 
@@ -1449,41 +1529,6 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
 
       <!-- TAB 6: CLOUD & BACKUP BLINDATO -->
       <div id="tab-future-mods" class="module-content">
-        <div class="card" style="border-left: 4px solid var(--accent);">
-          <div class="card-header">
-            <div>
-              <span class="card-title">☁️ Sincronizzazione Cloud Supabase PostgreSQL (Archiviazione Decennale Protetta)</span>
-              <div style="font-size:12px; color:var(--text-muted);">Sincronizzazione multi-dispositivo con versioning automatico e protezione contro la sovrascrittura accidentale</div>
-            </div>
-            <button type="button" class="btn-primary" onclick="CloudSync.testAndVerifyServer()">🔍 Verifica Integrità Server</button>
-          </div>
-
-          <div id="cloud-diagnostic-box" style="background:#f8fafc; border:1px solid var(--border); padding:12px; border-radius:8px; margin-bottom:14px; font-size:13px;">
-            <div><b>Stato Attuale Server:</b> <span id="cloud-status-text" style="font-weight:700; color:var(--success);">Autoconfigurato e Attivo</span></div>
-            <div style="margin-top:4px; font-size:12px; color:var(--text-muted);" id="cloud-last-sync-info">Protezione dati attiva: salvataggio locale ridondato + snapshot giornaliere automatiche.</div>
-          </div>
-
-          <form onsubmit="CloudSync.saveConfig(event)">
-            <div class="form-grid-2" style="margin-bottom:10px;">
-              <div>
-                <label>Supabase Project URL</label>
-                <input type="url" id="sb-url" required>
-              </div>
-              <div>
-                <label>Supabase Anon Public Key</label>
-                <input type="password" id="sb-key" required>
-              </div>
-            </div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
-              <div style="display:flex; gap:8px;">
-                <button type="submit" class="btn-success">🔗 Aggiorna Credenziali</button>
-                <button type="button" class="btn-primary" onclick="CloudSync.pushToServer(true)">⬆️ Sincronizza Ora sul Server</button>
-                <button type="button" class="btn-warning" onclick="CloudSync.pullFromServer()">⬇️ Scarica dal Server</button>
-              </div>
-            </div>
-          </form>
-        </div>
-
         <div class="card" style="border-left: 4px solid var(--success);">
           <div class="card-header">
             <div>
@@ -2457,45 +2502,6 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
         return perms.includes(permKey);
       },
 
-      verifyAdminPassword(promptMsg = "🔒 Inserisci la password di ADMIN per confermare l'operazione:") {
-        const inputPass = prompt(promptMsg);
-        if (inputPass === null) return false;
-        const adminUser = AppState.users.find(u => u.username === 'admin') || AppState.users.find(u => u.role === 'admin');
-        const expectedPass = adminUser ? adminUser.pass : 'admin';
-        if (inputPass.trim() === expectedPass) {
-          return true;
-        }
-        alert('❌ Password Admin errata! Operazione annullata.');
-        return false;
-      },
-
-      initLoginDropdown() {
-        const select = document.getElementById('login-user-select');
-        const roleLabels = {
-          admin: 'AMMINISTRATORE',
-          produzione: 'PRODUZIONE',
-          autista: 'AUTISTA',
-          lavaggi: 'GESTIONE LAVAGGI'
-        };
-        select.innerHTML = AppState.users.map(u => `<option value="${u.username}">${u.username} (${roleLabels[u.role] || u.role.toUpperCase()})</option>`).join('');
-      },
-
-      handleLogin(e) {
-        e.preventDefault();
-        const username = document.getElementById('login-user-select').value;
-        const pass = document.getElementById('login-pass').value.trim();
-        const userObj = AppState.users.find(u => u.username === username);
-
-        if (userObj && userObj.pass === pass) {
-          AppState.currentUser = userObj.username;
-          document.getElementById('login-overlay').style.display = 'none';
-          document.getElementById('login-pass').value = '';
-          this.setRole(userObj.role);
-        } else {
-          alert('Credenziali non valide o password errata.');
-        }
-      },
-
       setRole(role) {
         AppState.role = role;
         const userObj = AppState.users.find(u => u.username === AppState.currentUser) || { username: AppState.currentUser, role };
@@ -2556,11 +2562,6 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
         StorageEngine.saveState('LOGIN', `Utente ${AppState.currentUser} [${role}]`);
       },
 
-      logout() {
-        this.initLoginDropdown();
-        document.getElementById('login-overlay').style.display = 'flex';
-        StorageEngine.saveState('LOGOUT', 'Disconnessione');
-      }
     };
 
     const ProfilesModule = {
@@ -2574,90 +2575,6 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
         });
       },
 
-      editProfile(username) {
-        const u = AppState.users.find(x => x.username === username);
-        if (!u) return;
-        document.getElementById('prof-username').value = u.username;
-        document.getElementById('prof-role').value = u.role;
-        document.getElementById('prof-pass').value = u.pass;
-        const perms = AuthModule.getUserPermissions(u);
-        const isAdmin = u.username === 'admin' || u.role === 'admin';
-        document.querySelectorAll('.prof-tab-chk').forEach(chk => {
-          chk.checked = perms.includes(chk.value);
-          chk.disabled = isAdmin;
-        });
-      },
-
-      saveProfile(e) {
-        e.preventDefault();
-        const username = document.getElementById('prof-username').value.trim().toLowerCase();
-        const role = username === 'admin' ? 'admin' : document.getElementById('prof-role').value;
-        const pass = document.getElementById('prof-pass').value.trim();
-
-        let allowedTabs = [];
-        if (username === 'admin' || role === 'admin') {
-          allowedTabs = [...ALL_SYSTEM_PERMISSIONS];
-        } else {
-          document.querySelectorAll('.prof-tab-chk:checked').forEach(chk => {
-            allowedTabs.push(chk.value);
-          });
-          if (!allowedTabs.some(t => t.startsWith('tab-'))) {
-            alert('Seleziona almeno una schermata visibile per questo profilo!');
-            return;
-          }
-        }
-
-        const existing = AppState.users.find(u => u.username === username);
-        if (existing) {
-          existing.role = role;
-          existing.pass = pass;
-          existing.allowedTabs = allowedTabs;
-        } else {
-          AppState.users.push({ username, role, pass, allowedTabs });
-        }
-
-        StorageEngine.saveState('PROFILO', username);
-        e.target.reset();
-        this.onRolePresetChange('admin');
-        this.renderProfiles();
-        AuthModule.initLoginDropdown();
-        if (AppState.currentUser === username) {
-          AuthModule.setRole(role);
-        }
-        alert('✅ Profilo e permessi schermate salvati!');
-      },
-
-      renderProfiles() {
-        const tbody = document.getElementById('profiles-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = AppState.users.map(u => {
-          const perms = AuthModule.getUserPermissions(u);
-          const badges = perms.map(p => `<span class="badge" style="background:#e2e8f0; color:#1e293b; margin:2px;">${PERMISSION_LABELS[p] || p}</span>`).join('');
-          return `
-            <tr>
-              <td><b>${u.username}</b></td>
-              <td><span class="badge badge-zone">${u.role.toUpperCase()}</span></td>
-              <td>${badges}</td>
-              <td>
-                <div style="display:flex; gap:4px;">
-                  <button type="button" class="btn-light" style="padding:3px 8px;" onclick="ProfilesModule.editProfile('${jq(u.username)}')" title="Modifica Permessi / Password">✏️</button>
-                  ${(u.username !== 'admin' && u.username !== 'lavaggi') ? `<button type="button" class="btn-danger" style="padding:3px 8px;" onclick="ProfilesModule.deleteProfile('${jq(u.username)}')">🗑️</button>` : ''}
-                </div>
-              </td>
-            </tr>
-          `;
-        }).join('');
-      },
-
-      deleteProfile(username) {
-        if (username === 'admin' || username === 'lavaggi') { alert('Impossibile eliminare i profili principali di sistema.'); return; }
-        if (confirm(`Eliminare il profilo ${username}?`)) {
-          AppState.users = AppState.users.filter(u => u.username !== username);
-          StorageEngine.saveState('DEL_PROFILO', username);
-          this.renderProfiles();
-          AuthModule.initLoginDropdown();
-        }
-      }
     };
 
     /* =========================================================================
@@ -2727,27 +2644,6 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
       snapshot() { const o = Object.assign({}, AppState); TRANSIENT_KEYS.forEach(k => delete o[k]); return o; },
       isDirty: () => false,
 
-      init() {
-        return new Promise((resolve) => {
-          const req = indexedDB.open('IPL_Enterprise_DB_v6.18', 1);
-          req.onupgradeneeded = (e) => {
-            const db = e.target.result;
-            if (!db.objectStoreNames.contains('state')) db.createObjectStore('state', { keyPath: 'key' });
-            if (!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots', { keyPath: 'date' });
-          };
-          req.onsuccess = async (e) => {
-            this.db = e.target.result;
-            await this.loadState();
-            this.createDailySnapshot();
-            resolve();
-          };
-          req.onerror = async () => {
-            await this.loadState();
-            resolve();
-          };
-        });
-      },
-
       ensureDefaults() {
         if (!AppState.supabaseConfig || !AppState.supabaseConfig.url) {
           AppState.supabaseConfig = {
@@ -2810,92 +2706,6 @@ tr.of-canc td{color:#94a3b8}tr.of-canc td b{text-decoration:line-through}
         if (!AppState.washingConfig.cycleStatuses) AppState.washingConfig.cycleStatuses = {};
       },
 
-      async loadState() {
-        // Si confrontano IndexedDB, localStorage e cloud: vince la copia più recente (il cloud non sovrascrive più dati locali nuovi)
-        const cands = [];
-        if (this.db) await new Promise(res => {
-          try {
-            const rq = this.db.transaction('state', 'readonly').objectStore('state').get('app_data');
-            rq.onsuccess = () => { if (rq.result && rq.result.value && rq.result.value.clients) cands.push(rq.result.value); res(); };
-            rq.onerror = () => res();
-          } catch (e) { res(); }
-        });
-        try {
-          const raw = localStorage.getItem('IPL_APP_STATE_FALLBACK');
-          if (raw) { const p = JSON.parse(raw); if (p && p.clients) cands.push(p); }
-        } catch (e) {}
-        try {
-          if (AppState.supabaseConfig && AppState.supabaseConfig.url && window.supabase) {
-            const cl = window.supabase.createClient(AppState.supabaseConfig.url, AppState.supabaseConfig.key);
-            const { data, error } = await Promise.race([
-              cl.from('ipl_erp_state').select('data').eq('id', 'main_backup').single(),
-              new Promise(r => setTimeout(() => r({ error: 'timeout' }), 5000))
-            ]);
-            if (!error && data && data.data && Array.isArray(data.data.clients) && data.data.clients.length > 0) cands.push(data.data);
-          }
-        } catch (err) { console.warn('Cloud non raggiungibile, uso i dati locali.'); }
-        const real = cands.filter(c => (c.clients && c.clients.length) || (c.orders && c.orders.length));
-        const best = (real.length ? real : cands).sort((x, y) => (y._lastUpdated || 0) - (x._lastUpdated || 0))[0];
-        if (best) Object.assign(AppState, clean(best));
-
-        this.ensureDefaults();
-        AuthModule.initLoginDropdown();
-        ZonesModule.renderZones();
-        const todayStr = todayISO();
-        const dateInput = document.getElementById('home-selected-date');
-        if (dateInput) dateInput.value = todayStr;
-        const washDateInput = document.getElementById('wash-target-date');
-        if (washDateInput) washDateInput.value = todayStr;
-
-        DocsModule.initDocsModule();
-        CloudSync.initFromSavedConfig();
-      },
-
-      saveState(action = null, detail = '') {
-        if (action) {
-          AppState.auditLogs.unshift({
-            timestamp: new Date().toLocaleTimeString('it-IT'),
-            role: AppState.currentUser || 'SYSTEM',
-            action,
-            detail
-          });
-          if (AppState.auditLogs.length > 500) AppState.auditLogs.length = 500;
-        }
-
-        AppState._lastUpdated = Date.now();
-        AppState._dataVersion = (AppState._dataVersion || 1) + 1;
-        this.saveCount++;
-
-        // 1. Salvataggio IndexedDB
-        if (this.db) {
-          try {
-            const tx = this.db.transaction('state', 'readwrite');
-            tx.objectStore('state').put({ key: 'app_data', value: AppState });
-          } catch(e) { console.warn('Errore IndexedDB:', e); }
-        }
-
-        // 2. Salvataggio LocalStorage come ridondanza a specchio
-        try {
-          localStorage.setItem('IPL_APP_STATE_FALLBACK', JSON.stringify(AppState));
-        } catch(e) {}
-
-        // 3. Sincronizzazione Cloud Protetta
-        if (AppState.supabaseConfig && AppState.supabaseConfig.url && action !== 'LOGIN' && action !== 'LOGOUT') {
-          CloudSync.pushToServer(false);
-        }
-      },
-
-      createDailySnapshot() {
-        const todayStr = todayISO();
-        if (this.db) {
-          try {
-            const st = this.db.transaction('snapshots', 'readwrite').objectStore('snapshots');
-            const ad = st.add({ date: todayStr, snapshot: this.snapshot() });
-            ad.onerror = ev => ev.preventDefault();
-            st.getAllKeys().onsuccess = ev => ev.target.result.sort().slice(0, -30).forEach(k => st.delete(k));
-          } catch(e) {}
-        }
-      }
     };
 
     /* =========================================================================
@@ -4791,21 +4601,6 @@ ${dateSummary}`);
        ========================================================================= */
     const CloudSync = {
       client: null,
-      initFromSavedConfig() {
-        if (AppState.supabaseConfig && AppState.supabaseConfig.url && AppState.supabaseConfig.key) {
-          const urlInp = document.getElementById('sb-url');
-          const keyInp = document.getElementById('sb-key');
-          if (urlInp) urlInp.value = AppState.supabaseConfig.url;
-          if (keyInp) keyInp.value = AppState.supabaseConfig.key;
-          try {
-            this.client = window.supabase.createClient(AppState.supabaseConfig.url, AppState.supabaseConfig.key);
-            this.updateStatusIndicators('🟢 Cloud Protetto', 'Connesso e protetto da sovrascritture accidentali', '#16a34a');
-            this.pullFromServerSilently();
-          } catch (err) {
-            this.updateStatusIndicators('🔴 Errore Cloud', err.message, '#dc2626');
-          }
-        }
-      },
       updateStatusIndicators(shortLabel, detailMsg, colorHex) {
         const pill = document.getElementById('topbar-cloud-status');
         const statusText = document.getElementById('cloud-status-text');
@@ -4822,215 +4617,6 @@ ${dateSummary}`);
           syncInfo.innerHTML = detailMsg;
         }
       },
-      async saveConfig(e) {
-        e.preventDefault();
-        const url = document.getElementById('sb-url').value.trim();
-        const key = document.getElementById('sb-key').value.trim();
-        AppState.supabaseConfig = { url, key, lastSync: AppState.supabaseConfig?.lastSync || '' };
-        this.client = window.supabase.createClient(url, key);
-        StorageEngine.saveState();
-        await this.pushToServer(true);
-      },
-
-      // SALVATAGGIO BLINDATO: Impedisce a una sessione vuota o corrotta di cancellare il database sul server
-      async pushToServer(showAlert = false) {
-        if (!this.client) return;
-        try {
-          // Guardia anti-wipe: prima di sovrascrivere, controlla se sul server ci sono molti più dati rispetto a una sessione locale appena azzerata
-          const needGuard = (AppState.clients?.length || 0) < 6 || (AppState.orders?.length || 0) < 11;
-          const { data: remoteCheck } = !needGuard ? { data: null } : await this.client
-            .from('ipl_erp_state')
-            .select('data')
-            .eq('id', 'main_backup')
-            .single();
-
-          if (remoteCheck && remoteCheck.data) {
-            const remoteClients = remoteCheck.data.clients?.length || 0;
-            const remoteOrders = remoteCheck.data.orders?.length || 0;
-            const localClients = AppState.clients?.length || 0;
-            const localOrders = AppState.orders?.length || 0;
-
-            if ((remoteClients > 5 && localClients === 0) || (remoteOrders > 10 && localOrders === 0)) {
-              console.warn('Protezione Anti-Wipe attivata: bloccata sovrascrittura del server con stato vuoto.');
-              if (showAlert) {
-                alert('⚠️ PROTEZIONE DATI ATTIVATA: Sul server sono presenti dati storici ma questa finestra locale risulta vuota. Eseguo il recupero dal server anziché sovrascrivere.');
-              }
-              await this.pullFromServerSilently();
-              return;
-            }
-          }
-
-          const nowStr = new Date().toLocaleString('it-IT');
-          AppState.supabaseConfig.lastSync = nowStr;
-          const payload = StorageEngine.snapshot();
-
-          const { error } = await this.client
-            .from('ipl_erp_state')
-            .upsert({ id: 'main_backup', data: payload, updated_at: new Date().toISOString() });
-
-          if (error) throw error;
-
-          this.updateStatusIndicators(
-            `🟢 Cloud Sincronizzato`,
-            `✅ Backup blindato salvato sul server il <b>${nowStr}</b> (${AppState.clients.length} clienti, ${AppState.orders.length} ordini).`,
-            '#16a34a'
-          );
-          if (showAlert) alert(`✅ Backup inviato e verificato sul server! (${AppState.clients.length} clienti, ${AppState.orders.length} ordini salvati).`);
-        } catch (err) {
-          console.error(err);
-          this.updateStatusIndicators(
-            '🟠 Salvataggio Locale Attivo',
-            `⚠️ Cloud momentaneamente irraggiungibile (${err.message}). Tutti i dati sono al sicuro nella memoria locale ridondata.`,
-            '#ea580c'
-          );
-          if (showAlert) alert(`❌ Errore durante il salvataggio sul server: ${err.message}`);
-        }
-      },
-
-      async pullFromServerSilently() {
-        if (!this.client || StorageEngine.isDirty()) return;
-        try {
-          const { data, error } = await this.client
-            .from('ipl_erp_state')
-            .select('data, updated_at')
-            .eq('id', 'main_backup')
-            .single();
-
-          if (!error && data && data.data && Array.isArray(data.data.clients) && data.data.clients.length > 0) {
-            const remoteUpdated = data.data._lastUpdated || 0;
-            const localUpdated = AppState._lastUpdated || 0;
-
-            // Aggiorna solo se il server ha una versione più recente o se in locale siamo vuoti
-            if (remoteUpdated >= localUpdated || AppState.clients.length === 0) {
-              const currentRole = AppState.role;
-              const currentUser = AppState.currentUser;
-              Object.assign(AppState, clean(data.data));
-              AppState.role = currentRole;
-              AppState.currentUser = currentUser;
-              StorageEngine.ensureDefaults();
-              CatalogModule.renderAll();
-              OrdersModule.renderActiveOrders();
-              MapModule.refreshMarkers();
-              if (AppState.role === 'lavaggi') WashingModule.init();
-            }
-          }
-        } catch (err) {
-          console.warn('Sync silenzioso cloud saltato:', err.message);
-        }
-      },
-
-      async testAndVerifyServer() {
-        if (!AppState.supabaseConfig || !AppState.supabaseConfig.url) {
-          alert('Credenziali server non trovate.');
-          return;
-        }
-        this.client = window.supabase.createClient(AppState.supabaseConfig.url, AppState.supabaseConfig.key);
-        this.updateStatusIndicators('⏳ Verifica Server...', 'Controllo integrità backup sul server...', '#0284c7');
-        try {
-          const { data, error } = await this.client
-            .from('ipl_erp_state')
-            .select('updated_at, data')
-            .eq('id', 'main_backup')
-            .single();
-
-          if (error) throw error;
-
-          const srvClients = data?.data?.clients?.length || 0;
-          const srvOrders = data?.data?.orders?.length || 0;
-          const srvTime = data?.updated_at ? new Date(data.updated_at).toLocaleString('it-IT') : 'N/D';
-
-          this.updateStatusIndicators(
-            '🟢 Server Verificato OK',
-            `✅ Connessione attiva! Sul server è presente il backup del <b>${srvTime}</b> contenente <b>${srvClients} clienti</b> e <b>${srvOrders} ordini</b>.`,
-            '#16a34a'
-          );
-          alert(`✅ VERIFICA INTEGRITÀ SUPERATA!\n\nUltimo backup sul server: ${srvTime}\nClienti salvati: ${srvClients}\nOrdini/DDT storici salvati: ${srvOrders}`);
-        } catch (err) {
-          this.updateStatusIndicators(
-            '🔴 Verifica Fallita',
-            `❌ Impossibile leggere dal server: ${err.message}`,
-            '#dc2626'
-          );
-          alert(`❌ Verifica fallita: ${err.message}`);
-        }
-      },
-
-      async pullFromServer() {
-        if (!this.client) { alert('Configura prima Supabase.'); return; }
-        if (!confirm('Vuoi scaricare i dati dal server e aggiornare questo PC?')) return;
-        try {
-          const { data, error } = await this.client
-            .from('ipl_erp_state')
-            .select('data, updated_at')
-            .eq('id', 'main_backup')
-            .single();
-
-          if (error) throw error;
-          if (data && data.data) {
-            const currentRole = AppState.role;
-            const currentUser = AppState.currentUser;
-            Object.assign(AppState, clean(data.data));
-            AppState.role = currentRole;
-            AppState.currentUser = currentUser;
-            StorageEngine.ensureDefaults();
-            StorageEngine.saveState();
-            ZonesModule.renderZones();
-            CatalogModule.renderAll();
-            OrdersModule.renderActiveOrders();
-            HistoryModule.renderHistory();
-            MapModule.refreshMarkers();
-            alert(`✅ Dati scaricati e ripristinati dal server con successo! (${AppState.clients.length} clienti caricati).`);
-          }
-        } catch (err) {
-          alert(`❌ Errore durante il ripristino dal server: ${err.message}`);
-        }
-      },
-
-      exportLocalJsonBackup() {
-        StorageEngine.flushNow();
-        const exportObj = { ...StorageEngine.snapshot(), _backupExportDate: new Date().toISOString(), _schemaGuarantee: 'IPL_LONG_TERM_ARCHIVE_V1' };
-        const url = URL.createObjectURL(new Blob([JSON.stringify(exportObj)], { type: 'application/json' }));
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Backup_IPL_Lavanderie_${todayISO()}.json`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 4000);
-      },
-
-      importLocalJsonBackup() {
-        const inp = document.getElementById('restore-json-file');
-        if (!inp.files || inp.files.length === 0) { alert('Seleziona prima un file .json di backup.'); return; }
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          try {
-            const parsed = JSON.parse(e.target.result);
-            if (!parsed || !Array.isArray(parsed.clients) || (parsed.orders && !Array.isArray(parsed.orders))) {
-              alert('❌ Il file selezionato non contiene una struttura valida di clienti/ordini IPL.');
-              return;
-            }
-            const currentRole = AppState.role;
-            const currentUser = AppState.currentUser;
-            if (!confirm(`Ripristinare il backup (${parsed.clients.length} clienti, ${(parsed.orders || []).length} ordini)? I dati attuali verranno sostituiti.`)) return;
-            Object.assign(AppState, clean(parsed));
-            if (!AppState.orders) AppState.orders = [];
-            AppState.role = currentRole;
-            AppState.currentUser = currentUser;
-            StorageEngine.ensureDefaults();
-            StorageEngine.saveState('RIPRISTINO_FILE', 'Backup JSON caricato');
-            ZonesModule.renderZones();
-            CatalogModule.renderAll();
-            OrdersModule.renderActiveOrders();
-            HistoryModule.renderHistory();
-            MapModule.refreshMarkers();
-            alert(`✅ Backup ripristinato con successo! (${AppState.clients.length} clienti, ${AppState.orders.length} ordini).`);
-          } catch (err) {
-            alert('❌ File .json non valido o danneggiato.');
-          }
-        };
-        reader.readAsText(inp.files[0]);
-      }
     };
 
    const UI = {
@@ -5226,7 +4812,7 @@ document.querySelectorAll('#tab-clients form,#tab-items form,#tab-zones form,#ta
  form.addEventListener('submit',()=>setTimeout(()=>{if(SE.saveCount>c0)close()},0));
  PM.set(form,{open,close})});
 const hook=(obj,fn,sel)=>{const o=obj&&obj[fn];if(!o)return;obj[fn]=function(...a){const r=o.apply(this,a);const m=PM.get(document.querySelector(sel));if(m)m.open();return r}};
-IPLHooks.on('clientedit:after',function(){const m=PM.get(document.querySelector('#form-new-client'));if(m)m.open()},5);hook(ZonesModule,'editZone','#tab-zones form');hook(ProfilesModule,'editProfile','#form-profile-editor');
+IPLHooks.on('clientedit:after',function(){const m=PM.get(document.querySelector('#form-new-client'));if(m)m.open()},5);hook(ZonesModule,'editZone','#tab-zones form');
 const sp=MapModule.startPickingLocation;
 MapModule.startPickingLocation=function(...a){const r=sp.apply(this,a);const m=PM.get($('form-new-client'));
  if(m){m.close();const w=setInterval(()=>{if(!AppState.isPickingLocation){clearInterval(w);m.open()}},300)}return r};
@@ -5442,7 +5028,6 @@ window.IPL={
   // ---------- Numerazione automatica indipendente DDT / SDL ----------
   const currentYear = () => String(new Date().getFullYear());
   const kindFromType = type => (type === 'WORKSHEET' || type === 'SDL') ? 'SDL' : (window.IPLDocTypes ? IPLDocTypes.kind(type) : 'DDT');
-  const typeFromKind = kind => kind === 'SDL' ? 'WORKSHEET' : (kind === 'RIT' ? 'PICKUP_DOC' : 'DDT');
   const taggedNumberRE = /^(DDT|SDL|RIT)-(\d{3,})\/(\d{4})$/i;
   const parseTaggedNumber = value => {
     const m = String(value || '').trim().match(taggedNumberRE);
@@ -5553,16 +5138,6 @@ window.IPL={
   // Rende affidabile il pulsante di ritorno tra scheda, archivio e configurazione.
   /* switchPopupView: nucleo (core.js) */
 
-  // Se il file viene riaperto con dati salvati, inizializza i contatori e riallinea il numero del documento vuoto non ancora emesso.
-  const oldLoadState = StorageEngine.loadState.bind(StorageEngine);
-  StorageEngine.loadState = async function (...args) {
-    const result = await oldLoadState(...args);
-    this.ensureDefaults();
-    if (AppState.currentActiveDocOrder && String(AppState.currentActiveDocOrder.id || '').startsWith('DOC-BLANK-')) {
-      DocsModule.updateSuggestedDocumentNumber();
-    }
-    return result;
-  };
 
 })();
 </script>
@@ -5667,7 +5242,6 @@ function targetDeliveryFor(co, baseIso) {
 const nextAfter = (co, iso) => deliveryFor(Object.assign({}, co, { leadDays: 0 }), addDays(iso, 1));
 const pidOf = (co, d) => 'ORD-TUTE-' + co + '-R-' + d.replace(/-/g, '');
 const didOf = (co, d) => 'ORD-TUTE-' + co + '-C-' + d.replace(/-/g, '');
-const ordById = () => mapOf(AppState.orders, o => o.id);
 function lastPickupDate(co) {
   const today = todayISO(), lim = addDays(today, -10); let best = null;
   for (const o of AppState.orders) if (o.isTute && o.tuteCo === co && o.orderType === 'PICKUP_ONLY' && o.date <= today && o.date >= lim && (!best || o.date > best)) best = o.date;
@@ -6782,7 +6356,7 @@ window.TuteModule = TuteModule;
 (function () {
 'use strict';
 const SE = StorageEngine, $ = id => document.getElementById(id);
-const SCHEMA = 2, TBL = 'ipl_erp_state', ROW = 'main_backup';
+const SCHEMA = 2;
 const DAY = 864e5;
 let DEV = 'dev'; try { DEV = localStorage.getItem('IPL_DEVICE_ID') || ''; if (!DEV) { DEV = Math.random().toString(36).slice(2, 5); localStorage.setItem('IPL_DEVICE_ID', DEV); } } catch (e) { DEV = Math.random().toString(36).slice(2, 5); }
 const TAB = Math.random().toString(36).slice(2, 8);
@@ -6793,8 +6367,6 @@ const str = v => (v == null ? '' : String(v)).replace(/[<>]/g, c => c === '<' ? 
 const numv = (v, d = 0) => { const n = Number(v); return Number.isFinite(n) ? n : d; };
 const intv = (v, d = 0) => { const n = parseInt(v, 10); return Number.isFinite(n) ? n : d; };
 const validISO = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(new Date(s + 'T12:00:00'));
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-const withTimeout = (p, ms, label) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error((label || 'operazione') + ': timeout')), ms))]);
 const rid = () => Math.random().toString(36).slice(2, 6);
 function hash53(s, seed) {
   let h1 = 0xdeadbeef ^ (seed || 0), h2 = 0x41c6ce57 ^ (seed || 0);
@@ -6991,7 +6563,6 @@ const SIG = {}, SSIG = {}, CH = new Map();
    modifica (o l'eliminazione), che così non arriva mai agli altri. Per questo ogni modifica prende un orario
    comunque successivo all'ultimo conosciuto per quel record: max(adesso, ultimo conosciuto + 1). */
 const KU = {};
-const bumpU = prev => Math.max(Date.now(), (Number(prev) || 0) + 1);
 const knownU = (name, k) => Math.max((KU[name] && KU[name].get(String(k))) || 0, ((window.AppState && AppState._tomb) || {})[name + ':' + k] || 0);
 const chg = (name, k, del) => CH.set(name + '\u0001' + k, del ? { name, k, del: true } : { name, k });
 const takeChanges = () => { const a = [...CH.values()]; CH.clear(); return a; };
@@ -7120,7 +6691,7 @@ function addLog(action, detail) {
 /* =====================================================================
    5. SALVATAGGIO LOCALE VERIFICATO
    ===================================================================== */
-let tm = null, dirty = false, flushing = false, again = false, cloudPending = false, cloudTm = null, cloudRetryMs = 0, lsLast = 0, seen = null, netChain = Promise.resolve(), quotaWarned = false;
+let tm = null, dirty = false, flushing = false, again = false, cloudPending = false, cloudTm = null, lsLast = 0, quotaWarned = false;
 try { cloudPending = localStorage.getItem('IPL_CLOUD_DIRTY') === '1'; } catch (e) {}
 const setCloudDirty = v => { cloudPending = v; try { localStorage.setItem('IPL_CLOUD_DIRTY', v ? '1' : '0'); } catch (e) {} };
 function setLocal(ok, msg) {
@@ -7214,75 +6785,13 @@ SE.createDailySnapshot = async function () {
 };
 
 /* =====================================================================
-   6. CARICAMENTO (IndexedDB + localStorage + cloud, uniti senza perdite)
+   6. ADOZIONE DI UNO STATO COMPLETO (usata dal ripristino)
    ===================================================================== */
 const KEEP_KEYS = ['role', 'currentUser'];
 function adopt(st) { const keep = {}; KEEP_KEYS.forEach(k => keep[k] = AppState[k]); const sup = AppState.supabaseConfig; Object.assign(AppState, clean(st)); KEEP_KEYS.forEach(k => AppState[k] = keep[k]); if (!AppState.supabaseConfig) AppState.supabaseConfig = sup; }
-SE.loadState = async function () {
-  const cands = []; const notes = [];
-  const r = await idbGet('state', 'app_data');
-  if (r.ok && r.v && isObj(r.v.value)) cands.push({ src: 'IndexedDB', st: r.v.value });
-  else if (!r.ok) notes.push('IndexedDB non leggibile (' + r.err + ')');
-  try { const raw = localStorage.getItem('IPL_APP_STATE_FALLBACK'); if (raw) { const p = JSON.parse(raw); if (isObj(p)) cands.push({ src: 'localStorage', st: p }); } } catch (e) { notes.push('Copia localStorage danneggiata: ignorata'); }
-  try {
-    if (AppState.supabaseConfig && AppState.supabaseConfig.url && window.supabase) {
-      const cl = window.supabase.createClient(AppState.supabaseConfig.url, AppState.supabaseConfig.key);
-      const { data, error } = await withTimeout(cl.from(TBL).select('data').eq('id', ROW).single(), 5000, 'cloud');
-      if (!error && data && isObj(data.data) && Array.isArray(data.data.clients)) cands.push({ src: 'cloud', st: data.data });
-    }
-  } catch (err) { console.warn('Cloud non raggiungibile, uso i dati locali.'); }
-  const usable = cands.filter(c => Array.isArray(c.st.clients));
-  const real = usable.filter(c => (c.st.clients && c.st.clients.length) || (c.st.orders && c.st.orders.length));
-  const pool = (real.length ? real : usable).slice().sort((x, y) => (numv(y.st._lastUpdated, 0)) - (numv(x.st._lastUpdated, 0)));
-  const rep = { n: 0, notes: [] };
-  if (pool.length) {
-    const best = pool[0]; const bestLegacy = best.st._schema !== SCHEMA;
-    adopt(best.st); normalize(AppState, rep);
-    SE.ensureDefaults(); rebaseline();
-    for (const o of pool.slice(1)) {
-      if (o.st._schema !== SCHEMA) continue; // copie vecchie senza metadati: la più recente prevale (comportamento storico)
-      normalize(o.st, rep); const m = mergeInto(AppState, o.st); if (m.changedLocal || m.needPush) { rebaseline(); dirty = true; if (m.needPush) setCloudDirty(true); }
-    }
-    if (bestLegacy) { dirty = true; notes.push('Dati migrati allo schema v7 (tracciamento per record)'); }
-    if (best.src === 'cloud') notes.push('Dati caricati dal cloud');
-  } else { SE.ensureDefaults(); normalize(AppState, rep); rebaseline(); }
-  if (rep.n) { notes.push('Normalizzazione dati: ' + rep.n + ' correzioni'); dirty = true; }
-  if (notes.length) { addLog('AVVIO_VERIFICA', notes.join(' | ').slice(0, 400)); dirty = true; }
-  DG.lastLoadReport = { notes, fixes: rep.notes };
-  // inizializzazione interfaccia (come loadState originale)
-  AuthModule.initLoginDropdown();
-  ZonesModule.renderZones();
-  const todayStr = todayISO();
-  const dateInput = $('home-selected-date'); if (dateInput) dateInput.value = todayStr;
-  const washDateInput = $('wash-target-date'); if (washDateInput) washDateInput.value = todayStr;
-  DocsModule.initDocsModule();
-  CloudSync.initFromSavedConfig();
-  if (AppState.currentActiveDocOrder && String(AppState.currentActiveDocOrder.id || '').startsWith('DOC-BLANK-')) DocsModule.updateSuggestedDocumentNumber();
-  if (window.TuteModule) try { TuteModule.afterLoad(); } catch (e) { console.error('Tute afterLoad', e); }
-  if (dirty) { dirty = false; markLocalDirty(); }
-};
-SE.init = function () {
-  return new Promise(resolve => {
-    let req; try { req = indexedDB.open('IPL_Enterprise_DB_v6.18', 1); } catch (e) { req = null; }
-    if (!req) { setLocal(false, 'IndexedDB non disponibile in questo browser: uso solo localStorage'); SE.loadState().finally(resolve); return; }
-    req.onupgradeneeded = e => { const db = e.target.result; if (!db.objectStoreNames.contains('state')) db.createObjectStore('state', { keyPath: 'key' }); if (!db.objectStoreNames.contains('snapshots')) db.createObjectStore('snapshots', { keyPath: 'date' }); };
-    req.onsuccess = async e => {
-      SE.db = e.target.result;
-      SE.db.onversionchange = () => { try { SE.db.close(); } catch (x) {} };
-      try { await SE.loadState(); } catch (err) { console.error('loadState', err); }
-      SE.createDailySnapshot().catch(() => {});
-      resolve();
-    };
-    req.onerror = async () => { setLocal(false, 'Impossibile aprire il database locale: uso la copia di sicurezza'); try { await SE.loadState(); } catch (x) { console.error(x); } resolve(); };
-    req.onblocked = () => console.warn('Database bloccato da un\'altra scheda aperta con una versione precedente.');
-    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
-  });
-};
-
 /* =====================================================================
-   7. SINCRONIZZAZIONE CLOUD (merge + lock ottimistico)
+   7. AGGIORNAMENTO SCHERMATE, INVIO AL SERVER, PIÙ SCHEDE
    ===================================================================== */
-const isNoRows = e => !!e && (e.code === 'PGRST116' || /no rows|0 rows|multiple \(or no\)/i.test(e.message || ''));
 function rerender() {
   try {
     ZonesModule.renderZones(); CatalogModule.renderAll(); OrdersModule.renderActiveOrders(); HistoryModule.renderHistory(); MapModule.refreshMarkers(); ProfilesModule.renderProfiles();
@@ -7292,96 +6801,8 @@ function rerender() {
   } catch (e) { console.warn('rerender', e); }
 }
 function scheduleCloud(ms) { clearTimeout(cloudTm); cloudTm = setTimeout(() => { CloudSync.pushToServer(false); }, ms == null ? 1500 : ms); }
-const exclusive = fn => { const p = netChain.then(fn, fn); netChain = p.catch(() => {}); return p; };
-const stampOf = async () => { const { data } = await CloudSync.client.from(TBL).select('updated_at').eq('id', ROW).single(); return data ? data.updated_at : null; };
 const counts = st => ({ c: (st.clients || []).length, o: (st.orders || []).length, g: ((st.tute || {}).garments || []).length });
 
-async function doPush(manual) {
-  const C = CloudSync; if (!C.client) { if (manual) alert('Configura prima le credenziali Supabase.'); return false; }
-  try {
-    track();
-    let wrote = false, lastErr = null;
-    for (let attempt = 0; attempt < 4 && !wrote; attempt++) {
-      const { data: row, error: e1 } = await withTimeout(C.client.from(TBL).select('data, updated_at').eq('id', ROW).single(), 15000, 'lettura cloud');
-      let remote = null, stamp = null;
-      if (row && row.data) { remote = row.data; stamp = row.updated_at; }
-      else if (e1 && !isNoRows(e1)) throw new Error(e1.message || 'errore di lettura dal server');
-      let before = counts(remote || {});
-      if (remote) {
-        const legacy = remote._schema !== SCHEMA; normalize(remote);
-        if (legacy && numv(remote._lastUpdated, 0) > numv(AppState._lastUpdated, 0)) {
-          await snapshotNow('prima-adozione-cloud'); adopt(remote); normalize(AppState); rebaseline(); dirty = true; rerender();
-        } else if (!legacy) {
-          const m = mergeInto(AppState, remote); rebaseline();
-          if (m.changedLocal) { dirty = true; rerender(); }
-        }
-      }
-      // protezione anti-perdita: il cloud non deve ridursi drasticamente per un errore locale
-      const after = counts(AppState); const shrink = (a, b) => b >= 10 && a < b * 0.7;
-      if (remote && (shrink(after.c, before.c) || shrink(after.o, before.o) || shrink(after.g, before.g))) {
-        const msg = 'PROTEZIONE DATI: il salvataggio ridurrebbe i dati sul server (clienti ' + before.c + '→' + after.c + ', ordini ' + before.o + '→' + after.o + ', capi tute ' + before.g + '→' + after.g + ').';
-        if (!manual || !confirm(msg + '\n\nSe hai eliminato volutamente questi dati, premi OK per confermare. Altrimenti premi Annulla.')) { C.updateStatusIndicators('🟠 Sync sospesa', msg, '#ea580c'); addLog('SYNC_BLOCCATA', msg.slice(0, 200)); return false; }
-      }
-      AppState.supabaseConfig.lastSync = new Date().toLocaleString('it-IT');
-      const payload = SE.snapshot(); const nowIso = new Date().toISOString();
-      if (!row || !row.data) {
-        const r = await withTimeout(C.client.from(TBL).insert({ id: ROW, data: payload, updated_at: nowIso }), 30000, 'scrittura cloud');
-        if (!r.error) wrote = true; else lastErr = r.error;
-      } else {
-        const r = await withTimeout(C.client.from(TBL).update({ data: payload, updated_at: nowIso }).eq('id', ROW).eq('updated_at', stamp).select('id'), 30000, 'scrittura cloud');
-        if (r.error) throw new Error(r.error.message || 'errore di scrittura sul server');
-        if (Array.isArray(r.data) && r.data.length > 0) wrote = true; else lastErr = { message: 'conflitto' };
-      }
-    }
-    if (!wrote) {
-      // ultima risorsa: i dati sono già uniti con l'ultima copia letta, scrittura diretta
-      const r = await withTimeout(C.client.from(TBL).upsert({ id: ROW, data: SE.snapshot(), updated_at: new Date().toISOString() }), 30000, 'scrittura cloud');
-      if (r.error) throw new Error(r.error.message || (lastErr && lastErr.message) || 'errore');
-    }
-    try { seen = await stampOf(); } catch (e) {}
-    setCloudDirty(false); cloudRetryMs = 0;
-    const c = counts(AppState);
-    C.updateStatusIndicators('🟢 Cloud Sincronizzato', '✅ Dati uniti e salvati sul server il <b>' + new Date().toLocaleString('it-IT') + '</b> (' + c.c + ' clienti, ' + c.o + ' ordini' + (c.g ? ', ' + c.g + ' capi tute' : '') + ').', '#16a34a');
-    if (manual) alert('✅ Sincronizzazione completata e verificata sul server! (' + c.c + ' clienti, ' + c.o + ' ordini' + (c.g ? ', ' + c.g + ' capi tute' : '') + ').');
-    if (window.TuteModule) TuteModule.syncEvents().catch(() => {});
-    return true;
-  } catch (err) {
-    console.error('push', err);
-    cloudRetryMs = Math.min(300000, (cloudRetryMs || 5000) * 2); scheduleCloud(cloudRetryMs);
-    C.updateStatusIndicators('🟠 Salvataggio Locale Attivo', '⚠️ Cloud non raggiungibile (' + err.message + '). Dati al sicuro in locale; nuovo tentativo automatico tra ' + Math.round(cloudRetryMs / 1000) + 's.', '#ea580c');
-    if (manual) alert('❌ Errore durante la sincronizzazione: ' + err.message);
-    return false;
-  }
-}
-async function doPull(force, manual) {
-  const C = CloudSync; if (!C.client) { if (manual) alert('Configura prima Supabase.'); return false; }
-  try {
-    if (SE.isDirty()) { clearTimeout(tm); await flush(); }
-    if (!force) { const st = await withTimeout(stampOf(), 12000, 'cloud'); if (!st || st === seen) return false; }
-    const { data: row, error } = await withTimeout(C.client.from(TBL).select('data, updated_at').eq('id', ROW).single(), 20000, 'lettura cloud');
-    if (error || !row || !isObj(row.data)) { if (manual) alert('Nessun dato sul server' + (error ? ': ' + error.message : '.')); return false; }
-    const remote = row.data, legacy = remote._schema !== SCHEMA; normalize(remote); track();
-    let res = { changedLocal: false, needPush: false };
-    if (legacy) {
-      if (numv(remote._lastUpdated, 0) >= numv(AppState._lastUpdated, 0) || AppState.clients.length === 0) { await snapshotNow('prima-adozione-cloud'); adopt(remote); normalize(AppState); rebaseline(); res.changedLocal = true; res.needPush = true; }
-      else res.needPush = true;
-    } else { res = mergeInto(AppState, remote); rebaseline(); }
-    seen = row.updated_at;
-    if (res.changedLocal) { dirty = true; markLocalDirty(); rerender(); }
-    if (res.needPush) { setCloudDirty(true); scheduleCloud(400); }
-    if (window.TuteModule) { TuteModule.syncEvents().catch(() => {}); if (res.changedLocal) try { TuteModule.ensurePlan(); } catch (e) {} }
-    if (manual) alert('✅ Dati del server uniti con quelli locali (' + AppState.clients.length + ' clienti, ' + AppState.orders.length + ' ordini). Nessun dato locale è stato perso.');
-    return res.changedLocal;
-  } catch (err) { console.warn('Sync silenzioso cloud saltato:', err.message); if (manual) alert('❌ Errore durante il download dal server: ' + err.message); return false; }
-}
-CloudSync.pushToServer = function (manual) { return exclusive(() => doPush(manual === true)); };
-CloudSync.pullFromServerSilently = function () { return exclusive(() => doPull(false, false)); };
-CloudSync.pullFromServer = function () {
-  if (!this.client) { alert('Configura prima Supabase.'); return; }
-  if (!confirm('Vuoi unire i dati del server con quelli di questo dispositivo?\n(Per ogni elemento vince la modifica più recente; nulla viene perso.)')) return;
-  return exclusive(() => doPull(true, true));
-};
-CloudSync.syncNow = function (ms) { return withTimeout(exclusive(() => doPull(false, false)), ms || 2500, 'sync').catch(() => false); };
 window.addEventListener('online', () => { if (cloudPending) scheduleCloud(500); CloudSync.pullFromServerSilently(); });
 if (cloudPending) setTimeout(() => { if (CloudSync.client) scheduleCloud(1500); }, 4000);
 
@@ -7420,41 +6841,6 @@ async function replaceState(newSt, reason) {
   rebaseline(); AppState._lastUpdated = now;
   SE.saveState('RIPRISTINO', reason); rerender(); await flush();
 }
-
-/* =====================================================================
-   9. BACKUP SU FILE (con checksum) E RIPRISTINO
-   ===================================================================== */
-CloudSync.exportLocalJsonBackup = async function () {
-  track(); await flush();
-  const obj = { ...SE.snapshot(), _backupExportDate: new Date().toISOString(), _schemaGuarantee: 'IPL_LONG_TERM_ARCHIVE_V2' };
-  if (window.TuteModule) try { obj._tuteEvents = await TuteModule.exportEvents(); } catch (e) { console.warn(e); }
-  const body = JSON.stringify(obj); const withSum = JSON.stringify({ ...obj, _checksum: hash53(body).toString(36) + ':' + body.length });
-  const url = URL.createObjectURL(new Blob([withSum], { type: 'application/json' }));
-  const a = document.createElement('a'); a.href = url; a.download = 'Backup_IPL_Lavanderie_' + todayISO() + '.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000);
-  try { localStorage.setItem('IPL_LAST_BACKUP', String(Date.now())); } catch (e) {}
-  renderIntegrity();
-};
-CloudSync.importLocalJsonBackup = function () {
-  const inp = $('restore-json-file');
-  if (!inp.files || inp.files.length === 0) { alert('Seleziona prima un file .json di backup.'); return; }
-  const reader = new FileReader();
-  reader.onload = async e => {
-    let parsed; try { parsed = JSON.parse(e.target.result); } catch (err) { alert('❌ File .json non valido o danneggiato.'); return; }
-    if (!isObj(parsed) || !Array.isArray(parsed.clients) || (parsed.orders && !Array.isArray(parsed.orders))) { alert('❌ Il file selezionato non contiene una struttura valida di clienti/ordini IPL.'); return; }
-    let sumMsg = 'checksum non presente (backup di versione precedente)';
-    if (parsed._checksum) { const cs = parsed._checksum; const c2 = { ...parsed }; delete c2._checksum; const body = JSON.stringify(c2); const ok = (hash53(body).toString(36) + ':' + body.length) === cs; sumMsg = ok ? 'integrità del file verificata ✔' : '⚠️ ATTENZIONE: il checksum NON corrisponde (file modificato o danneggiato)'; }
-    const ev = parsed._tuteEvents; delete parsed._tuteEvents;
-    const tmp = JSON.parse(JSON.stringify(parsed)); const rep = normalize(tmp);
-    const c = counts(tmp);
-    if (!confirm('Ripristinare il backup?\n\n• ' + c.c + ' clienti, ' + c.o + ' ordini' + (c.g ? ', ' + c.g + ' capi tute' : '') + '\n• ' + sumMsg + (rep.n ? '\n• ' + rep.n + ' correzioni automatiche applicate' : '') + '\n\nPrima del ripristino viene salvato uno snapshot di sicurezza dei dati attuali.\nI contatori dei documenti non tornano mai indietro (niente numeri doppi).')) return;
-    try {
-      await replaceState(tmp, 'ripristino-file');
-      if (ev && window.TuteModule) await TuteModule.importEvents(ev);
-      alert('✅ Backup ripristinato con successo! (' + AppState.clients.length + ' clienti, ' + AppState.orders.length + ' ordini).');
-    } catch (err) { console.error(err); alert('❌ Errore durante il ripristino: ' + err.message); }
-  };
-  reader.readAsText(inp.files[0]);
-};
 
 /* =====================================================================
    10. VERIFICA INTEGRITÀ + PANNELLO
@@ -7696,11 +7082,10 @@ document.addEventListener('click', e => { if (e.target && e.target.id === 'cl-fi
 document.addEventListener('toggle', e => { if (e.target && e.target.id === 'cl-box') clOpen = e.target.open; }, true);
 
 const DG = window.DataGuard = {
-  dev: DEV, normalize, track, rebaseline, takeChanges, mergeInto, audit, flush, snapshotNow, replaceState, rerender, hash53, COLLS, SINGLES, getP, setP, lastLoadReport: null,
+  dev: DEV, normalize, track, rebaseline, takeChanges, mergeInto, audit, flush, snapshotNow, replaceState, rerender, hash53, COLLS, SINGLES, getP, setP,
   newOrderId() { return 'ORD-' + AppState.ddtCounter + '-' + DEV; },
   flushNow: () => flush(), markDirty() { dirty = true; clearTimeout(tm); tm = setTimeout(flush, 500); setCloudDirty(true); },
   idbGet, idbPut, idbAllKeys, str, intv, numv, validISO, esc: s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])),
-  pushNow: (m) => CloudSync.pushToServer(m), pullNow: (f) => exclusive(() => doPull(!!f, false)),
   runAudit() { const r = audit(); const el = $('integrity-result'); const col = { err: '#991b1b', warn: '#9a3412', info: '#075985', ok: '#166534' }, bg = { err: '#fee2e2', warn: '#ffedd5', info: '#e0f2fe', ok: '#dcfce7' }, ic = { err: '⛔', warn: '⚠️', info: 'ℹ️', ok: '✅' }; if (el) el.innerHTML = r.map(x => '<div style="background:' + bg[x.lv] + ';color:' + col[x.lv] + ';padding:6px 10px;border-radius:6px;margin-bottom:5px;font-size:12.5px;">' + ic[x.lv] + ' ' + DG.esc(x.msg) + '</div>').join(''); return r; },
   async repair() { if (!confirm('Eseguire la riparazione automatica?\nVerrà salvato uno snapshot e corrette le incongruenze sicure (duplicati, quantità non valide, riferimenti, ecc.). Nessun dato valido viene cancellato.')) return; await snapshotNow('prima-riparazione'); const rep = normalize(AppState); if (window.TuteModule) TuteModule.reconcile(); rebaseline(); SE.saveState('RIPARAZIONE_DATI', rep.n + ' correzioni'); rerender(); renderIntegrity(); setTimeout(() => { DG.runAudit(); const el = $('integrity-result'); if (el) el.insertAdjacentHTML('afterbegin', '<div style="background:#dcfce7;color:#166534;padding:6px 10px;border-radius:6px;margin-bottom:5px;font-size:12.5px;">🔧 ' + rep.n + ' correzioni applicate' + (rep.notes.length ? ':<br>• ' + rep.notes.slice(0, 12).map(DG.esc).join('<br>• ') : '.') + '</div>'); }, 50); },
   async manualSnapshot() { const k = await snapshotNow('manuale'); alert(k ? '📸 Snapshot salvato: ' + k : '❌ Snapshot non riuscito.'); renderIntegrity(); },
@@ -8016,10 +7401,6 @@ function barChart(labels, series, M) {
   const leg = series.length > 1 ? '<div class="st-leg">' + series.map(s => '<span><i style="background:' + s.color + '"></i>' + esc(s.name) + '</span>').join('') + '</div>' : '';
   return '<svg class="st-chart" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">' + g + '</svg>' + leg;
 }
-function hBars(rows, M) {
-  const max = Math.max(0, ...rows.map(r => r.v)) || 1, tot = rows.reduce((s, r) => s + r.v, 0) || 1;
-  return '<div class="st-hb">' + rows.map((r, i) => '<div class="st-hr"><span class="st-hl" title="' + esc(r.l) + '">' + esc(r.l) + '</span><span class="st-hbar"><i style="width:' + (r.v / max * 100).toFixed(1) + '%;background:' + COLORS[i % (COLORS.length - 1)] + '"></i></span><span class="st-hv">' + esc(M.f(r.v)) + ' <small>' + nf(r.v / tot * 100, 1) + '%</small></span></div>').join('') + '</div>';
-}
 
 /* ---------------- stato filtri ---------------- */
 const ST = Object.assign({ preset: 'y0', g: 'M', dim: 'T', client: '', zone: '', measure: 'net', sdl: !!(window.IPLDocsScope && IPLDocsScope.get()) }, presetRange('y0'));
@@ -8100,16 +7481,6 @@ function compute(f) {
 const pct1 = (a, t) => t ? nf(a / t * 100, a / t < 0.1 ? 1 : 0) + '%' : '0%';
 const dPct = (a, b) => b ? (a - b) / Math.abs(b) * 100 : null;
 const dBadge = (a, b) => { const d = dPct(a, b); return d == null ? '<small class="db-d">nuovo</small>' : '<small class="db-d ' + (Math.abs(d) < 0.5 ? '' : d > 0 ? 'up' : 'down') + '">' + (d >= 0 ? '▲ ' : '▼ ') + nf(Math.abs(d), 1) + '%</small>'; };
-function ratioWords(r) {
-  if (r == null || !isFinite(r)) return '';
-  if (r >= 1.9 && r <= 2.15) return 'circa il doppio';
-  if (r >= 2.85 && r <= 3.15) return 'circa il triplo';
-  if (r > 1.15) return nf(r, 1) + ' volte';
-  if (r >= 0.45 && r <= 0.55) return 'circa la metà';
-  if (r >= 0.3 && r <= 0.36) return 'circa un terzo';
-  if (r < 0.85) return 'il ' + nf(r * 100) + '%';
-  return 'in linea con';
-}
 function artStats(list) {
   const m = new Map(), wc = new Map();
   for (const o of list) for (const l of (o.lines || [])) {
@@ -8436,7 +7807,6 @@ function trend12() {
   billDocs(from, to).forEach(o => { const i = months.indexOf(o.date.slice(0, 7)); if (i < 0) return; const n = docNet(o); if (o.inv && o.inv.num) done[i] += n; else todo[i] += n; });
   return { labels: months.map(m => pLabel(m, 'M')), series: [{ name: 'Fatturato', color: '#16a34a', values: done.map(r2) }, { name: 'Da fatturare', color: '#f59e0b', values: todo.map(r2) }] };
 }
-const statusHtml = g => g.todo && g.done ? '<span class="bl-st part">' + g.todo + ' da fatturare</span>' : (g.todo ? '<span class="bl-st todo">Da fatturare</span>' : '<span class="bl-st done">Fatturato</span>');
 const invList = g => [...g.invs.values()].map(i => 'n. ' + esc(i.num) + ' del ' + fmtD(i.date)).join(', ');
 function vatSelect(g) {
   const k = vatKey(g.v), d = Number(billCfg().vat);
@@ -8912,7 +8282,7 @@ window.IPLQR = IPLQR;
    ===================================================================== */
 const CloudEngine = (function () {
 'use strict';
-const VERSION = '8.22';
+const VERSION = '8.25';
 const DOMAIN = 'utenti.ipl-gestionale.it';
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -8921,7 +8291,6 @@ const SEP = '\u0001', RK = (c, id) => c + SEP + id;
 const TEV_DAYS = 90;
 const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
 const lsSet = (k, v) => { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
 const TAB = Math.random().toString(36).slice(2, 8);
 const SF = window.IPL_SETUP_FILES || { sql: '', fn: '', yml: '' };
 
@@ -9659,8 +9028,6 @@ function renderCard() {
 }
 function setupCloudTab() {
   const tab = $('tab-future-mods'); if (!tab || $('v8-cloud-card')) return;
-  [...tab.querySelectorAll('.card')].forEach(cd => { if (/Sincronizzazione Cloud Supabase/i.test(cd.textContent)) cd.style.display = 'none'; });
-  [...tab.querySelectorAll('button')].forEach(b => { if (/Sincronizzazione Cloud/i.test(b.textContent)) b.style.display = 'none'; });
   const card = document.createElement('div'); card.className = 'card'; card.id = 'v8-cloud-card'; card.style.borderLeft = '4px solid #16a34a';
   card.innerHTML = '<div class="card-header"><div><span class="card-title">☁️ Server, sincronizzazione e backup</span><div style="font-size:12px;color:var(--text-muted)">Ogni modifica viene salvata subito su questo dispositivo e inviata al server; funziona anche senza internet.</div></div></div><div class="v8-cc-body"></div>' +
     '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button type="button" class="btn-success" data-v8="sync">🔄 Sincronizza ora</button><button type="button" class="btn-primary" data-v8="wizard">⚙️ Configurazione guidata</button><button type="button" class="btn-light" data-v8="backup">⬇️ Scarica copia completa</button><button type="button" class="btn-light" data-v8="folder">📁 Backup in cartella ora</button><button type="button" class="btn-light v8-install-btn" data-v8="install">📲 Installa l\'app</button><button type="button" class="btn-light" data-v8="qr">📱 QR per altri dispositivi</button><button type="button" class="btn-light" data-v8="logs">📜 Registro dal server</button><button type="button" class="btn-light" data-v8="upd">🔄 Controlla aggiornamenti</button></div><div id="v8-cc-extra" style="margin-top:8px"></div>';
@@ -9762,9 +9129,7 @@ function install_hooks() {
   StorageEngine.loadState = async function () { await buildFromLocal(); };
   CloudSync.pushToServer = function (manual) { return manual === true ? syncNow(true) : (schedulePush(200), Promise.resolve(true)); };
   CloudSync.pullFromServerSilently = function () { return pull(); };
-  CloudSync.pullFromServer = function () { return syncNow(true); };
   CloudSync.syncNow = function () { return pull(); };
-  CloudSync.initFromSavedConfig = function () {};
   CloudSync.exportLocalJsonBackup = downloadFullBackup;
   CloudSync.importLocalJsonBackup = function () { const inp = $('restore-json-file'); if (!inp || !inp.files || !inp.files[0]) { alert('Seleziona prima un file di backup (.json).'); return; } importFromFile(inp.files[0]); };
   AuthModule.initLoginDropdown = function () {
@@ -9801,8 +9166,6 @@ function install_hooks() {
     tb.innerHTML = PROFILES.map(p => { const perms = AuthModule.getUserPermissions({ username: p.username, role: p.role, allowedTabs: p.allowed_tabs }); return '<tr' + (p.active ? '' : ' style="opacity:.55"') + '><td><b>' + esc(p.username) + '</b>' + (p.full_name ? '<div class="tute-mini">' + esc(p.full_name) + '</div>' : '') + '</td><td><span class="badge badge-zone">' + esc(ROLE_L[p.role] || p.role) + '</span></td><td>' + perms.map(x => '<span class="badge" style="background:#e2e8f0;color:#1e293b;margin:2px">' + esc(PERMISSION_LABELS[x] || x) + '</span>').join('') + '</td><td>' + (p.active ? 'attivo' : '<b style="color:#dc2626">disattivato</b>') + (p.must_change_password ? '<div class="tute-mini">deve scegliere la password</div>' : '') + '</td><td style="white-space:nowrap"><button type="button" class="btn-light" style="padding:3px 7px" data-ua="edit" data-id="' + p.user_id + '" title="Modifica">✏️</button> <button type="button" class="btn-light" style="padding:3px 7px" data-ua="pass" data-id="' + p.user_id + '" title="Reimposta password">🔑</button> <button type="button" class="btn-light" style="padding:3px 7px" data-ua="' + (p.active ? 'off' : 'on') + '" data-id="' + p.user_id + '" title="' + (p.active ? 'Disattiva' : 'Riattiva') + '">' + (p.active ? '⏸' : '▶') + '</button> <button type="button" class="btn-danger" style="padding:3px 7px" data-ua="del" data-id="' + p.user_id + '" title="Elimina account">🗑️</button></td></tr>'; }).join('') || '<tr><td colspan="5" class="tute-empty">Nessun utente.</td></tr>';
   };
   ProfilesModule.saveProfile = function (e) { if (e) e.preventDefault(); userEdit(null); };
-  ProfilesModule.deleteProfile = function (username) { const u = PROFILES.find(p => p.username === username); if (u) userAction(u, 'del'); };
-  ProfilesModule.editProfile = function (username) { const u = PROFILES.find(p => p.username === username); if (u) userEdit(u); };
   IPLHooks.on('print:check', function (ctx) { const order = ctx.o; if (order && (!order.lines || !order.lines.length) && !confirm('Il documento non contiene articoli. Stampare e registrarlo comunque?')) return false; }, 20);
   IPLHooks.on('print:number', async function (ctx) {
     const order = ctx.o;
@@ -10030,7 +9393,7 @@ function drawRoute() {
     const T = timeline(RT.seq, gg ? gg.start : cfg.start), links = gmapsLinks(RT.seq);
     const saved = RT.seq.length && RT.seq.every((s, i) => s.orders.every(o => o.route && o.route.date === RT.date && (o.route.giro || '') === RT.giro && o.route.seq === i));
     sum = RT.seq.length ? '<div class="rt-sum"><div><span>Fermate</span><b>' + RT.seq.length + '</b></div><div><span>Km stimati</span><b>' + Math.round(T.km) + '</b></div><div><span>Partenza</span><b>' + esc(gg ? gg.start : cfg.start) + '</b></div><div><span>Rientro stimato</span><b>' + T.end + '</b></div><div><span>Orari richiesti</span><b>' + (T.late ? '<span style="color:#b91c1c">⚠️ ' + T.late + ' in ritardo</span>' : (RT.seq.some(s => s.from || s.to) ? '✅ rispettati' : '—')) + '</b></div><div><span>Stato</span><b>' + (saved ? '✅ Giro salvato' : '⚠️ Non salvato') + '</b></div></div>' : '';
-    actions = RT.seq.length && RT.giro !== '__none' ? '<div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"><button type="button" class="btn-primary" data-rt="opt">🔄 Ottimizza ordine</button><button type="button" class="btn-success" data-rt="save">💾 Salva il giro (lo vedono gli autisti)</button><button type="button" class="btn-light" data-rt="map">🗺 Mostra sulla mappa</button><button type="button" class="btn-light" data-rt="print">🖨️ Foglio di viaggio</button>' + (window.DocsPlus && RT.giro ? '<button type="button" class="btn-danger" data-rt="ddt" title="Emette e stampa tutti i documenti del giro nell\'ordine di consegna, con il foglio di viaggio in testa">🖨️ Emetti e stampa i DDT del giro</button>' : '') + links.map((l, i) => '<a class="btn-light" target="_blank" rel="noopener" href="' + l.url + '">🧭 Google Maps' + (links.length > 1 ? ' ' + (i + 1) + '/' + links.length : '') + '</a>').join('') + '</div>' : '';
+    actions = RT.seq.length && RT.giro !== '__none' ? '<div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"><button type="button" class="btn-primary" data-rt="opt">🔄 Ottimizza ordine</button><button type="button" class="btn-success" data-rt="save">💾 Salva il giro (lo vedono gli autisti)</button><button type="button" class="btn-light" data-rt="map">🗺 Mostra sulla mappa</button><button type="button" class="btn-light" data-rt="print">🖨️ Foglio di viaggio</button><label class="rt-ll" title="Sul foglio di viaggio (e in testa ai DDT del giro) aggiunge la lista di carico del furgone"><input type="checkbox" data-rt-ll' + (RS().loadList !== false ? ' checked' : '') + '> 📦 con lista di carico</label>' + (window.DocsPlus && RT.giro ? '<button type="button" class="btn-danger" data-rt="ddt" title="Emette e stampa tutti i documenti del giro nell\'ordine di consegna, con il foglio di viaggio in testa">🖨️ Emetti e stampa i DDT del giro</button>' : '') + links.map((l, i) => '<a class="btn-light" target="_blank" rel="noopener" href="' + l.url + '">🧭 Google Maps' + (links.length > 1 ? ' ' + (i + 1) + '/' + links.length : '') + '</a>').join('') + '</div>' : '';
     body = RT.seq.length ? '<div style="overflow:auto;max-height:52vh"><table class="rt-tab">' + head + '<tbody>' + T.rows.map((r, i) => rowHtml(r, i, RT.giro !== '__none')).join('') + '</tbody></table></div>' : '<div class="tute-empty">Nessuna consegna o ritiro ' + (RT.giro === '__none' ? 'da assegnare' : 'in programma' + (gg ? ' in questo giro' : '')) + (RT.zone ? ' in questa zona' : '') + '.</div>';
   }
   el.innerHTML = '<div class="modal-window modal-xl" style="max-width:1150px"><div class="modal-header"><b>🧭 Giri di ' + longDate(RT.date) + '</b><button type="button" class="btn-outline" data-rt="close">✕ Chiudi</button></div><div class="modal-body">' +
@@ -10042,7 +9405,7 @@ function drawRoute() {
   $('rt-date').onchange = reload; $('rt-zone').onchange = reload;
   const setCfg = () => { const r = Object.assign({}, ci().route || {}, { speed: Math.max(10, +$('rt-speed').value || 50), service: Math.max(0, +$('rt-serv').value || 0) }); if ($('rt-start')) r.start = $('rt-start').value || '07:30'; ci().route = r; StorageEngine.saveState('IMPOSTAZIONI_GIRO', r.speed + ' km/h · ' + r.service + ' min'); RT.seq = savedOrOptimal(RT.date, RT.zone, RT.giro).seq; drawRoute(); };
   ['rt-start', 'rt-speed', 'rt-serv'].forEach(id => { if ($(id)) $(id).onchange = setCfg; });
-  el.querySelector('.modal-body').onchange = e => { const s = e.target.closest('.rt-gsel'); if (!s) return; const st = stopsFor(RT.date, '', '').find(x => x.key === s.dataset.gkey); if (!st) return; st.orders.forEach(o => { if (s.value) o.giro = s.value; else delete o.giro; o.giroAuto = false; if (o.route) delete o.route; }); StorageEngine.saveState('GIRO_FERMATA_SPOSTATA', st.c.name + ' → ' + (giroOf(s.value) ? giroOf(s.value).name : 'da assegnare')); RT.seq = savedOrOptimal(RT.date, RT.zone, RT.giro).seq; drawRoute(); };
+  el.querySelector('.modal-body').onchange = e => { if (e.target.matches('[data-rt-ll]')) { ci().route = Object.assign({}, ci().route || {}, { loadList: e.target.checked }); StorageEngine.saveState('GIRI_OPZIONI', 'lista di carico sul foglio di viaggio: ' + (e.target.checked ? 'sì' : 'no')); return; } const s = e.target.closest('.rt-gsel'); if (!s) return; const st = stopsFor(RT.date, '', '').find(x => x.key === s.dataset.gkey); if (!st) return; st.orders.forEach(o => { if (s.value) o.giro = s.value; else delete o.giro; o.giroAuto = false; if (o.route) delete o.route; }); StorageEngine.saveState('GIRO_FERMATA_SPOSTATA', st.c.name + ' → ' + (giroOf(s.value) ? giroOf(s.value).name : 'da assegnare')); RT.seq = savedOrOptimal(RT.date, RT.zone, RT.giro).seq; drawRoute(); };
   el.querySelector('.modal-body').onclick = e => {
     const b = e.target.closest('[data-rt],[data-up],[data-dn],[data-rg]'); if (!b) return;
     if (b.dataset.rg != null) { RT.giro = b.dataset.rg; RT.seq = savedOrOptimal(RT.date, RT.zone, RT.giro).seq; drawRoute(); return; }
@@ -10091,7 +9454,22 @@ function routeSheetHtml() {
   const g = giroOf(RT.giro), T = timeline(RT.seq, g ? g.start : RS().start), comp = ci();
   return '<div style="font-family:Arial,sans-serif;padding:4mm"><div style="display:flex;justify-content:space-between;border-bottom:2px solid #0f172a;padding-bottom:6px;margin-bottom:10px"><div><b style="font-size:16px">' + esc(comp.name || 'IPL LAVANDERIE') + '</b><div style="font-size:12px">FOGLIO DI VIAGGIO · ' + longDate(RT.date) + (g ? ' · <b>' + esc(g.name) + ' – ' + esc(g.van) + '</b>' : '') + (RT.zone ? ' · zona ' + esc(RT.zone) : '') + '</div></div><div style="text-align:right;font-size:12px">' + RT.seq.length + ' fermate · ~' + Math.round(T.km) + ' km<br>partenza ' + esc(g ? g.start : RS().start) + ' · rientro ~' + T.end + '</div></div>' +
     '<table style="width:100%;border-collapse:collapse;font-size:11.5px"><thead><tr>' + ['#', 'Arrivo', 'Orario richiesto', 'Cliente / indirizzo', 'Telefono', 'Operazioni', 'Note', 'Fatto'].map(h => '<th style="border:1px solid #94a3b8;padding:5px;background:#f1f5f9;text-align:left">' + h + '</th>').join('') + '</tr></thead><tbody>' +
-    T.rows.map(r => '<tr><td style="border:1px solid #94a3b8;padding:5px"><b>' + r.n + '</b></td><td style="border:1px solid #94a3b8;padding:5px">' + r.eta + (r.late ? ' ⚠️' : '') + '</td><td style="border:1px solid #94a3b8;padding:5px">' + esc(twLabel(r.s.from, r.s.to)) + '</td><td style="border:1px solid #94a3b8;padding:5px"><b>' + esc(r.s.c.name) + '</b><br>' + esc(r.s.c.address || '') + '</td><td style="border:1px solid #94a3b8;padding:5px">' + esc(r.s.c.phone || '') + '</td><td style="border:1px solid #94a3b8;padding:5px">' + opsHtml(r.s) + '</td><td style="border:1px solid #94a3b8;padding:5px">' + esc(r.s.c.driverNotes || '') + '</td><td style="border:1px solid #94a3b8;padding:5px;width:16mm"></td></tr>').join('') + '</tbody></table></div>';
+    T.rows.map(r => '<tr><td style="border:1px solid #94a3b8;padding:5px"><b>' + r.n + '</b></td><td style="border:1px solid #94a3b8;padding:5px">' + r.eta + (r.late ? ' ⚠️' : '') + '</td><td style="border:1px solid #94a3b8;padding:5px">' + esc(twLabel(r.s.from, r.s.to)) + '</td><td style="border:1px solid #94a3b8;padding:5px"><b>' + esc(r.s.c.name) + '</b><br>' + esc(r.s.c.address || '') + '</td><td style="border:1px solid #94a3b8;padding:5px">' + esc(r.s.c.phone || '') + '</td><td style="border:1px solid #94a3b8;padding:5px">' + opsHtml(r.s) + '</td><td style="border:1px solid #94a3b8;padding:5px">' + esc(r.s.c.driverNotes || '') + '</td><td style="border:1px solid #94a3b8;padding:5px;width:16mm"></td></tr>').join('') + '</tbody></table>' + (RS().loadList !== false ? loadListHtml(RT.seq) : '') + '</div>';
+}
+/* v8.25: lista di carico del furgone — si carica al contrario: l'ultima fermata entra per prima (finisce in fondo) */
+function loadListHtml(seq) {
+  const TD = 'border:1px solid #94a3b8;padding:5px;vertical-align:top';
+  const rows = seq.map((s, i) => ({ s, n: i + 1 })).reverse().map((x, k) => {
+    const del = x.s.orders.filter(o => o.orderType !== 'PICKUP_ONLY' && !o.isTute), tu = x.s.orders.filter(o => o.isTute), pk = x.s.orders.some(o => o.orderType === 'PICKUP_ONLY');
+    const q = new Map(); del.forEach(o => (o.lines || []).forEach(l => { const n = +l.qty || 0; if (n > 0) q.set(l.code, (q.get(l.code) || 0) + n); }));
+    const bags = window.IPLBags ? del.reduce((s, o) => s + IPLBags.total(o), 0) : 0;
+    const what = [...q].map(([c, n]) => '<b>' + n + '</b> × ' + esc((item(c) || {}).desc || c)).concat(bags ? ['🧺 <b>' + bags + '</b> ' + (bags === 1 ? 'sacco' : 'sacchi') + ' capi del cliente'] : []).concat(tu.length ? ['🧥 tute'] : []);
+    if (!what.length && !pk) return '';
+    return '<tr><td style="' + TD + ';text-align:center"><b>' + (k + 1) + '</b></td><td style="' + TD + ';text-align:center">' + x.n + '</td><td style="' + TD + '"><b>' + esc(x.s.c.name) + '</b></td><td style="' + TD + '">' + (what.length ? what.join(' · ') : '<i>niente da caricare</i>') + (pk ? ' <small>· 🧺 ritira lo sporco</small>' : '') + '</td><td style="' + TD + ';width:14mm"></td></tr>';
+  }).join('');
+  if (!rows) return '';
+  return '<div style="margin-top:14px;font-size:12.5px;font-weight:900">📦 LISTA DI CARICO · si carica dall\'alto in basso (l\'ultima fermata entra per prima, la prima resta vicino al portellone)</div>' +
+    '<table style="width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px"><thead><tr>' + ['Carica', 'Fermata', 'Cliente', 'Cosa caricare', 'Caricato'].map(h => '<th style="border:1px solid #94a3b8;padding:5px;background:#f1f5f9;text-align:left">' + h + '</th>').join('') + '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
 function printRoute() {
   const html = routeSheetHtml();
@@ -10343,15 +9721,17 @@ function setupHome() {
     if (b.dataset.dvd) return stopDone(b.dataset.dvd);
     if (b.dataset.dvf) return stopFail(b.dataset.dvf);
     if (b.dataset.dvu) return stopUndo(b.dataset.dvu);
-    const a = b.dataset.og;
+    ogAct(b.dataset.og);
+  });
+  alt.addEventListener('change', e => { if (e.target.id === 'dv-date') { DV.date = e.target.value; renderMode(); } });
+}
+function ogAct(a) {
     if (a === 'stock') { UI.switchTab('tab-stock'); return; }
     if (a === 'new') OrdersModule.openNewOrderModal(); else if (a === 'route') routeModal(todayISO()); else if (a === 'driver') setMode('driver'); else if (a === 'rec') recModal();
     else if (a === 'tute' && window.TuteModule) TuteModule.openReader({});
     else if (a === 'bill') { UI.switchTab('tab-stats'); setTimeout(() => { const v = document.querySelector('.st-nav [data-sv="bill"]'); if (v) v.click(); }, 60); }
     else if (a === 'late') { setMode('classic'); OrdersModule.setTodayDate(); }
     else if (a === 'wash') UI.switchTab('tab-washing');
-  });
-  alt.addEventListener('change', e => { if (e.target.id === 'dv-date') { DV.date = e.target.value; renderMode(); } });
 }
 function renderMode() {
   const bar = $('hm-bar'); if (!bar) return;
@@ -10359,9 +9739,51 @@ function renderMode() {
   bar.querySelectorAll('[data-hm]').forEach(b => b.classList.toggle('on', b.dataset.hm === m));
   bar.querySelectorAll('.hm-norole').forEach(b => { b.style.display = AppState.role === 'autista' ? 'none' : ''; });
   classic.style.display = m === 'classic' ? '' : 'none'; alt.style.display = m === 'classic' ? 'none' : '';
+  excSoon();
   if (m === 'driver') alt.innerHTML = driverHtml(DV.date || todayISO());
   else if (m === 'oggi') alt.innerHTML = AppState.role === 'autista' ? driverHtml(todayISO()) : todayHtml();
 }
+/* v8.25: avvisi della giornata — stessi per la vista “Oggi” e per la striscia “Da sistemare” in cima alla Home classica */
+function dayAlerts(pre) {
+  const today = todayISO(), tom = addD(today, 1);
+  if (!pre) {
+    const act = AppState.orders.filter(o => o.status === 'ACTIVE'), multiG = hasGiri(today);
+    const GR = multiG ? giri().map(g => ({ g, r: savedOrOptimal(today, '', g.id) })).filter(x => x.r.seq.length) : [{ g: null, r: savedOrOptimal(today, '', '') }];
+    let lateTot = 0; GR.forEach(x => { lateTot += timeline(x.r.seq, x.g ? x.g.start : RS().start).late; });
+    pre = { late: act.filter(o => o.date < today), seq: [].concat(...GR.map(x => x.r.seq)), saved: GR.every(x => x.r.saved || !x.r.seq.length), multiG, nNone: multiG ? stopsFor(today, '', '__none').length : 0, lateTot };
+  }
+  const { late, seq, saved, multiG, nNone, lateTot } = pre, alerts = [];
+  if (late.length) alerts.push(['err', '⏰ <b>' + late.length + '</b> ordini di giorni passati ancora aperti', 'late', 'Vedi']);
+  if (seq.length && !saved) alerts.push(['warn', '🧭 ' + (multiG ? 'Alcuni giri di oggi non sono ancora stati salvati' : 'Il giro di oggi non è ancora stato salvato') + ' per gli autisti', 'route', 'Apri i giri']);
+  if (nNone) alerts.push(['warn', '🚐 <b>' + nNone + '</b> fermate di oggi non sono assegnate a nessun giro', 'route', 'Assegna']);
+  if (lateTot) alerts.push(['warn', '🕘 <b>' + lateTot + '</b> fermate rischiano di arrivare oltre l\'orario richiesto', 'route', 'Vedi i giri']);
+  try { if (window.IPLStock && IPLStock.checkDue()) alerts.push(['warn', '🌙 È ora del <b>check di fine turno</b> del magazzino', 'stock', 'Apri il magazzino']); } catch (e) {}
+  try { if (window.IPLStock) { let nr = 0; [today, tom].forEach(d => stopsFor(d, '', '').forEach(s => { const g = giroOf(s.giro), r = IPLStock.stopReady(s, d); if (g && r.min != null && toMin(g.start) < r.min + (+IPLStock.cfg().margin || 0)) nr++; })); if (nr) alerts.push(['warn', '⏳ <b>' + nr + '</b> fermate di oggi o domani sono in un giro che parte prima che la merce sia pronta', 'route', 'Vedi i giri']); } } catch (e) {}
+  try { const D = window.StatsModule && StatsModule._bill ? StatsModule._bill.deadlines() : []; D.forEach(x => alerts.push([x.late ? 'err' : (x.days <= 7 ? 'warn' : 'info'), '🧾 DDT di ' + MESI[+x.m.slice(5) - 1] + ' da fatturare: <b>' + x.clients + '</b> clienti · ' + (x.late ? 'scadenza superata (' + fmtD(x.due) + ')' : 'entro il ' + fmtD(x.due)), 'bill', 'Fatturazione'])); } catch (e) {}
+  try { const r = window.TuteModule && TuteModule.toReplace ? TuteModule.toReplace() : []; if (r && r.length) alerts.push(['warn', '🧥 <b>' + r.length + '</b> capi tute da sostituire o in esaurimento', 'tute', 'Lettore tute']); } catch (e) {}
+  try { (window.CloudEngine && CloudEngine.auditItems ? CloudEngine.auditItems() : []).filter(x => x.lv !== 'info').forEach(x => alerts.push([x.lv === 'err' ? 'err' : 'warn', '🛡️ ' + esc(x.msg), '', ''])); } catch (e) {}
+  /* macchine ferme e consegne che il pianificatore non riesce a preparare in tempo */
+  try { if (!(window.IPLWashCtl && !IPLWashCtl.on())) { const wc = AppState.washingConfig || {}, pl = window.IPLPlanner && IPLPlanner.on() ? IPLPlanner.P() : null;
+    const down = (wc.machines || []).concat(pl ? pl.dryers.concat(pl.ironers) : []).filter(m => m.status === 'MAINTENANCE');
+    if (down.length) alerts.unshift(['err', '🔧 Ferm' + (down.length === 1 ? 'a' : 'e') + ': <b>' + down.map(m => esc(m.name || m.id)).join(', ') + '</b> (in manutenzione)', 'wash', 'Centrale']);
+    if (pl) { const R = IPLPlanner.compute(today); if (R && !R.error) { const n = new Set(R.plan.orderTracking.filter(x => x.missedDeadline).map(x => ((R.D.info[x.orderId] || {}).label) || x.customer)); if (n.size) alerts.unshift(['err', '🔴 Non pronte per il giro: <b>' + [...n].slice(0, 4).map(esc).join(', ') + '</b>' + (n.size > 4 ? ' e altre ' + (n.size - 4) : ''), 'wash', 'Piano lavaggi']); } } } } catch (e) {}
+  return alerts;
+}
+/* v8.25: striscia “Da sistemare” in cima alla Home classica: solo ciò che richiede un'azione */
+function excHtml() {
+  const A = dayAlerts();
+  if (!A.length) return '<div class="hm-exc ok">✅ <b>Niente da sistemare</b> <span class="tute-mini">consegne, giri, macchine e magazzino in ordine</span></div>';
+  return '<div class="hm-exc"><div class="hm-exc-t">⚠️ Da sistemare <span class="tute-mini">' + A.length + '</span></div>' + A.map(a => '<div class="og-al ' + a[0] + '"><span>' + a[1] + '</span>' + (a[2] ? '<button type="button" class="btn-light" data-og="' + a[2] + '">' + a[3] + '</button>' : '') + '</div>').join('') + '</div>';
+}
+let excT = null;
+function drawExc() {
+  const cl = $('home-classic'); if (!cl) return; let box = $('hm-exc');
+  const want = window.IPLLook && IPLLook.on('exc') && AppState.role !== 'autista' && getMode() === 'classic';
+  if (!want) { if (box) box.remove(); return; }
+  if (!box) { box = document.createElement('div'); box.id = 'hm-exc'; cl.insertBefore(box, cl.firstChild); box.addEventListener('click', e => { const b = e.target.closest('[data-og]'); if (b) ogAct(b.dataset.og); }); }
+  try { box.innerHTML = excHtml(); } catch (e) { console.warn('IPL da sistemare', e); box.innerHTML = ''; }
+}
+const excSoon = () => { clearTimeout(excT); excT = setTimeout(drawExc, 350); };
 function todayHtml() {
   const today = todayISO(), tom = addD(today, 1), act = AppState.orders.filter(o => o.status === 'ACTIVE');
   const todays = act.filter(o => o.date === today), late = act.filter(o => o.date < today), tomorrow = act.filter(o => o.date === tom);
@@ -10376,16 +9798,7 @@ function todayHtml() {
     return (x.g ? '<div class="og-ghead">🚐 <b>' + esc(x.g.name) + '</b> · ' + esc(x.g.van) + ' · partenza ' + esc(x.g.start) + ' · ' + x.r.seq.length + ' fermate · rientro ~' + T.end + (T.late ? ' · <span class="tw-badge late">⚠️ ' + T.late + ' in ritardo</span>' : '') + '</div>' : '') +
       x.r.seq.map((s, i) => { const st = stopState(s), rr = T.rows[i]; return '<div class="og-stop ' + (st === 'DONE' ? 'done' : st === 'FAIL' ? 'fail' : '') + '"><b>' + (i + 1) + '</b> ' + esc(s.c.name) + ' <span class="tute-mini">' + opsHtml(s, true) + '</span>' + (st ? '' : twHtml(rr, s)) + '<span class="og-st">' + (st === 'DONE' ? '✅' : st === 'FAIL' ? '⚠️ ' + esc((s.orders.find(o => o.stop) || {}).stop.reason || '') : '~' + rr.eta) + '</span></div>'; }).join(''); }).join('') : '<div class="tute-empty">Nessuna fermata oggi.</div>';
   const seq = allSeq, T = { km: kmTot, end: endMax || '—' };
-  const alerts = [];
-  if (late.length) alerts.push(['err', '⏰ <b>' + late.length + '</b> ordini di giorni passati ancora aperti', 'late', 'Vedi']);
-  if (seq.length && !saved) alerts.push(['warn', '🧭 ' + (multiG ? 'Alcuni giri di oggi non sono ancora stati salvati' : 'Il giro di oggi non è ancora stato salvato') + ' per gli autisti', 'route', 'Apri i giri']);
-  if (nNone) alerts.push(['warn', '🚐 <b>' + nNone + '</b> fermate di oggi non sono assegnate a nessun giro', 'route', 'Assegna']);
-  if (lateTot) alerts.push(['warn', '🕘 <b>' + lateTot + '</b> fermate rischiano di arrivare oltre l\'orario richiesto', 'route', 'Vedi i giri']);
-  try { if (window.IPLStock && IPLStock.checkDue()) alerts.push(['warn', '🌙 È ora del <b>check di fine turno</b> del magazzino', 'stock', 'Apri il magazzino']); } catch (e) {}
-  try { if (window.IPLStock) { let nr = 0; [today, tom].forEach(d => stopsFor(d, '', '').forEach(s => { const g = giroOf(s.giro), r = IPLStock.stopReady(s, d); if (g && r.min != null && toMin(g.start) < r.min + (+IPLStock.cfg().margin || 0)) nr++; })); if (nr) alerts.push(['warn', '⏳ <b>' + nr + '</b> fermate di oggi o domani sono in un giro che parte prima che la merce sia pronta', 'route', 'Vedi i giri']); } } catch (e) {}
-  try { const D = window.StatsModule && StatsModule._bill ? StatsModule._bill.deadlines() : []; D.forEach(x => alerts.push([x.late ? 'err' : (x.days <= 7 ? 'warn' : 'info'), '🧾 DDT di ' + MESI[+x.m.slice(5) - 1] + ' da fatturare: <b>' + x.clients + '</b> clienti · ' + (x.late ? 'scadenza superata (' + fmtD(x.due) + ')' : 'entro il ' + fmtD(x.due)), 'bill', 'Fatturazione'])); } catch (e) {}
-  try { const r = window.TuteModule && TuteModule.toReplace ? TuteModule.toReplace() : []; if (r && r.length) alerts.push(['warn', '🧥 <b>' + r.length + '</b> capi tute da sostituire o in esaurimento', 'tute', 'Lettore tute']); } catch (e) {}
-  try { (window.CloudEngine && CloudEngine.auditItems ? CloudEngine.auditItems() : []).filter(x => x.lv !== 'info').forEach(x => alerts.push([x.lv === 'err' ? 'err' : 'warn', '🛡️ ' + esc(x.msg), '', ''])); } catch (e) {}
+  const alerts = dayAlerts({ late, seq, saved, multiG, nNone, lateTot });
   const recN = (AppState.recurring || []).filter(t => t.active !== false).length;
   const chips = Object.keys(tot).sort((a, b) => tot[b] - tot[a]).map(c => '<span class="og-chip">' + esc((item(c) || {}).desc || c) + ' <b>' + tot[c] + '</b></span>').join('');
   return '<div class="og-head"><div><div class="og-day">📅 Oggi, ' + longDate(today) + '</div><div class="tute-mini">Ciao ' + esc(AppState.currentUser || '') + ': ecco la giornata in un colpo d\'occhio.</div></div><div class="og-act"><button type="button" class="btn-danger btn-new-order-xl" data-og="new">⚡ Nuovo ordine</button><button type="button" class="btn-primary" data-og="route">🧭 Giro di oggi</button><button type="button" class="btn-light" data-og="driver">🚐 Vista autista</button>' + (window.TuteModule ? '<button type="button" class="btn-light" data-og="tute">📟 Lettore tute</button>' : '') + '<button type="button" class="btn-light" data-og="rec">🔁 Ricorrenti</button></div></div>' +
@@ -10465,7 +9878,7 @@ function hookAll() {
         td.insertAdjacentHTML('beforeend', '<div class="tg-badge">' + (tw ? '🕘 ' + esc(tw) : '') + (g ? (tw ? ' · ' : '') + '🚐 ' + esc(g.name) : '') + '</div>');
       });
     } catch (e) {}
-    try { if (getMode() !== 'classic') renderMode(); } catch (e) {}
+    try { if (getMode() !== 'classic') renderMode(); else excSoon(); } catch (e) {}
   }, 10);
   IPLHooks.on('ordernew:check', function (ctx, e) {
     try {
@@ -10540,7 +9953,7 @@ function hookAll() {
 setupHome(); hookAll();
 let lastDay = todayISO();
 setInterval(() => { if (todayISO() !== lastDay) { lastDay = todayISO(); ensureRecurring(); } if (getMode() !== 'classic' && !document.hidden && !document.querySelector('.sm-modal')) renderMode(); }, 60000);
-return { ensureRecurring, suggestion, anomalies, optimize, timeline, stopsFor, savedOrOptimal, gmapsLinks, routeModal, routeSheetHtml, recModal, recEdit, setMode, getMode, renderMode, tourKm, autoAssign, giri, giroOf, twLabel, hasGiri, washPriority, afterRemote() { ensureRecurring(); if (getMode() !== 'classic') renderMode(); } };
+return { dayAlerts, drawExc, ensureRecurring, suggestion, anomalies, optimize, timeline, stopsFor, savedOrOptimal, gmapsLinks, routeModal, routeSheetHtml, recModal, recEdit, setMode, getMode, renderMode, tourKm, autoAssign, giri, giroOf, twLabel, hasGiri, washPriority, afterRemote() { ensureRecurring(); if (getMode() !== 'classic') renderMode(); } };
 })();
 window.SmartModule = SmartModule;
 
@@ -10619,7 +10032,6 @@ function ordersIn(from, to, onReady) {
    A) PACCHETTO DDT
    ===================================================================== */
 const TAG = /^(DDT|SDL)-(\d{3,})\/(\d{4})$/i;
-const isNumbered = o => TAG.test(String(o.ddtNumber || '').trim());
 const isDdtNumbered = o => /^DDT-\d{3,}\/\d{4}$/i.test(String(o.ddtNumber || '').trim());
 const isSdl = o => /^SDL-/i.test(String(o.ddtNumber || '').trim()) || o.docType === 'WORKSHEET';
 const DDT_CFG = () => Object.assign({ causaleProp: 'Reso c/lavorazione – lavaggio capi del cliente', causaleRent: 'Consegna biancheria a noleggio', carrier: 'MITTENTE', presets: ['Reso c/lavorazione – lavaggio capi del cliente', 'Consegna biancheria a noleggio', 'Reso c/riparazione', 'Vendita', 'Reso merce non conforme'] }, ci().ddt || {});
@@ -12795,7 +12207,7 @@ function setItem(code, patch, silent) {
   Object.assign(s, patch); if (!silent) StorageEngine.saveState('MAGAZZINO', code + ' ' + Object.entries(patch).map(([k, v]) => ({ min: 'minimo', target: 'obiettivo' }[k] || k) + ' ' + v).join(' · '));
 }
 /* ---------------- ordini e date ---------------- */
-const deliveryAt = o => { try { return IPLWashPlan.deliveryAt(o); } catch (e) { return new Date(o.date + 'T' + (o.timeTo || '07:30') + ':00'); } };
+const deliveryAt = o => { try { if (window.IPLPlanner && IPLPlanner.on()) return IPLPlanner.deliveryAt(o); return IPLWashPlan.deliveryAt(o); } catch (e) { return new Date(o.date + 'T' + (o.timeTo || '07:30') + ':00'); } };
 const isDelivery = o => o.status === 'ACTIVE' && o.orderType !== 'PICKUP_ONLY' && !o.isTute && (o.lines || []).length && !cliOf(o.clientId).propertyGoods;
 const isRegenDay = d => (cfg().regenDays || []).includes(new Date(d + 'T12:00:00').getDay());
 /* ---------------- confronto: pronti ↔ consegne dei prossimi giorni ---------------- */
@@ -12983,7 +12395,7 @@ function optsHtml() {
   return '<div class="sk-opts"><div><div class="do-grp-t">Giorni in cui si rigenera il magazzino</div><div class="stk-days">' + W.map((w, i) => '<label class="sk-day' + ((C.regenDays || []).includes(i) ? ' on' : '') + '"><input type="checkbox" data-rd="' + i + '"' + ((C.regenDays || []).includes(i) ? ' checked' : '') + dis + '> ' + w + '</label>').join('') + '</div></div>' +
     '<div>' + tg('outOnEmit', 'Scarica il magazzino alla stampa del DDT', 'I pezzi consegnati escono da soli; se mancavano, quelli si considerano lavati apposta.') +
     tg('checkOn', 'Check di fine turno', 'Promemoria per inserire i pezzi sugli scaffali.') + '<label style="margin:2px 0 0 26px">dalle <input type="time" data-sv2="checkAt" value="' + esc(C.checkAt) + '" style="width:110px"' + dis + '></label></div>' +
-    '<div>' + tg('readyOn', 'Giri: il furgone parte solo con la merce pronta', 'Le consegne coperte dal magazzino partono subito; le altre quando i lavaggi sono finiti.') + '<label style="margin:2px 0 0 26px">margine di carico <input type="number" min="0" max="180" step="5" data-sv2="margin" value="' + esc(C.margin) + '" style="width:80px"' + dis + '> min</label></div></div>';
+    '<div>' + tg('readyOn', 'Giri: il furgone parte solo con la merce pronta', 'Le consegne coperte dal magazzino partono subito; le altre quando i lavaggi sono finiti.') + '<label style="margin:2px 0 0 26px">margine di carico <input type="number" min="0" max="180" step="5" data-sv2="margin" value="' + esc(C.margin) + '" style="width:80px"' + (C.marginFromPlanner ? ' disabled title="Dal Pianificatore: anticipo − tolleranza"' : dis) + '> min' + (C.marginFromPlanner ? ' <span class="tute-mini">(dal 🧠 Pianificatore: anticipo − tolleranza)</span>' : '') + '</label></div></div>';
 }
 function render() {
   const root = $('stk-root'); if (!root) return;
@@ -13006,7 +12418,6 @@ function render() {
     '<div class="sk-grid">' + (LI.L.map(cardHtml).join('') || '<div class="tute-empty">Nessun articolo. Scegli “Tutti gli articoli” e scrivi pronti, minimo o obiettivo per metterne uno a magazzino.</div>') + '</div></div>';
   root.innerHTML = h;
 }
-function redrawCard(code) { const el = document.querySelector('#stk-root .sk-card[data-code="' + (window.CSS && CSS.escape ? CSS.escape(code) : code) + '"]'), it = item(code); if (el && it) el.outerHTML = cardHtml(it); }
 function refreshTop() { const f = document.activeElement && document.activeElement.dataset ? document.activeElement : null, code = f && f.closest && f.closest('.sk-card') ? f.closest('.sk-card').dataset.code : null, fld = f && f.dataset ? f.dataset.f : null; render(); if (code && fld) { const i = document.querySelector('#stk-root .sk-card[data-code="' + code + '"] [data-f="' + fld + '"]'); if (i) i.focus(); } }
 /* ---------------- azioni ---------------- */
 function onClick(e) {
@@ -13390,6 +12801,13 @@ function sheetHtml(o, i, n) {
     '<table style="width:100%;border-collapse:collapse;margin-top:14px"><tr>' + ['Preparato da', 'Controllato da', 'Ora', 'Colli'].map(l => '<td style="' + T + 'height:44px;vertical-align:top;width:25%"><span style="font-size:10px;color:#475569">' + l + '</span></td>').join('') + '</tr></table>' +
     '<div style="font-size:10px;color:#64748b;margin-top:6px">Riportare le quantità preparate nel gestionale con “📋 Preparazione” sull\'ordine: il DDT o la scheda di lavoro useranno quelle.</div></div>';
 }
+/* v8.25: stampa la scheda di preparazione di un solo ordine */
+function printOne(id) {
+  const o = AppState.orders.find(x => x.id === id); if (!o) return;
+  const pa = $('print-area'); if (!pa) return; pa.className = ''; pa.innerHTML = sheetHtml(o, 1, 1).replace('page-break-before:always', 'page-break-before:auto');
+  const done = () => { window.removeEventListener('afterprint', done); try { if (AppState.currentActiveDocOrder) DocsModule.refreshPreview(); else pa.innerHTML = ''; } catch (e) {} };
+  window.addEventListener('afterprint', done); setTimeout(() => window.print(), 30);
+}
 function sheetsHtml(day, giro) { const L = ordersFor(day, giro); return L.map((o, i) => sheetHtml(o, i + 1, L.length)).join(''); }
 /* ---------------- quantità preparate ---------------- */
 function diffs(o) { if (!o.prep || !o.reqLines) return 0; const a = new Map(o.reqLines.map(l => [l.code, +l.qty || 0])), b = new Map((o.lines || []).map(l => [l.code, +l.qty || 0])); let n = 0; new Set([...a.keys(), ...b.keys()]).forEach(k => { if ((a.get(k) || 0) !== (b.get(k) || 0)) n++; }); return n; }
@@ -13404,7 +12822,7 @@ function openConfirm(id) {
     '<table class="pl-tab"><thead><tr><th>Articolo</th><th class="r">Richiesti</th><th class="r">Preparati</th></tr></thead><tbody id="prep-rows">' + codes.map(row).join('') + '</tbody></table>' +
     '<div style="display:flex;gap:6px;margin-top:6px"><select id="prep-add" style="flex:1"><option value="">➕ aggiungi un articolo preparato in più…</option>' + AppState.items.filter(i => !codes.includes(i.code)).map(i => '<option value="' + esc(i.code) + '">' + esc(i.code + ' - ' + i.desc) + '</option>').join('') + '</select></div>' +
     (bags.length && (rb.size || cb.size || cli(o.clientId).propertyGoods) ? '<div class="do-grp-t" style="margin-top:10px">🧺 Sacchi del cliente</div><table class="pl-tab"><tbody>' + bags.map(t => '<tr data-bag="' + esc(t.id) + '"><td>' + esc(t.name) + '</td><td class="r">' + nf(rb.get(t.id) || 0) + ' richiesti</td><td class="r"><input type="number" min="0" step="1" class="pl-in" value="' + (cb.get(t.id) || 0) + '"></td></tr>').join('') + '</tbody></table>' : '') +
-    '</div><div class="modal-footer">' + (o.prep ? '<button type="button" class="btn-light" data-reset>↩ Torna alle quantità richieste</button>' : '<span></span>') + '<div style="display:flex;gap:8px"><button type="button" class="btn-light" data-x>Annulla</button><button type="button" class="btn-success" data-ok>💾 Conferma preparazione</button></div></div></div>';
+    '</div><div class="modal-footer">' + (o.prep ? '<button type="button" class="btn-light" data-reset>↩ Torna alle quantità richieste</button>' : '<span></span>') + '<div style="display:flex;gap:8px"><button type="button" class="btn-light" data-prep-print="' + esc(o.id) + '">🖨️ Stampa scheda</button><button type="button" class="btn-light" data-x>Annulla</button><button type="button" class="btn-success" data-ok>💾 Conferma preparazione</button></div></div></div>';
   document.body.appendChild(el);
   el.querySelector('#prep-add').onchange = e => { const v = e.target.value; if (!v) return; el.querySelector('#prep-rows').insertAdjacentHTML('beforeend', row(v)); e.target.querySelector('option[value="' + CSS.escape(v) + '"]').remove(); e.target.value = ''; };
   el.querySelector('[data-x]').onclick = () => el.remove();
@@ -13434,10 +12852,11 @@ function setup() {
       const btn = document.querySelector('#active-orders-container button[onclick*="markAsDelivered(\'' + o.id + '\')"]'); if (!btn) return;
       const box = btn.parentElement; if (!box || box.querySelector('[data-prep]')) return;
       const d = diffs(o);
+      btn.insertAdjacentHTML('beforebegin', '<button type="button" class="btn-light prep-print" data-prep-print="' + esc(o.id) + '" title="Stampa la scheda di preparazione di questo ordine">🖨️ Scheda</button>');
       btn.insertAdjacentHTML('beforebegin', '<button type="button" class="btn-light prep-btn' + (o.prep ? ' done' : '') + '" data-prep="' + esc(o.id) + '" title="Quantità effettivamente preparate">' + (o.prep ? '📋 preparato' + (d ? ' · ' + d + (d === 1 ? ' diff.' : ' diff.') : ' ✓') : '📋 Preparazione') + '</button>');
     }); } catch (e) {}
   }, 75);
-  document.addEventListener('click', e => { const b = e.target.closest('[data-prep]'); if (b) { e.preventDefault(); e.stopPropagation(); openConfirm(b.dataset.prep); } }, true);
+  document.addEventListener('click', e => { const p = e.target.closest('[data-prep-print]'); if (p) { e.preventDefault(); e.stopPropagation(); return printOne(p.dataset.prepPrint); } const b = e.target.closest('[data-prep]'); if (b) { e.preventDefault(); e.stopPropagation(); openConfirm(b.dataset.prep); } }, true);
   /* nel Centro Documenti: le quantità vengono dalla scheda di preparazione */
   IPLHooks.on('docsel:after', function (ctx, r, id) {
     const o = AppState.orders.find(x => x.id === id), sel = $('doc-type-select'); if (!sel) return;
@@ -13447,7 +12866,7 @@ function setup() {
   }, 80);
 }
 setup();
-return { ordersFor, sheetHtml, sheetsHtml, openConfirm, diffs };
+return { ordersFor, sheetHtml, sheetsHtml, printOne, openConfirm, diffs };
 })();
 window.IPLPrep = IPLPrep;
 
@@ -13629,27 +13048,34 @@ function promise(d) {
   const fam = new Map(); let fromStock = 0;
   lines.forEach(l => { const f = free.get(l.code) || 0, use = Math.min(f, +l.qty), w = +l.qty - use; fromStock += use; free.set(l.code, f - use); if (w > 0) { const sp = spec(l.code), k = sp.washCategory || 'Lenzuola'; fam.set(k, (fam.get(k) || 0) + w * (sp.weightGrams || 500) / 1000); } });
   const today = todayISO(), now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes();
+  /* v8.24: con il pianificatore acceso tempi, anticipo, tolleranza, cicli e finitura sono i suoi (un'unica fonte) */
+  let PL = null; try { if (window.IPLPlanner && IPLPlanner.on()) PL = IPLPlanner.promiseInfo(); } catch (e) { PL = null; }
+  const lead = PL ? PL.lead : 0, tol = PL ? PL.tol : 0;
   let dl = null; try { const g = d.giro && window.SmartModule && SmartModule.giroOf ? SmartModule.giroOf(d.giro) : null; dl = g ? toMin(g.start) : null; } catch (e) {}
-  if (dl == null) dl = toMin(d.timeFrom); if (dl == null) dl = toMin(d.timeTo); const noTime = dl == null; if (dl == null) dl = toMin(((wc.plan || {}).defTime) || '07:30') || 450;
+  if (dl == null) dl = toMin(d.timeFrom); if (dl == null) dl = toMin(d.timeTo); const noTime = dl == null; if (dl == null) dl = toMin((PL ? PL.defTime : (wc.plan || {}).defTime) || '07:30') || 450;
   const days = Math.round((new Date(d.date + 'T12:00:00') - new Date(today + 'T12:00:00')) / 864e5);
   if (days < 0) return { ok: false, msg: 'La data è già passata.' };
   const kg = [...fam.values()].reduce((s, v) => s + v, 0);
   if (kg < 0.05) return { ok: true, stock: true, msg: '✅ <b>Tutto dalle scorte</b>: pronto subito' + (fromStock ? ' (' + nf(fromStock) + ' pezzi a magazzino)' : '') + '.' };
   const M = (wc.machines || []).filter(m => m.status === 'OK' && +m.capacityKg > 0); if (!M.length) return { ok: false, msg: '⚠️ Nessuna lavatrice attiva: non posso stimare.' };
-  const start0 = toMin(wc.startTime) == null ? 420 : toMin(wc.startTime), turn = +wc.turnaroundMin || 10;
+  const start0 = PL && PL.start != null ? PL.start : (toMin(wc.startTime) == null ? 420 : toMin(wc.startTime)), turn = +wc.turnaroundMin || 10;
   /* lavatrici: libere da adesso (o dall'inizio del turno) e dopo i cicli già in coda per oggi */
-  const av = M.map(m => ({ cap: +m.capacityKg, t: Math.max(nowMin, start0), name: m.name }));
-  (WashingModule._lastCycles || []).forEach(c => { if (c.dateISO !== today || c.status === 'DONE') return; const q = av.find(a => a.name === c.machine), e = toMin(c.endTimeStr); if (q && e != null) q.t = Math.max(q.t, e + turn); });
+  const av = M.map(m => ({ cap: +m.capacityKg, t: Math.max(nowMin, start0), name: m.name, id: String(m.id) }));
+  if (PL) av.forEach(a => { const e = PL.busy.get(a.id); if (e != null) a.t = Math.max(a.t, e + turn); });
+  else (WashingModule._lastCycles || []).forEach(c => { if (c.dateISO !== today || c.status === 'DONE') return; const q = av.find(a => a.name === c.machine), e = toMin(c.endTimeStr); if (q && e != null) q.t = Math.max(q.t, e + turn); });
   let ready = 0, cycles = 0, washEnd = 0, finT = 0;
   [...fam].sort((a, b) => b[1] - a[1]).forEach(([f, k]) => {
-    const dur = +((wc.programs || {})[f] || {}).durationMin || 55; let left = k, end = 0;
-    while (left > 0.05) { av.sort((a, b) => a.t - b.t || b.cap - a.cap); const q = av[0]; left -= Math.min(q.cap, left); end = q.t + dur; q.t = end + turn; cycles++; }
-    let fin = 0; try { fin = window.IPLWashPlan ? IPLWashPlan.finishMin(f, k) : 0; } catch (e) {} if (end + fin > ready) { ready = end + fin; washEnd = end; finT = fin; }
+    const pf = PL ? PL.fam(f) : null; if (pf) k = k * (1 + pf.scrap / 100);
+    const dur = pf ? pf.min : (+((wc.programs || {})[f] || {}).durationMin || 55); let left = k, end = 0;
+    const pool = pf && pf.washers ? (av.filter(a => pf.washers.includes(a.id)).length ? av.filter(a => pf.washers.includes(a.id)) : av) : av;
+    while (left > 0.05) { pool.sort((a, b) => a.t - b.t || b.cap - a.cap); const q = pool[0]; left -= Math.min(q.cap, left); end = q.t + dur; q.t = end + turn; cycles++; }
+    let fin = 0; try { fin = pf ? pf.finish(k) : (window.IPLWashPlan ? IPLWashPlan.finishMin(f, k) : 0); } catch (e) {} if (end + fin > ready) { ready = end + fin; washEnd = end; finT = fin; }
   });
-  const deadline = days * 1440 + dl, margin = deadline - ready, when = m => (m >= 1440 ? (m >= 2880 ? 'fra ' + Math.floor(m / 1440) + ' giorni alle ' : 'domani alle ') : 'alle ') + hm(m % 1440), before = m => m >= 1440 ? 'di ' + when(m) : 'delle ' + hm(m);
+  const deadline = days * 1440 + dl - lead, margin = deadline - ready, when = m => (m >= 1440 ? (m >= 2880 ? 'fra ' + Math.floor(m / 1440) + ' giorni alle ' : 'domani alle ') : 'alle ') + hm(m % 1440), before = m => m >= 1440 ? 'di ' + when(m) : 'delle ' + hm(m);
   const base = nf(kg, 1) + ' kg da lavare in ' + cycles + (cycles === 1 ? ' ciclo' : ' cicli') + (fromStock ? ', ' + nf(fromStock) + ' pezzi dalle scorte' : '') + ' · lavaggio finito alle ' + hm(washEnd % 1440) + (finT ? ' + finitura ' + (finT >= 90 ? nf(finT / 60, 1) + ' ore' : finT + ' min') : '');
-  if (margin >= 0) return { ok: true, ready, deadline, margin, msg: '✅ <b>Ce la fate</b>: pronto ' + when(ready) + (noTime && !days ? '' : ' · consegna ' + when(deadline) + ' (margine ' + (margin >= 120 ? nf(margin / 60, 1) + ' ore' : margin + ' min') + ')') + '<small>' + base + '</small>' };
-  return { ok: false, ready, deadline, margin, first: hm(ready % 1440), nextDay: ready >= 1440, msg: '⚠️ <b>A rischio</b>: non pronto prima ' + before(ready) + ', cioè ' + (-margin >= 120 ? nf(-margin / 60, 1) + ' ore' : -margin + ' min') + ' dopo la consegna ' + when(deadline) + '<small>' + base + '</small>' };
+  const due = lead ? ' · da avere pronto ' + when(deadline) + ' (' + lead + ' min prima della partenza' + (tol ? ', tolleranza ' + tol + ' min' : '') + ')' : ' · consegna ' + when(deadline);
+  if (margin >= -tol) return { ok: true, ready, deadline, margin, msg: '✅ <b>Ce la fate</b>: pronto ' + when(ready) + (noTime && !days ? '' : due + ' (margine ' + (margin >= 120 ? nf(margin / 60, 1) + ' ore' : margin < 0 ? 'nella tolleranza, ' + (-margin) + ' min di ritardo' : margin + ' min') + ')') + '<small>' + base + '</small>' };
+  return { ok: false, ready, deadline, margin, first: hm((ready + lead) % 1440), nextDay: ready + lead >= 1440, msg: '⚠️ <b>A rischio</b>: non pronto prima ' + before(ready) + ', cioè ' + (-margin >= 120 ? nf(-margin / 60, 1) + ' ore' : -margin + ' min') + (lead ? ' dopo l\'ora in cui deve essere pronto (' + when(deadline) + ', ' + lead + ' min prima della partenza)' : ' dopo la consegna ' + when(deadline)) + '<small>' + base + '</small>' };
 }
 function drawPromise() {
   const m = $('modal-new-order'); if (!m) return; let box = $('plus-promise');
@@ -13869,7 +13295,7 @@ const visibleFor = k => k !== 'promise' && on(k) && (canEdit() || k === 'cash' |
 function render() {
   const root = $('plus-root'); if (!root) return; const isAdmin = AppState.role === 'admin', Pn = P().on;
   const act = FE.filter(f => visibleFor(f[0])); if (!act.some(f => f[0] === ST.view)) ST.view = act.length ? act[0][0] : '';
-  root.innerHTML = '<div class="card"><div class="card-header"><div><span class="card-title">🧩 Funzioni avanzate</span><div class="tute-mini">Ogni funzione si accende e si spegne da sola. Spente, il programma resta com\'è.</div></div></div>' +
+  root.innerHTML = (window.IPLLook ? IPLLook.cardHtml() : '') + '<div class="card"><div class="card-header"><div><span class="card-title">🧩 Funzioni avanzate</span><div class="tute-mini">Ogni funzione si accende e si spegne da sola. Spente, il programma resta com\'è.</div></div></div>' +
     '<div class="plus-sw">' + FE.map(f => '<label class="do-tg' + (Pn[f[0]] ? ' on' : '') + '"><input type="checkbox" data-pon="' + f[0] + '"' + (Pn[f[0]] ? ' checked' : '') + (isAdmin ? '' : ' disabled') + '><span><b>' + f[1] + ' ' + f[2] + '</b><small>' + f[3] + '</small></span></label>').join('') + '</div>' + (isAdmin ? '' : '<p class="tute-mini">Solo l\'amministratore può accendere o spegnere le funzioni.</p>') + '</div>' +
     (act.length ? '<div class="bl2-chips plus-tabs">' + act.map(f => '<button type="button" class="bl2-chip' + (ST.view === f[0] ? ' on' : '') + '" data-pv="' + f[0] + '">' + f[1] + ' ' + f[2] + '</button>').join('') + '</div><div id="plus-view">' + (VIEWS[ST.view] ? VIEWS[ST.view]() : '') + '</div>' : '<div class="tute-empty">Nessuna funzione accesa' + (Pn.promise ? ' con una sua pagina (la Promessa di consegna lavora nel nuovo ordine)' : '') + '.</div>');
 }
@@ -13877,6 +13303,7 @@ function bind() {
   const root = $('plus-root'); if (!root || root._b) return; root._b = true;
   root.addEventListener('change', e => {
     const t = e.target, d = t.dataset;
+    if (d.look) { setTimeout(render, 0); return; }
     if (d.pon) { if (AppState.role !== 'admin') return; W(p => { p.on[d.pon] = t.checked; }, 'FUNZIONE_AVANZATA', d.pon + (t.checked ? ' accesa' : ' spenta')); EST = null; render(); drawPromise(); return; }
     if (d.cs) { if (!canEdit()) return; W(p => { p.cost = Object.assign({}, DEFC, p.cost || {}); p.cost[d.cs] = Math.max(0, +t.value || 0); }, 'COSTI_IMPOSTAZIONI', d.cs + ' = ' + t.value); render(); return; }
     if (d.mg) { if (!canEdit()) return; W(p => { p.merge = Object.assign({}, DEFM, p.merge || {}); p.merge[d.mg] = Math.max(1, +t.value || 1); }, 'ACCORPAMENTO_IMPOSTAZIONI', d.mg + ' = ' + t.value); render(); return; }
@@ -16887,112 +16314,12 @@ class LaundrySchedulerEngine {
   }
 }
 
-// ════════════════════════════════════════════════════════════════════════════
-//  DEMO: 18 ORDINI MISTI (hotel, ristoranti, centro benessere, officina) ≈ 450 kg
-// ════════════════════════════════════════════════════════════════════════════
-
-function buildDemoOrders() {
-  return [
-    { id: 'ORD-001', customer: 'Hotel Roma', fabricType: 'LENZUOLA_COTONE', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 62.0 },
-    { id: 'ORD-002', customer: 'Rist. Da Mario', fabricType: 'TOVAGLIATO', colorGroup: 'BIANCO', soilLevel: 'PESANTE_CUCINA', weightKg: 24.0 },
-    { id: 'ORD-003', customer: 'Centro Benessere Aqua', fabricType: 'SPUGNA', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 31.0 },
-    { id: 'ORD-004', customer: 'Officina Meccanica Rossi', fabricType: 'ABITI_LAVORO', colorGroup: 'SCURO', soilLevel: 'MEDIO', weightKg: 26.0 },
-    { id: 'ORD-005', customer: 'Hotel Bellavista', fabricType: 'LENZUOLA_COTONE', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 44.0 },
-    { id: 'ORD-006', customer: 'Hotel Roma', fabricType: 'SPUGNA', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 38.5 },
-    { id: 'ORD-007', customer: 'Trattoria Il Borgo', fabricType: 'TOVAGLIATO', colorGroup: 'BIANCO', soilLevel: 'PESANTE_CUCINA', weightKg: 17.5 },
-    { id: 'ORD-008', customer: 'Agriturismo La Quercia', fabricType: 'LENZUOLA_COTONE', colorGroup: 'COLORATO', soilLevel: 'LEGGERO', weightKg: 21.0 },
-    { id: 'ORD-009', customer: 'Pizzeria Vesuvio', fabricType: 'TOVAGLIATO', colorGroup: 'COLORATO', soilLevel: 'PESANTE_CUCINA', weightKg: 15.0, isUrgent: true, dueTime: '10:15' },
-    { id: 'ORD-010', customer: 'Hotel Bellavista', fabricType: 'SPUGNA', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 27.0 },
-    { id: 'ORD-011', customer: 'Centro Benessere Aqua', fabricType: 'SPUGNA', colorGroup: 'COLORATO', soilLevel: 'MEDIO', weightKg: 16.0 },
-    { id: 'ORD-012', customer: 'B&B Il Glicine', fabricType: 'LENZUOLA_COTONE', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 18.5 },
-    { id: 'ORD-013', customer: 'Osteria del Ponte', fabricType: 'TOVAGLIATO', colorGroup: 'BIANCO', soilLevel: 'PESANTE_CUCINA', weightKg: 21.5 },
-    { id: 'ORD-014', customer: 'Carrozzeria Lucana', fabricType: 'ABITI_LAVORO', colorGroup: 'SCURO', soilLevel: 'MEDIO', weightKg: 14.5 },
-    { id: 'ORD-015', customer: 'Hotel Parco', fabricType: 'LENZUOLA_COTONE', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 36.0, isUrgent: true, dueTime: '09:45' },
-    { id: 'ORD-016', customer: 'Ristorante La Terrazza', fabricType: 'TOVAGLIATO', colorGroup: 'COLORATO', soilLevel: 'PESANTE_CUCINA', weightKg: 13.0 },
-    { id: 'ORD-017', customer: 'Hotel Parco', fabricType: 'SPUGNA', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 22.0 },
-    { id: 'ORD-018', customer: 'Hotel Bellavista', fabricType: 'TOVAGLIATO', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 11.0 },
-  ];
-}
-
-/**
- * Esegue l'ottimizzazione sul dataset dimostrativo e stampa in console:
- * analisi di carico, lotti dello Stadio 1, KPI prima/dopo la meta-euristica,
- * istruzioni per gli operatori e un ricalcolo in tempo reale (guasto + urgente).
- * @returns {{ plan: object, replan: object }}
- */
-function runSimulationDemo(options = {}) {
-  const out = options.silent ? () => {} : (...args) => console.log(...args);
-  const engine = new LaundrySchedulerEngine(options.config || {});
-  const orders = buildDemoOrders();
-  const totalKg = orders.reduce((s, o) => s + o.weightKg, 0);
-  const bar = '═'.repeat(92);
-  const thin = '─'.repeat(92);
-
-  out(bar);
-  out(` LaundrySchedulerEngine v${ENGINE_VERSION} — simulazione: ${orders.length} ordini, ${totalKg.toFixed(1)} kg, turno 06:00-14:00`);
-  out(bar);
-
-  out('\n▶ STADIO 1 — decisione di carico: 44 kg di lenzuola bianche (sporco medio)');
-  engine.compareLoadingOptions(44, 'LENZUOLA_COTONE', 'MEDIO', 4).forEach((opt, i) => {
-    out(`   ${i === 0 ? '✔' : ' '} ${opt.description.padEnd(46)} ${String(opt.waterL).padStart(6)} L  ${String(opt.energyKWh).padStart(5)} kWh  costo ${opt.costScore.toFixed(2)}${opt.underSaturationPenalty ? `  (+${opt.underSaturationPenalty.toFixed(2)} penalità sotto soglia)` : ''}`);
-  });
-
-  const plan = engine.optimizeDailyPlan(orders);
-
-  out('\n▶ STADIO 1 — lotti di lavaggio formati');
-  for (const b of plan.batches) {
-    const flag = b.saturationExemption ? `  [deroga: ${b.saturationExemption}]` : '';
-    out(`   ${b.batchId}  ${b.washerId}  ${fmtKg(b.loadKg).padStart(5)}/${fmtKg(b.effectiveCapacityKg).padStart(5)} kg  ${String(Math.round(b.saturationPct)).padStart(3)}%  rotta ${b.route}  ${b.description.padEnd(38)} ${b.items.map((it) => `${it.orderId}${it.fragment ? `(${it.fragment})` : ''} ${fmtKg(it.kg)}`).join(', ')}${b.isUrgent ? '  ⚑ URGENTE' : ''}${flag}`);
-  }
-
-  const before = plan.baseline.kpis;
-  const after = plan.kpis;
-  const rows = [
-    ['Funzione obiettivo Z', 'objectiveZ'],
-    ['Makespan totale (min)', 'totalMakespanMinutes'],
-    ['Fine produzione', 'endOfProduction'],
-    ['Utilizzo calandra (%)', 'calandraUtilizationPct'],
-    ['Finestra attiva calandra (min)', 'calandraContinuousWindowMinutes'],
-    ['Fermo calandra nella finestra (min)', 'calandraStarvationMinutes'],
-    ['Attesa max carrello umido (min)', 'maxWetCartWaitMinutes'],
-    ['Carrelli oltre soglia 40 min', 'wetWaitViolations'],
-    ['Ritardo ordini urgenti (min)', 'urgentTardinessMinutes'],
-    ['Coda asciugatrici (min)', 'dryerQueueWaitMinutes'],
-    ['Saturazione media lavatrici (%)', 'avgWasherSaturationPct'],
-    ['Costo acqua/energia (score)', 'totalEnergyWaterCostScore'],
-  ];
-  out('\n▶ STADIO 2 — KPI prima e dopo l\'ottimizzazione meta-euristica');
-  out(`   ${'Indicatore'.padEnd(38)} ${'PRIMA (FIFO)'.padStart(14)} ${'DOPO (SA)'.padStart(14)}`);
-  out(`   ${thin.slice(0, 68)}`);
-  for (const [name, key] of rows) out(`   ${name.padEnd(38)} ${String(before[key]).padStart(14)} ${String(after[key]).padStart(14)}`);
-  out(`   Miglioramento di Z: ${plan.optimization.improvementPct}%  ·  ${plan.optimization.iterations} iterazioni in ${plan.optimization.elapsedMs} ms  ·  sequenza: ${plan.optimization.washSequence.join(' ')}`);
-  for (const w of plan.warnings) out(`   ⚠ ${w}`);
-
-  out('\n▶ ISTRUZIONI OPERATORE (piano ottimizzato)');
-  for (const line of plan.operatorInstructions) out(`   ${line}`);
-
-  const nowMinute = 9 * 60 + 10;
-  const state = engine.captureStateAt(plan, nowMinute);
-  const replan = engine.rescheduleRealTime(state, [
-    { machineBreakdown: 'D1' },
-    { urgentOrder: { id: 'ORD-019', customer: 'Hotel Roma', fabricType: 'LENZUOLA_COTONE', colorGroup: 'BIANCO', soilLevel: 'MEDIO', weightKg: 20.0, dueTime: '12:00' } },
-  ]);
-  out(`\n▶ STADIO 3 — ricalcolo in tempo reale alle ${formatClock(nowMinute)}: guasto D1 + ordine urgente ORD-019 (20 kg lenzuola)`);
-  out(`   Cicli congelati: ${state.completedTimeline.length} conclusi, ${state.runningCycles.length} in corso · carrelli umidi: ${state.wetCarts.length} · ordini ancora da lavare: ${state.pendingOrders.length}`);
-  out(`   Ricalcolo in ${replan.optimization.totalElapsedMs} ms · fine produzione ${replan.kpis.endOfProduction} (prima ${plan.kpis.endOfProduction}) · fermo calandra ${replan.kpis.calandraStarvationMinutes} min · ritardo urgenti ${replan.kpis.urgentTardinessMinutes} min`);
-  for (const w of replan.warnings) out(`   ⚠ ${w}`);
-  for (const line of replan.operatorInstructions) out(`   ${line}`);
-  out(bar);
-  return { plan, replan };
-}
-
 window.LaundrySchedulerEngine = LaundrySchedulerEngine;
-window.LaundryEngineDemo = runSimulationDemo;
 })();
 </script>
 <script id="ipl-v822-planner">
 /* =====================================================================
-   IPL v8.22 — PIANIFICATORE LAVAGGI (lavatrici → asciugatrici → calandra)
+   IPL v8.22–8.24 — PIANIFICATORE LAVAGGI (lavatrici → asciugatrici → calandra)
    Usa il motore LaundrySchedulerEngine (lotti per lavatrice, sequenza con
    Simulated Annealing, ricalcolo in tempo reale) sui dati del gestionale:
    · consegne del giorno (+ i prossimi N giorni) con scadenza = partenza del giro − anticipo, con tolleranza
@@ -17047,7 +16374,8 @@ const DEF = {
   shifts: { def: '', byDay: {} },
   dryTurn: 5, lead: 60, tol: 15, defTime: '07:30', ahead: 1, maxWet: 40, minFill: 75, scrap: 3, unattended: true, overtime: 60,
   weights: { calIdle: 4, urgent: 6, makespan: 1, dryQueue: 0.3 },
-  iterations: 12000, fam: {}, eff: {}
+  iterations: 12000, fam: {}, eff: {},
+  stable: true, auto: true, grace: 15      /* v8.25: 📌 piano stabile · 🤫 silenzio = come da piano (minuti di attesa prima di darlo per partito) */
 };
 function P() {
   const p = WC().planner || {};
@@ -17140,7 +16468,6 @@ function dueOf(o, date) {
 }
 function inPlan(o, date, last) {
   if (o.status !== 'ACTIVE' || o.orderType === 'PICKUP_ONLY' || o.isTute) return false;
-  if (window.IPLWashPlan && IPLWashPlan.on()) return IPLWashPlan.inScope(o, 'SINGLE_DAY', date);
   return (o.date >= date && o.date <= last) || (date === todayISO() && o.date < date);
 }
 function demand(date, startMin) {
@@ -17188,16 +16515,19 @@ function demand(date, startMin) {
 }
 
 /* ---------------- cicli avviati (registro washRuns, uno per evento) ---------------- */
-const runsOf = date => RUNS().filter(r => r.date === date);
+const META = { PIANO: 1, SALTATO: 1 };   /* v8.25: record di servizio nel registro (piano fissato, ciclo non fatto) */
+const runsOf = date => RUNS().filter(r => r.date === date && !META[r.o]);
 function startedKg(date) {
   /* kg già entrati in lavatrice per ogni voce (anche lavati nei giorni scorsi per le consegne di oggi) */
   const from = addDays(date, -3), m = new Map();
   RUNS().forEach(r => { if (r.o !== 'LAVAGGIO' || !r.bt || r.date < from || r.date > date) return; (r.bt.items || []).forEach(it => m.set(it.orderId, (m.get(it.orderId) || 0) + (+it.kg || 0))); });
   return m;
 }
-function plantState(date, now, D, cfg) {
+function plantState(date, now, D, cfg, virt) {
   const runs = runsOf(date), batches = [], seen = new Set(), done = [], running = [];
   runs.filter(r => r.o === 'LAVAGGIO' && r.bt).forEach(r => { if (seen.has(r.b)) return; seen.add(r.b); if (cfg.categories[r.bt.fabricType]) batches.push(Object.assign({}, r.bt, { batchId: r.b, washerId: r.m })); });
+  /* v8.25: lotti del piano precedente dati per partiti all'ora prevista (nessuno li ha segnati) */
+  if (virt) virt.batches.forEach(b => { if (seen.has(b.batchId)) return; seen.add(b.batchId); batches.push(b); });
   const ok = new Set(batches.map(b => b.batchId));
   runs.forEach(r => {
     if (!ok.has(r.b)) return;
@@ -17205,11 +16535,13 @@ function plantState(date, now, D, cfg) {
     if (r.o === 'LAVAGGIO') { const b = batches.find(x => x.batchId === r.b); ev.capacityKg = b.effectiveCapacityKg; ev.saturationPct = b.saturationPct; ev.saturationExemption = b.saturationExemption || null; }
     (ev.endMinute <= now ? done : running).push(ev);
   });
+  if (virt) virt.events.forEach(ev => { if (ok.has(ev.batchId)) (ev.endMinute <= now ? done : running).push(ev); });
   const sk = startedKg(date), byId = new Map(D.orders.map(o => [o.id, o]));
+  if (virt) virt.kg.forEach((kg, id) => sk.set(id, (sk.get(id) || 0) + kg));
   const pending = D.orders.map(o => Object.assign({}, o, { weightKg: Math.round(((o.weightKg - (sk.get(o.id) || 0)) * 10)) / 10 })).filter(o => o.weightKg >= 0.1);
   /* ordini dei lotti avviati non più presenti (consegnati, eliminati): restano nel lotto, che è già in macchina */
   const extra = []; batches.forEach(b => (b.items || []).forEach(it => { if (!byId.has(it.orderId) && !extra.some(x => x.id === it.orderId)) extra.push({ id: it.orderId, customer: it.customer || '', fabricType: b.fabricType, colorGroup: 'BIANCO', soilLevel: 'STD', weightKg: Math.max(0.1, +it.kg || 0.1), isUrgent: false }); }));
-  let nb = 101; batches.forEach(b => { const n = +String(b.batchId).replace(/\D/g, ''); if (n >= nb) nb = n + 1; });
+  let nb = 101; batches.map(b => b.batchId).concat([...skippedOf(date)]).forEach(x => { const n = +String(x).replace(/\D/g, ''); if (n >= nb) nb = n + 1; });
   return { nowMinute: now, dayStartMinute: cfg.horizon.startMinute, shiftEndMinute: cfg.horizon.endMinute, orders: D.orders.concat(extra), pendingOrders: pending,
     batches, completedTimeline: done, runningCycles: running, wetCarts: [], unavailableMachines: [], nextBatchNumber: nb };
 }
@@ -17230,6 +16562,101 @@ function startOf(date, cfg) {
   if (date === todayISO() && WC().fromNow !== false) { const n = Math.ceil(nowMin() / 5) * 5; return Math.max(n, 0); }
   return cfg.horizon.startMinute;
 }
+/* ---------------- v8.25: 📌 piano stabile e 🤫 silenzio = come da piano ----------------
+   Il piano calcolato si salva: un record “PIANO” per giorno nel registro washRuns, uguale su tutti i dispositivi.
+   📌 Finché non cambia un fatto vero (cosa c'è da lavare, macchine/turni/parametri, cicli segnati) si mostra quello:
+      il piano stampato al mattino resta valido e non scivola col passare dei minuti.
+   🤫 Quando si ricalcola, i cicli del piano precedente che dovevano partire da più di “grace” minuti e che nessuno
+      ha segnato si danno per partiti all'ora prevista: si segnalano solo le eccezioni (✕ non fatto, ⚠ guasto). */
+const FORCE = new Set();
+const baseOf = d => RUNS().find(r => r.o === 'PIANO' && r.date === d);
+const skippedOf = d => new Set(RUNS().filter(r => r.o === 'SALTATO' && r.date === d).map(r => String(r.b)));
+const hstr = s => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36) + '.' + s.length; };
+function sigOf(date, start, cfg) {
+  const D = demand(date, start), from = addDays(date, -3);
+  return {
+    d: hstr(JSON.stringify(D.orders.map(o => [o.id, o.fabricType, o.weightKg, o.dueMinute, o.toleranceMinutes, o.isUrgent ? 1 : 0, o.separateKey || '']).sort())),
+    c: hstr(JSON.stringify(cfg)),
+    r: hstr(JSON.stringify(RUNS().filter(r => r.o !== 'PIANO' && r.date >= from && r.date <= date).map(r => [r.id, r.date, r.o, r.m, r.b, r.s || '', r.a, r.z, r.done ? 1 : 0]).sort()))
+  };
+}
+const sameSig = (a, b) => !!(a && b && a.d === b.d && a.c === b.c && a.r === b.r);
+function doneOf(D, plan) {
+  const done = new Map(), parts = new Map();
+  plan.orderTracking.forEach(t => {
+    const inf = D.info[t.orderId]; if (!inf || !inf.orderId) return;
+    parts.set(inf.orderId, (parts.get(inf.orderId) || []).concat([t]));
+  });
+  parts.forEach((L, oid) => done.set(oid, L.every(t => t.completionMinute != null) ? Math.max(...L.map(t => t.completionMinute)) : null));
+  return done;
+}
+/* piano fissato → piano completo; oggi i cicli non segnati e ormai passati si mostrano “come da piano” */
+function fromBase(date, base, cfg, auto) {
+  const eng = new LaundrySchedulerEngine(cfg), slim = JSON.parse(JSON.stringify(base.plan)), now = nowMin();
+  if (date === todayISO()) {
+    const skip = skippedOf(date), g = Math.max(0, +P().grace || 0);
+    slim.events.forEach(x => {
+      const st = x.t || 'PIANIFICATO';
+      if (st === 'IN_CORSO' && x.z <= now) x.t = 'COMPLETATO';
+      else if (st === 'PIANIFICATO' && auto && x.a + g <= now && !skip.has(String(x.b))) x.t = x.z <= now ? 'COMPLETATO' : 'IN_CORSO';
+    });
+  }
+  const plan = eng.rehydratePlan(slim), D = demand(date, base.st);
+  return { date, start: base.st, cfg, D, plan, done: doneOf(D, plan), eng, at: base.at, fixed: true };
+}
+/* cicli del piano precedente da dare per fatti: partiti da più di “grace” minuti e mai segnati */
+function virtualFrom(base, date, now, cfg) {
+  const g = Math.max(0, +P().grace || 0), runs = runsOf(date), skip = skippedOf(date), ev = base.plan.events || [];
+  const out = { batches: [], events: [], kg: new Map() }, wash = new Map();
+  ev.forEach(x => { if (x.o === 'LAVAGGIO' && x.b != null) wash.set(String(x.b), x); });
+  const has = x => runs.some(r => r.o === x.o && String(r.b) === String(x.b) && (r.s || '') === (x.s || ''));
+  (base.plan.batches || []).forEach(b => {
+    const id = String(b.batchId), w = wash.get(id); if (!w || !cfg.categories[b.fabricType]) return;
+    const realWash = runs.find(r => r.o === 'LAVAGGIO' && String(r.b) === id);
+    if (!realWash) {
+      if (skip.has(id) || w.a + g > now) return;
+      out.batches.push(Object.assign({}, b, { batchId: id, washerId: w.m }));
+      (b.items || []).forEach(it => out.kg.set(it.orderId, (out.kg.get(it.orderId) || 0) + (+it.kg || 0)));
+    }
+    ev.forEach(x => {
+      if (String(x.b) !== id || x.o === 'RISCALDAMENTO' || x.a + g > now || has(x)) return;
+      if (x.o === 'LAVAGGIO' && realWash) return;
+      if (realWash && x.a < realWash.z) return;          /* lavaggio partito in ritardo: le fasi dopo si ripianificano */
+      const e = { machine: x.m, operation: x.o, batchId: id, subBatchId: x.s || null, startMinute: x.a, endMinute: Math.max(x.a + 1, x.z), kg: x.k || 0 };
+      if (x.c != null) e.capacityKg = x.c; if (x.p != null) e.saturationPct = x.p; if (x.e) e.saturationExemption = x.e;
+      out.events.push(e);
+    });
+  });
+  return out;
+}
+/* salva il piano del giorno (solo se è cambiato) con “cosa è cambiato” rispetto al precedente */
+function saveBase(date, v, old, why) {
+  const slim = v.eng.slimPlan(v.plan), sig = sigOf(date, v.start, v.cfg), rd = {};
+  v.done.forEach((m, oid) => { rd[oid] = m; });
+  const key = x => JSON.stringify((x.events || []).map(e => [e.m, e.o, e.b, e.s || '', e.a, e.z]));
+  if (old && old.plan && sameSig(old.sig, sig) && key(old.plan) === key(slim)) return;
+  let ch = old ? old.ch || null : null;
+  if (old && old.plan && why && why.length) {
+    const lab = oid => { const o = AppState.orders.find(x => x.id === oid); return o ? (cliOf(o.clientId).name || o.clientId) : oid; };
+    const moved = [];
+    Object.keys(rd).forEach(oid => {
+      const a = (old.rd || {})[oid], b = rd[oid];
+      if (a === undefined) return;
+      if (a != null && b == null) moved.push([lab(oid), a, null]);
+      else if (a != null && b != null && Math.abs(b - a) >= 15) moved.push([lab(oid), a, b]);
+    });
+    const added = Object.keys(rd).filter(oid => !(oid in (old.rd || {}))).length;
+    const nb = [(old.plan.batches || []).length, (slim.batches || []).length];
+    ch = (moved.length || added || nb[0] !== nb[1]) ? { at: Date.now(), why, moved: moved.slice(0, 8), more: Math.max(0, moved.length - 8), added, nb } : ch;
+  }
+  const rec = { id: 'piano-' + date, date, o: 'PIANO', m: 'PIANO', a: v.start, z: v.start + 1, st: v.start, sig, plan: slim, rd, ch, at: Date.now(), by: (AppState.currentUser || {}).username || AppState.role || '' };
+  setTimeout(() => {
+    const L = RUNS(), i = L.findIndex(r => r.id === rec.id);
+    if (i >= 0) L[i] = rec; else L.push(rec);
+    StorageEngine.saveState(null, '', { noUndo: true });
+    try { redraw(); } catch (e) {}
+  }, 0);
+}
 function compute(date) {
   const k = ver(date); const hit = CACHE.get(date); if (hit && hit.k === k) return hit.v;
   let v;
@@ -17237,15 +16664,22 @@ function compute(date) {
     if (typeof LaundrySchedulerEngine !== 'function') throw new Error('motore di pianificazione non caricato');
     const cfg = engineConfig(date);
     if (!cfg.washers.length) throw new Error('nessuna lavatrice operativa: riattivane almeno una nel Parco lavatrici');
-    const start = startOf(date, cfg), D = demand(date, start), eng = new LaundrySchedulerEngine(cfg);
-    const plan = eng.rescheduleRealTime(plantState(date, start, D, cfg), []);
-    const done = new Map(), parts = new Map();
-    plan.orderTracking.forEach(t => {
-      const inf = D.info[t.orderId]; if (!inf || !inf.orderId) return;
-      parts.set(inf.orderId, (parts.get(inf.orderId) || []).concat([t]));
-    });
-    parts.forEach((L, oid) => done.set(oid, L.every(t => t.completionMinute != null) ? Math.max(...L.map(t => t.completionMinute)) : null));
-    v = { date, start, cfg, D, plan, done, eng, at: Date.now() };
+    const p = P(), keep = p.stable !== false, auto = p.auto !== false, today = todayISO(), force = FORCE.has(date); FORCE.delete(date);
+    const fixable = on() && (keep || auto) && date >= today && date <= addDays(today, 1);   /* si fissa solo il piano di oggi e di domani */
+    const base = fixable ? baseOf(date) : null;
+    let why = null;
+    if (base && base.plan && base.sig) {
+      const s = sigOf(date, base.st, cfg);
+      if (keep && !force && sameSig(s, base.sig)) v = fromBase(date, base, cfg, auto);
+      else why = force ? ['ricalcolo a mano'] : [s.d !== base.sig.d ? 'cosa lavare è cambiato' : '', s.c !== base.sig.c ? 'macchine, turni o parametri cambiati' : '', s.r !== base.sig.r ? 'cicli segnati' : ''].filter(Boolean);
+    }
+    if (!v) {
+      const start = startOf(date, cfg), D = demand(date, start), eng = new LaundrySchedulerEngine(cfg);
+      const virt = auto && base && base.plan && date === today ? virtualFrom(base, date, start, cfg) : null;
+      const plan = eng.rescheduleRealTime(plantState(date, start, D, cfg, virt), []);
+      v = { date, start, cfg, D, plan, done: doneOf(D, plan), eng, at: Date.now() };
+      if (fixable) saveBase(date, v, base, keep ? why : null);
+    }
   } catch (e) { v = { date, error: e && e.message ? e.message : String(e) }; }
   if (CACHE.size > 6) CACHE = new Map();
   CACHE.set(date, { k, v }); return v;
@@ -17266,6 +16700,30 @@ function readyFor(o) {
   return null;
 }
 const giroMargin = () => { const p = P(); return Math.max(0, (+p.lead || 0) - (+p.tol || 0)); };
+/* v8.24: unica fonte dell'ora di consegna quando il pianificatore è acceso (giro → orario → partenza predefinita del pianificatore) */
+function deliveryAt(o) { const t = dueOf(o, o.date).dep, d = new Date(o.date + 'T00:00:00'); d.setMinutes(t); return d; }
+/* v8.24: parametri per la “promessa di consegna” nel nuovo ordine (stima veloce, senza ricalcolare il piano) */
+function promiseInfo() {
+  const p = P(), wc = WC(), today = todayISO(), e = effOf(today), hand = Math.max(0.2, (+e.hand || 100) / 100), iron = Math.max(0.1, (+e.iron || 100) / 100);
+  const S = shiftsFor(today), busy = new Map();
+  let R = null; const hit = CACHE.get(today); if (hit && hit.k === ver(today)) R = hit.v; else if (LAST && LAST.date === today) R = LAST;
+  try { if (R && R.plan) R.plan.ganttTimeline.forEach(x => { if (x.operation === 'LAVAGGIO' && x.endMinute > nowMin()) busy.set(String(x.machine), Math.max(busy.get(String(x.machine)) || 0, x.endMinute)); }); } catch (er) {}
+  const rate = p.ironers.filter(m => m.status !== 'MAINTENANCE' && +m.rateKgH > 0).reduce((s, m) => s + +m.rateKgH, 0);
+  const dry = p.dryers.filter(m => m.status !== 'MAINTENANCE' && +m.capacityKg > 0).map(m => +m.capacityKg);
+  return {
+    defTime: p.defTime, lead: Math.max(0, +p.lead || 0), tol: Math.max(0, +p.tol || 0), start: S.length ? S[0][0] : null, busy,
+    fam: f => {
+      const fp = p.fam[f] || {}, cy = famCycle(f, p), route = ['A', 'B', 'C'].includes(fp.route) ? fp.route : 'B';
+      const finish = kg => {
+        if (route === 'A') return rate > 0 ? Math.round(kg / (rate * iron * Math.max(0.1, (+fp.iron || 100) / 100)) * 60) : 0;
+        if (!dry.length) return 0;
+        const cap = dry.reduce((s, c) => s + c, 0) * Math.max(0.2, Math.min(1.2, (+fp.dryFill || 100) / 100)), rounds = Math.max(1, Math.ceil(kg / Math.max(1, cap)));
+        return Math.round(rounds * ((+fp.dryBase || 45) + (+fp.dryLoad || 0) * Math.min(1, kg / rounds / Math.max(1, cap))) / hand);
+      };
+      return { min: Math.max(1, +cy.min || progDur(f)), washers: Array.isArray(cy.washers) && cy.washers.length ? cy.washers.map(String) : null, scrap: scrapOf(f), finish };
+    }
+  };
+}
 
 /* ---------------- azioni sui cicli ---------------- */
 let LAST = null;
@@ -17300,11 +16758,20 @@ function undoEvent(idx) {
   AppState.washRuns = RUNS().filter(x => !drop.includes(x));
   StorageEngine.saveState('CICLO_ANNULLATO', 'Batch ' + r.b + ' torna in coda'); invalidate(); redraw();
 }
+/* v8.25: un ciclo dato per fatto “come da piano” in realtà non è stato fatto → torna da lavare */
+const skipRec = (e, d) => ({ id: 'sk' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), date: d, o: 'SALTATO', m: e.machine, b: e.batchId, a: e.startMinute, z: e.endMinute, by: (AppState.currentUser || {}).username || AppState.role || '', at: Date.now() });
+function skipEvent(idx) {
+  const R = LAST; if (!R) return; const e = R.plan.ganttTimeline[idx]; if (!e || e.operation !== 'LAVAGGIO' || runOfEvent(e, R.date)) return;
+  if (!confirm('Il Batch ' + e.batchId + ' su ' + nameOf(e.machine) + ' (' + e.start + ') non è stato fatto?\nQuei capi tornano da lavare e il resto della giornata si ripianifica.')) return;
+  RUNS().push(skipRec(e, R.date));
+  StorageEngine.saveState('CICLO_NON_FATTO', nameOf(e.machine) + ' · Batch ' + e.batchId + ' torna da lavare'); invalidate(); regen();
+}
 function breakdown(idx) {
   const R = LAST; if (!R) return; const e = R.plan.ganttTimeline[idx]; if (!e) return;
   if (!confirm('⚠ Guasto su ' + nameOf(e.machine) + '?\nLa macchina va in manutenzione' + (e.status === 'IN_CORSO' ? ' e il carico che c\'era dentro torna da rifare' : '') + '. Il resto della giornata si ripianifica.')) return;
   const r = e.status === 'IN_CORSO' ? runOfEvent(e, R.date) : null;
   if (r) AppState.washRuns = RUNS().filter(x => r.o === 'LAVAGGIO' ? !(x.date === r.date && x.b === r.b) : x !== r);
+  else if (e.status === 'IN_CORSO' && e.operation === 'LAVAGGIO') RUNS().push(skipRec(e, R.date));   /* era dato per fatto: il carico torna da rifare */
   setStatus(e.machine, 'MAINTENANCE', true);
   StorageEngine.saveState('GUASTO_MACCHINA', nameOf(e.machine) + (r ? ' · Batch ' + r.b + ' da rifare' : '')); invalidate(); regen();
 }
@@ -17387,6 +16854,7 @@ function viewPlan(d) {
     '<label>Carico/scarico <input type="number" min="20" max="200" step="5" data-pe="hand" value="' + esc(e.hand) + '">%</label>' +
     '<details class="wpl-mini"><summary>altro…</summary><label>Turni del giorno <input type="text" data-pe="shifts" placeholder="' + esc(shiftTxt(shiftsFor(d)).replace(/–/g, '-')) + '" value="' + esc(e.shifts) + '"></label><label>Nota <input type="text" data-pe="note" value="' + esc(e.note) + '" placeholder="es. in calandra solo 2 persone"></label></details></div>';
   if (R.error) return h + '<div class="wpl-err">⚠️ ' + esc(R.error) + '</div>';
+  h += fixedNote(d);
   const K = R.plan.kpis, late = R.plan.orderTracking.filter(t => t.missedDeadline), soft = R.plan.orderTracking.filter(t => !t.missedDeadline && t.tardinessMinutes > 0);
   const cal = p.ironers.filter(x => x.status !== 'MAINTENANCE').map(x => nf(x.rateKgH * Math.max(0.1, (+e.iron || 100) / 100), 0) + ' kg/h').join(' + ');
   h += '<div class="wpl-kpis">' +
@@ -17396,7 +16864,8 @@ function viewPlan(d) {
     kpiTile('Consegne', late.length ? '🔴 ' + late.length + (late.length === 1 ? ' non pronta' : ' non pronte') : soft.length ? '🟠 ' + soft.length + ' in tolleranza' : '🟢 tutte in tempo', late.length > 0, 'Pronto entro = partenza del giro − ' + p.lead + ' min, tolleranza ' + p.tol + ' min') + '</div>';
   const warns = R.plan.warnings.slice();
   if (late.length) warns.unshift((late.length === 1 ? '1 consegna non sarà pronta' : late.length + ' consegne non saranno pronte') + ' per il giro: ' + late.slice(0, 6).map(t => esc(t.customer) + ' (pronta alle ' + esc(t.completion) + ', serviva entro le ' + esc(t.due) + ')').join(', ') + (late.length > 6 ? '…' : ''));
-  if (warns.length) h += '<div class="wpl-warn">' + warns.map(w => '<div>⚠️ ' + w + '</div>').join('') + '</div>';
+  /* v8.25: avvisi più leggibili — i primi due in vista, gli altri a richiesta */
+  if (warns.length) h += '<div class="wpl-warn">' + warns.slice(0, 2).map(w => '<div>⚠️ ' + w + '</div>').join('') + (warns.length > 2 ? '<details class="wpl-more-w"><summary>altri ' + (warns.length - 2) + ' avvisi</summary>' + warns.slice(2).map(w => '<div>⚠️ ' + w + '</div>').join('') + '</details>' : '') + '</div>';
   const X = (WC().extra || []).filter(x => x.date === d);
   if (X.length) h += '<div class="wpl-chips"><span class="tute-mini">Lavaggi extra:</span>' + X.map(x => '<span class="wctl-chip">🧺 <b>' + esc(x.family) + '</b> ' + nf(x.kg) + ' kg' + (x.note ? ' · ' + esc(x.note) : '') + ' <button type="button" data-xdel="' + esc(x.id) + '" title="Togli">✕</button></span>').join('') + '</div>';
   /* corsie per macchina: prima le macchine con cicli */
@@ -17411,11 +16880,13 @@ function viewPlan(d) {
     const rows = lanes.get(mid).map(i => {
       const ev = T[i], st = ev.status, cls = st === 'COMPLETATO' ? 'done' : st === 'IN_CORSO' ? 'run' : st === 'INTERROTTO_GUASTO' ? 'brk' : '';
       const what = ev.operation === 'RISCALDAMENTO' ? 'Preriscaldo' : esc(ev.description || '') + ' <small class="wpl-id">' + esc(ev.subBatchId || ('#' + String(ev.batchId || '').replace('#', ''))) + '</small>';
-      const btn = st === 'PIANIFICATO' && ev.operation !== 'RISCALDAMENTO' ? '<button type="button" class="btn-light" data-pr="start" data-i="' + i + '" title="Il ciclo è partito adesso">▶</button>'
+      const virt = (st === 'COMPLETATO' || st === 'IN_CORSO') && ev.operation !== 'RISCALDAMENTO' && !runOfEvent(ev, d);
+      const btn = virt ? (ev.operation === 'LAVAGGIO' ? '<button type="button" class="btn-light" data-pr="skip" data-i="' + i + '" title="Non è stato fatto: torna da lavare">✕ non fatto</button>' : '') + (st === 'IN_CORSO' ? '<button type="button" class="btn-light" data-pr="brk" data-i="' + i + '" title="Guasto">⚠</button>' : '')
+        : st === 'PIANIFICATO' && ev.operation !== 'RISCALDAMENTO' ? '<button type="button" class="btn-light" data-pr="start" data-i="' + i + '" title="Il ciclo è partito adesso">▶</button>'
         : st === 'IN_CORSO' ? '<button type="button" class="btn-success" data-pr="end" data-i="' + i + '" title="Ciclo finito adesso">✔</button><button type="button" class="btn-light" data-pr="undo" data-i="' + i + '" title="Non è partito: riporta in coda">↺</button><button type="button" class="btn-light" data-pr="brk" data-i="' + i + '" title="Guasto: macchina in manutenzione e ripianifica">⚠</button>'
         : st === 'COMPLETATO' && runOfEvent(ev, d) ? '<button type="button" class="btn-light" data-pr="undo" data-i="' + i + '" title="Annulla">↺</button>' : '';
       return '<div class="wpl-ev ' + cls + (lateB.has(ev.batchId) ? ' late' : '') + '"><span class="wpl-t">' + OPI[ev.operation] + ' ' + esc(ev.start) + '–' + esc(ev.end) + '</span><span class="wpl-w"><b>' + what + '</b>' +
-        (ev.kg ? ' · ' + nf(ev.kg) + ' kg' : '') + (ev.wetWaitMinutes > 0 ? ' · carrello ' + Math.round(ev.wetWaitMinutes) + ' min' : '') +
+        (virt ? ' <small class="wpl-auto" title="Nessuno l\'ha segnato: si dà per fatto all\'ora prevista">come da piano</small>' : '') + (ev.kg ? ' · ' + nf(ev.kg) + ' kg' : '') + (ev.wetWaitMinutes > 0 ? ' · carrello ' + Math.round(ev.wetWaitMinutes) + ' min' : '') +
         ((ev.customers || []).length ? '<small>' + esc(ev.customers.join(', ')) + '</small>' : '') + '</span><span class="wpl-b">' + btn + '</span></div>';
     }).join('');
     return '<div class="wpl-lane' + (maint ? ' maint' : '') + '"><div class="wpl-lh"><b>' + esc(nameOf(mid)) + '</b>' + (mm ? '<button type="button" class="btn-light" data-pm="' + esc(mid) + '" title="Cambia stato">' + (maint ? '🔧 in manutenzione' : '🟢') + '</button>' : '') + '</div>' + rows + '</div>';
@@ -17425,6 +16896,18 @@ function viewPlan(d) {
   h += '<details class="wpl-det"><summary>📋 Istruzioni per gli operatori (' + R.plan.operatorInstructions.length + ')</summary><ol class="wpl-ins">' + R.plan.operatorInstructions.map(l => '<li>' + esc(l) + '</li>').join('') + '</ol></details>';
   h += '<details class="wpl-det"><summary>🚐 Consegne: pronte per il giro?</summary>' + ordersTable(R) + '</details>';
   return h;
+}
+/* v8.25: “📌 piano fissato alle …” e cosa è cambiato all'ultimo ricalcolo */
+function fixedNote(d) {
+  const p = P(), B = baseOf(d); if (!B || p.stable === false) return '';
+  const at = x => { const z = new Date(x); return String(z.getHours()).padStart(2, '0') + ':' + String(z.getMinutes()).padStart(2, '0'); };
+  let h = '<div class="wpl-fixed">📌 Piano fissato alle <b>' + at(B.at) + '</b>: si ricalcola solo se cambia qualcosa (ordini, macchine, turni, cicli segnati)' + (p.auto !== false ? ' · 🤫 i cicli che nessuno segna si danno per fatti all\'ora prevista' : '') + '</div>';
+  const c = B.ch; if (!c || !c.at || new Date(c.at).toDateString() !== new Date().toDateString()) return h;
+  const parts = c.moved.map(m => '<b>' + esc(m[0]) + '</b> ' + (m[2] == null ? 'non più pronta in giornata' : 'pronta alle ' + hm(m[2]) + ' <small>(prima ' + hm(m[1]) + ')</small>'));
+  if (c.more) parts.push('altre ' + c.more);
+  if (c.added) parts.push(c.added === 1 ? '1 consegna nuova' : c.added + ' consegne nuove');
+  if (c.nb && c.nb[0] !== c.nb[1]) parts.push('lotti ' + c.nb[0] + ' → ' + c.nb[1]);
+  return h + '<div class="wpl-changed">🔄 <b>Piano aggiornato alle ' + at(c.at) + '</b> <small>(' + esc((c.why || []).join(', ')) + ')</small>' + (parts.length ? ': ' + parts.join(' · ') : '') + '</div>';
 }
 function ordersTable(R) {
   const rows = [];
@@ -17514,22 +16997,31 @@ function filterItems() { const q = ITEMQ.trim().toLowerCase(); document.querySel
 function viewRules() {
   const p = P(), D = dis(), wc = WC();
   const num = (k, l, lo, hi, step, hint) => '<div><label>' + l + '</label><input type="number" data-cf="' + k + '" min="' + lo + '" max="' + hi + '" step="' + (step || 1) + '" value="' + esc(p[k]) + '"' + D + '>' + (hint ? '<small>' + hint + '</small>' : '') + '</div>';
-  let h = '<h4 class="wpl-h">🕘 Turni di lavoro</h4><p class="tute-mini">Scrivi così: <code>06:00-12:00, 13:00-17:00</code> (la pausa è il buco tra i due). Vuoto = come “tutti i giorni”; <code>chiuso</code> = niente turno. Per cambiare solo un giorno usa “altro…” nel Piano.</p>' +
-    '<div class="form-grid-4"><div><label><b>Tutti i giorni</b></label><input type="text" data-sh="def" value="' + esc(p.shifts.def) + '"' + D + '></div>' + [1, 2, 3, 4, 5, 6, 0].map(g => '<div><label>' + GG[g] + '</label><input type="text" data-sh="' + g + '" value="' + esc((p.shifts.byDay || {})[g] || '') + '" placeholder="come tutti i giorni"' + D + '></div>').join('') + '</div>' +
-    '<label class="do-tg" style="margin-top:8px"><input type="checkbox" data-cf="unattended"' + (p.unattended !== false ? ' checked' : '') + D + '><span><b>Lavatrici e asciugatrici possono finire il ciclo durante una pausa</b><small>Si caricano in turno e si scaricano alla ripresa.</small></span></label>' +
-    '<div class="form-grid-4" style="margin-top:6px">' + num('overtime', 'Straordinario possibile dopo l\'ultimo turno (min)', 0, 600, 15) +
-    '<div><label>Carico/scarico lavatrice (min)</label><input type="number" data-wc="turnaroundMin" min="0" max="60" value="' + esc(wc.turnaroundMin == null ? 10 : wc.turnaroundMin) + '"' + D + '></div>' + num('dryTurn', 'Pulizia filtro + carico asciugatrice (min)', 0, 120) + '</div>';
-  h += '<h4 class="wpl-h">🚐 Giri e consegne</h4><div class="form-grid-4">' +
+  const tg = (k, title, sub) => '<label class="do-tg"><input type="checkbox" data-cf="' + k + '"' + (p[k] !== false ? ' checked' : '') + D + '><span><b>' + title + '</b><small>' + sub + '</small></span></label>';
+  /* v8.25: davanti solo l'essenziale; il resto in “Avanzate” */
+  let h = '<div class="wpl-sec"><h4 class="wpl-h">🕘 Turni di lavoro</h4><p class="tute-mini">Scrivi così: <code>06:00-12:00, 13:00-17:00</code> (la pausa è il buco tra i due). Vuoto = come “tutti i giorni”; <code>chiuso</code> = niente turno. Per cambiare solo un giorno usa “altro…” nel Piano.</p>' +
+    '<div class="form-grid-4"><div><label><b>Tutti i giorni</b></label><input type="text" data-sh="def" value="' + esc(p.shifts.def) + '"' + D + '></div>' + [1, 2, 3, 4, 5, 6, 0].map(g => '<div><label>' + GG[g] + '</label><input type="text" data-sh="' + g + '" value="' + esc((p.shifts.byDay || {})[g] || '') + '" placeholder="come tutti i giorni"' + D + '></div>').join('') + '</div></div>';
+  h += '<div class="wpl-sec"><h4 class="wpl-h">🚐 Giri e consegne</h4><div class="form-grid-4">' +
     num('lead', 'Pronto quanti minuti prima della partenza del giro', 0, 1440, 5) + num('tol', 'Tolleranza (minuti di ritardo accettati)', 0, 600, 5) +
     '<div><label>Partenza se l\'ordine non ha giro né orario</label><input type="time" data-cf="defTime" value="' + esc(p.defTime) + '"' + D + '></div>' +
-    num('ahead', 'Consegne dei prossimi giorni da lavare in anticipo', 0, 3) + '</div>';
-  h += '<h4 class="wpl-h">🧺 Lavaggio</h4><div class="form-grid-4">' + num('scrap', 'Scarto generale (%)', 0, 50, 0.5, 'capi da rilavare: si lava qualcosa in più') + num('minFill', 'Riempimento minimo per far partire una lavatrice (%)', 0, 100, 5) +
-    num('maxWet', 'Attesa massima del carrello umido prima della calandra (min)', 5, 600, 5) + num('iterations', 'Prove della ricerca (più = piano migliore, più lento)', 500, 60000, 500) + '</div>';
-  h += '<details class="wpl-det"><summary>⚖️ Priorità della pianificazione</summary><p class="tute-mini">Quanto pesa ogni minuto di: consegne urgenti in ritardo, calandra accesa ma ferma, fine del lavoro, attesa alle asciugatrici.</p><div class="form-grid-4">' +
+    num('ahead', 'Consegne dei prossimi giorni da lavare in anticipo', 0, 3) + '</div>' +
+    '<div class="form-grid-4" style="margin-top:6px">' + num('scrap', 'Scarto generale (%)', 0, 50, 0.5, 'capi da rilavare: si lava qualcosa in più') + '</div></div>';
+  h += '<div class="wpl-sec"><h4 class="wpl-h">🤝 Meno cose da segnare</h4>' +
+    tg('stable', '📌 Piano stabile', 'Il piano (anche quello stampato al mattino) resta valido: si ricalcola solo se cambia qualcosa — ordini, macchine, turni, cicli segnati — e mostra cosa è cambiato.') +
+    tg('auto', '🤫 Silenzio = come da piano', 'Se nessuno preme ▶, il ciclo si dà per partito all\'ora prevista: si segnalano solo le eccezioni (✕ non fatto, ⚠ guasto).') + '</div>';
+  h += '<details class="wpl-det wpl-adv"' + (ADV ? ' open' : '') + '><summary data-adv="1">⚙️ Avanzate</summary>' +
+    '<label class="do-tg" style="margin-top:8px"><input type="checkbox" data-cf="unattended"' + (p.unattended !== false ? ' checked' : '') + D + '><span><b>Lavatrici e asciugatrici possono finire il ciclo durante una pausa</b><small>Si caricano in turno e si scaricano alla ripresa.</small></span></label>' +
+    '<div class="form-grid-4" style="margin-top:6px">' + num('overtime', 'Straordinario possibile dopo l\'ultimo turno (min)', 0, 600, 15) +
+    '<div><label>Carico/scarico lavatrice (min)</label><input type="number" data-wc="turnaroundMin" min="0" max="60" value="' + esc(wc.turnaroundMin == null ? 10 : wc.turnaroundMin) + '"' + D + '></div>' + num('dryTurn', 'Pulizia filtro + carico asciugatrice (min)', 0, 120) +
+    num('grace', 'Minuti di attesa prima di dare un ciclo per partito', 0, 240, 5) + '</div>' +
+    '<div class="form-grid-4" style="margin-top:6px">' + num('minFill', 'Riempimento minimo per far partire una lavatrice (%)', 0, 100, 5) +
+    num('maxWet', 'Attesa massima del carrello umido prima della calandra (min)', 5, 600, 5) + num('iterations', 'Prove della ricerca (più = piano migliore, più lento)', 500, 60000, 500) + '</div>' +
+    '<p class="tute-mini" style="margin-top:10px"><b>⚖️ Priorità della pianificazione</b> — quanto pesa ogni minuto di: consegne urgenti in ritardo, calandra accesa ma ferma, fine del lavoro, attesa alle asciugatrici.</p><div class="form-grid-4">' +
     [['urgent', 'Ritardo urgenti'], ['calIdle', 'Calandra ferma'], ['makespan', 'Fine del lavoro'], ['dryQueue', 'Coda asciugatrici']].map(([k, l]) => '<div><label>' + l + '</label><input type="number" data-w="' + k + '" min="0" max="1000" step="0.1" value="' + esc(p.weights[k]) + '"' + D + '></div>').join('') + '</div></details>';
-  h += '<div class="wpl-row" style="margin-top:12px">' + (window.IPLWashPlan ? '<button type="button" class="btn-light" data-pl="washplan">🗓️ Programmazione nel tempo' + (IPLWashPlan.on() ? ' (attiva)' : '') + '</button>' : '') + (canCfg() ? '<button type="button" class="btn-light" data-pl="reset">↺ Valori iniziali</button>' : '') + '</div>';
+  h += '<div class="wpl-row" style="margin-top:12px">' + (canCfg() ? '<button type="button" class="btn-light" data-pl="reset">↺ Valori iniziali</button>' : '') + '</div>';
   return h;
 }
+let ADV = false;
 
 /* ---- eventi ---- */
 function regen() { try { if (window.WashingModule) WashingModule.generateSchedule(); else draw(); } catch (e) { console.warn(e); draw(); } }
@@ -17537,6 +17029,7 @@ function redraw() { if ($('tab-washing') && $('tab-washing').classList.contains(
 function setDay(d) { const sc = $('wash-scope-select'), t = $('wash-target-date'); if (sc) sc.value = 'SINGLE_DAY'; if (t) t.value = d; regen(); }
 const saveCfg = (label) => { StorageEngine.saveState('PIANIFICATORE', label || ''); invalidate(); regen(); };
 function onClick(ev) {
+  const sm = ev.target.closest('summary[data-adv]'); if (sm) { ADV = !sm.parentNode.open; return; }
   const t = ev.target.closest('button'); if (!t) return;
   const P0 = () => { const wc = WC(); wc.planner = Object.assign({}, wc.planner || {}); return wc.planner; };
   if (t.dataset.view) { VIEW = t.dataset.view; try { localStorage.setItem('ipl_wpl_view', VIEW); } catch (e) {} return draw(); }
@@ -17545,8 +17038,7 @@ function onClick(ev) {
   if (a === 'print') return window.IPLWashCtl && IPLWashCtl.printDialog();
   if (a === 'extra') return window.IPLWashCtl && IPLWashCtl.addDialog && IPLWashCtl.addDialog();
   if (a === 'bags') return window.IPLBags && IPLBags.typesDialog(() => regen());
-  if (a === 'ricalcola') { invalidate(); return regen(); }
-  if (a === 'washplan') return window.IPLWashPlan && IPLWashPlan.settings();
+  if (a === 'ricalcola') { FORCE.add(curDate()); invalidate(); return regen(); }
   if (a === 'reset') { if (!confirm('Riportare turni, regole, asciugatrici, calandre e famiglie ai valori iniziali?\n(Lavatrici, cicli, articoli e resa dei giorni restano come sono.)')) return; const cur = WC().planner || {}; WC().planner = { on: cur.on, eff: cur.eff || {}, cycles: cur.cycles, fam: Object.fromEntries(Object.entries(cur.fam || {}).map(([k, v]) => [k, v && v.cycle ? { cycle: v.cycle } : {}])) }; return saveCfg('valori iniziali'); }
   if (t.dataset.xdel) { const L = WC().extra || [], i = L.findIndex(x => x.id === t.dataset.xdel); if (i >= 0) { const x = L.splice(i, 1)[0]; StorageEngine.saveState('LAVAGGIO_AGGIUNTIVO', 'tolto ' + x.family + ' ' + nf(x.kg) + ' kg'); regen(); } return; }
   const i = +t.dataset.i;
@@ -17554,6 +17046,7 @@ function onClick(ev) {
   if (t.dataset.pr === 'end') return finishEvent(i);
   if (t.dataset.pr === 'undo') return undoEvent(i);
   if (t.dataset.pr === 'brk') return breakdown(i);
+  if (t.dataset.pr === 'skip') return skipEvent(i);
   if (t.dataset.pm) { const all = [].concat(WC().machines || [], P().dryers, P().ironers), m = all.find(x => String(x.id) === t.dataset.pm); if (m) setStatus(m.id, m.status === 'MAINTENANCE' ? 'OK' : 'MAINTENANCE'); return; }
   if (!canCfg()) return;
   if (t.dataset.madd) {
@@ -17651,8 +17144,9 @@ function onChange(ev) {
   if (t.dataset.cf) {
     const k = t.dataset.cf;
     if (k === 'unattended') { P0().unattended = t.checked; return saveCfg('cicli in pausa'); }
+    if (k === 'stable' || k === 'auto') { P0()[k] = t.checked; return saveCfg((k === 'stable' ? 'piano stabile' : 'silenzio = come da piano') + (t.checked ? ' acceso' : ' spento')); }
     if (k === 'defTime') { if (toMin(t.value) == null) return bad('Orario non valido.'); P0().defTime = t.value; return saveCfg('orario predefinito'); }
-    const lim = { overtime: [0, 600], dryTurn: [0, 120], lead: [0, 1440], tol: [0, 600], ahead: [0, 3], scrap: [0, 50], minFill: [0, 100], maxWet: [5, 600], iterations: [500, 60000] }[k];
+    const lim = { grace: [0, 240], overtime: [0, 600], dryTurn: [0, 120], lead: [0, 1440], tol: [0, 600], ahead: [0, 3], scrap: [0, 50], minFill: [0, 100], maxWet: [5, 600], iterations: [500, 60000] }[k];
     if (!lim) return; const v = numOr(t.value, lim[0], lim[1]); if (v == null) return bad('Valore non valido (tra ' + lim[0] + ' e ' + lim[1] + ').');
     P0()[k] = k === 'ahead' || k === 'iterations' ? Math.round(v) : v; return saveCfg(k);
   }
@@ -17690,9 +17184,67 @@ function setup() {
   IPLHooks.on('role:after', function () { setTimeout(() => { try { prune(); } catch (e) {} }, 4000); }, 60);
 }
 setup();
-return { on, P, setP, compute, readyFor, giroMargin, reportHtml, draw, view: v => { VIEW = v; draw(); }, invalidate, cycleFor, famCycle, engineConfig, demand, shiftsFor, parseShifts, startEvent, finishEvent, undoEvent, breakdown, setStatus, last: () => LAST };
+return { on, P, setP, compute, readyFor, giroMargin, deliveryAt, promiseInfo, reportHtml, draw, view: v => { VIEW = v; draw(); }, invalidate, cycleFor, famCycle, engineConfig, demand, shiftsFor, parseShifts, startEvent, finishEvent, undoEvent, breakdown, setStatus, last: () => LAST };
 })();
 window.IPLPlanner = IPLPlanner;
+
+</script>
+
+<!-- ===== IPL v8.25: aspetto e semplicità ===== -->
+<script id="ipl-v825-look">
+/* =====================================================================
+   IPL v8.25 — ASPETTO E SEMPLICITÀ
+   · 🎨 Grafica più leggibile: testi più grandi e più scuri, schede e tabelle più ariose (classe ipl-clean)
+   · ↔️ Pagine larghe: nelle sezioni dove la mappa non serve (tutte tranne Home & Giri, Clienti, Zone)
+     la pagina usa tutto lo schermo; tornando alla Home la mappa ricompare (classe ipl-wide)
+   · ⚠️ Home “Da sistemare”: in cima alla Home classica solo ciò che richiede un'azione
+   Ogni voce si spegne da “🧩 Funzioni avanzate → Aspetto e semplicità”; spenta, torna com'era.
+   Le impostazioni sono in companyInfo.look (uguali per tutti i dispositivi).
+   ===================================================================== */
+const IPLLook = (function () {
+'use strict';
+const $ = id => document.getElementById(id);
+const DEF = { clean: true, wide: true, exc: true };
+const ITEMS = [
+  ['clean', '🎨', 'Grafica più leggibile', 'Testi più grandi e più scuri, schede e tabelle più ariose, numeri allineati.'],
+  ['wide', '↔️', 'Pagine larghe quando la mappa non serve', 'Centrale lavaggi, magazzino, statistiche e le altre sezioni usano tutto lo schermo; la mappa resta in Home & Giri, Clienti e Zone.'],
+  ['exc', '⚠️', 'Home: “Da sistemare” in cima', 'Solo ciò che richiede un\'azione: consegne non pronte, macchine ferme, fermate senza giro, ordini vecchi aperti, check del magazzino.']
+];
+const MAP_TABS = ['tab-home', 'tab-clients', 'tab-zones'];
+const S = () => Object.assign({}, DEF, ((AppState.companyInfo || {}).look) || {});
+const on = k => S()[k] !== false;
+const activeTab = () => { const a = document.querySelector('.module-content.active'); return a ? a.id : 'tab-home'; };
+function apply() {
+  const b = document.body; if (!b) return;
+  b.classList.toggle('ipl-clean', on('clean'));
+  const was = b.classList.contains('ipl-wide'), wide = on('wide') && !MAP_TABS.includes(activeTab());
+  b.classList.toggle('ipl-wide', wide);
+  if (was && !wide) { try { if (window.MapModule && MapModule.map) setTimeout(() => MapModule.map.invalidateSize(), 150); } catch (e) {} }
+}
+function set(k, v) {
+  const ci = AppState.companyInfo || (AppState.companyInfo = {});
+  ci.look = Object.assign({}, ci.look || {}, { [k]: !!v });
+  const it = ITEMS.find(x => x[0] === k);
+  StorageEngine.saveState('ASPETTO', (it ? it[2] : k) + (v ? ': sì' : ': no'));
+  apply();
+  try { if (k === 'exc' && window.SmartModule && SmartModule.drawExc) SmartModule.drawExc(); } catch (e) {}
+}
+/* riquadro nelle Funzioni avanzate */
+function cardHtml() {
+  const admin = AppState.role === 'admin';
+  return '<div class="card look-card"><div class="card-header"><div><span class="card-title">🧹 Aspetto e semplicità</span><div class="tute-mini">Accese di base. Spente, il programma torna com\'era.' + (admin ? '' : ' Le cambia l\'amministratore.') + '</div></div></div>' +
+    '<div class="plus-sw">' + ITEMS.map(f => '<label class="do-tg' + (on(f[0]) ? ' on' : '') + '"><input type="checkbox" data-look="' + f[0] + '"' + (on(f[0]) ? ' checked' : '') + (admin ? '' : ' disabled') + '><span><b>' + f[1] + ' ' + f[2] + '</b><small>' + f[3] + '</small></span></label>').join('') + '</div></div>';
+}
+function setup() {
+  IPLHooks.on('tab:after', function () { apply(); }, 90);
+  IPLHooks.on('role:after', function () { apply(); }, 90);
+  document.addEventListener('change', e => { const t = e.target; if (t && t.dataset && t.dataset.look && AppState.role === 'admin') set(t.dataset.look, t.checked); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply); else apply();
+}
+setup();
+return { on, set, apply, cardHtml, S };
+})();
+window.IPLLook = IPLLook;
 
 </script>
 
