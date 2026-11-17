@@ -1229,7 +1229,7 @@ body.ipl-clean .og-al { font-size: 13.5px; padding: 9px 12px; border-radius: 10p
         <button type="button" class="btn-light" onclick="CloudEngine.showQR()">📱 Altri dispositivi</button>
         <button type="button" class="btn-light" onclick="CloudEngine.openWizard()">⚙️ Configurazione</button>
       </div>
-      <div class="login-foot">IPL Gestionale v8.25 · <span id="login-server"></span></div>
+      <div class="login-foot">IPL Gestionale v8.26 · <span id="login-server"></span></div>
     </div>
   </div>
 
@@ -5194,8 +5194,11 @@ function ensureState() {
   if (wc && wc.programs && !wc.programs['Tute']) wc.programs['Tute'] = { durationMin: 70, temp: '60°C', color: '#0f766e', priorityWeight: 5 };
 }
 const CM = new WeakMap();
-function mapOf(arr, keyFn) { const c = CM.get(arr); if (c && c.len === arr.length) return c.m; const m = new Map(); for (const r of arr) m.set(keyFn(r), r); CM.set(arr, { len: arr.length, m }); return m; }
-function groupOf(arr, keyFn) { const c = CM.get(arr); if (c && c.len === arr.length && c.g) return c.g; const m = new Map(); for (const r of arr) { const k = keyFn(r); let a = m.get(k); if (!a) m.set(k, a = []); a.push(r); } CM.set(arr, { len: arr.length, m: (c && c.len === arr.length) ? c.m : mapOf(arr, r => r.code), g: m }); return m; }
+/* v8.25.1: la memoria degli indici vale finché non cambia nulla (salvataggi, aggiornamenti dagli altri dispositivi):
+   prima bastava che il numero di elementi restasse uguale perché si leggessero persone o capi vecchi */
+let CMV = 0; const cmv = () => ((window.StorageEngine && StorageEngine.saveCount) || 0) + '|' + CMV;
+function mapOf(arr, keyFn) { const c = CM.get(arr); if (c && c.len === arr.length && c.v === cmv() && c.m) return c.m; const m = new Map(); for (const r of arr) m.set(keyFn(r), r); CM.set(arr, { len: arr.length, v: cmv(), m }); return m; }
+function groupOf(arr, keyFn) { const c = CM.get(arr); if (c && c.len === arr.length && c.v === cmv() && c.g) return c.g; const m = new Map(); for (const r of arr) { const k = keyFn(r); let a = m.get(k); if (!a) m.set(k, a = []); a.push(r); } CM.set(arr, { len: arr.length, v: cmv(), m: (c && c.len === arr.length && c.v === cmv() && c.m) ? c.m : mapOf(arr, r => r.code), g: m }); return m; }
 const gByCode = () => mapOf(T().garments, g => g.code);
 const gByCo = co => groupOf(T().garments, g => g.co).get(co) || [];
 const company = co => T().companies.find(c => c.co === co);
@@ -5560,7 +5563,7 @@ function renderCompanies() {
   const box = $('tute-sec-co');
   if (!box.dataset.built) {
     box.dataset.built = 1;
-    box.innerHTML = '<div class="tute-tool"><div class="tute-codehint"><span class="tc"><b class="c1">rs</b></span> = le due lettere dell\'azienda nel codice capo</div><input type="text" id="tco-q" placeholder="🔍 Cerca azienda…"><button type="button" class="btn-primary" id="tco-new">➕ Nuova azienda</button></div><div id="tco-list"></div>';
+    box.innerHTML = '<div class="tute-tool"><div class="tute-codehint"><span class="tc"><b class="c1">rs</b></span> = le due lettere dell\'azienda nel codice capo · ogni azienda numera da sé i suoi armadietti</div><input type="text" id="tco-q" placeholder="🔍 Cerca azienda…"><button type="button" class="btn-primary" id="tco-new">➕ Nuova azienda</button></div><div id="tco-list"></div>';
     $('tco-q').addEventListener('input', debounce(renderCompanies, 120)); $('tco-new').onclick = () => openCompany();
   }
   const q = ($('tco-q').value || '').toLowerCase();
@@ -5659,14 +5662,14 @@ function renderLockers() {
   if (!cur) { box.innerHTML = needCo(); delete box.dataset.built; return; }
   if (box.dataset.built !== cur) {
     box.dataset.built = cur;
-    box.innerHTML = '<div class="tute-tool"><div class="tute-codehint"><span class="tc"><b class="c1" style="opacity:.35">' + cur + '</b><b class="c2">119</b></span> = numero armadietto (3 cifre) → persona</div><input type="text" id="tlk-q" placeholder="🔍 Cerca numero o nome…"><button type="button" class="btn-primary" id="tlk-new">➕ Nuovo armadietto</button><button type="button" class="btn-light" id="tlk-rng">➕ Intervallo</button><button type="button" class="btn-danger" id="tlk-delf">🗑️ Elimina elencati</button></div><div id="tlk-list"></div>';
+    box.innerHTML = '<div class="tute-tool"><div class="tute-codehint"><span class="tc"><b class="c1">' + cur + '</b><b class="c2">119</b></span> = armadietto 119 <b>di ' + UP(cur) + '</b> → la sua persona · ogni azienda ha la sua numerazione: il 001 di ' + UP(cur) + ' non è il 001 di un\'altra azienda</div><input type="text" id="tlk-q" placeholder="🔍 Cerca numero o nome…"><button type="button" class="btn-primary" id="tlk-new">➕ Nuovo armadietto</button><button type="button" class="btn-light" id="tlk-rng">➕ Intervallo</button><button type="button" class="btn-danger" id="tlk-delf">🗑️ Elimina elencati</button></div><div id="tlk-list"></div>';
     $('tlk-q').addEventListener('input', debounce(renderLockers, 120)); $('tlk-new').onclick = () => openLocker(); $('tlk-rng').onclick = () => openLockerRange();
     $('tlk-delf').onclick = () => { const q = ($('tlk-q').value || '').toLowerCase(); const lks = lockersOf(cur).filter(p => !q || (p.locker + ' ' + p.name + ' ' + p.notes).toLowerCase().includes(q)).map(p => p.locker); if (!lks.length) return alert('Nessun armadietto elencato.'); const n = gByCo(cur).filter(g => lks.includes(g.locker)).length; if (!confirm('Eliminare i ' + lks.length + ' armadietti elencati' + (n ? ' e i loro ' + n + ' capi' : '') + '?\nPotrai annullare con ↩ Annulla.')) return; deleteLockers(lks); };
   }
   const q = ($('tlk-q').value || '').toLowerCase();
   const byLk = new Map(); for (const g of gByCo(cur)) { let a = byLk.get(g.locker); if (!a) byLk.set(g.locker, a = []); a.push(g); }
   const list = lockersOf(cur).filter(p => !q || (p.locker + ' ' + p.name + ' ' + p.notes).toLowerCase().includes(q));
-  $('tlk-list').innerHTML = '<div class="tute-mini" style="margin-bottom:6px">' + list.length + ' armadietti</div><table><thead><tr><th>Armadietto</th><th>Persona</th><th>Capi</th><th>Stato</th><th></th></tr></thead><tbody>' +
+  $('tlk-list').innerHTML = '<div class="tute-mini" style="margin-bottom:6px">' + list.length + ' armadietti di <b>' + UP(cur) + ' – ' + esc((company(cur) || {}).name || '') + '</b> (numerazione propria dell\'azienda)</div><table><thead><tr><th>Armadietto</th><th>Persona</th><th>Capi</th><th>Stato</th><th></th></tr></thead><tbody>' +
     (list.slice(0, 800).map(p => { const gs = byLk.get(p.locker) || []; const cnt = {}; gs.forEach(g => cnt[g.type] = (cnt[g.type] || 0) + 1); const rep = gs.filter(g => life(g) === 'LIMIT' || life(g) === 'OVER').length; return '<tr' + (p.active ? '' : ' style="opacity:.55"') + '><td><b class="tc-big">' + p.locker + '</b></td><td><b>' + esc(p.name || '—') + '</b>' + (p.notes ? '<div class="tute-mini">' + esc(p.notes) + '</div>' : '') + '</td><td>' + (Object.keys(cnt).sort().map(t => UP(t) + '×' + cnt[t]).join(' · ') || '—') + (rep ? ' <b style="color:#dc2626">⛔' + rep + '</b>' : '') + '</td><td>' + (p.active ? 'attivo' : 'non attivo') + '</td><td style="white-space:nowrap"><button type="button" class="btn-light" style="padding:3px 8px" data-ed="' + p.locker + '">✏️</button> <button type="button" class="btn-light" style="padding:3px 8px" data-gs="' + p.locker + '" title="Vedi capi">👕</button> <button type="button" class="btn-danger" style="padding:3px 8px" data-del="' + p.locker + '">🗑️</button></td></tr>'; }).join('') || '<tr><td colspan="5" class="tute-empty">Nessun armadietto per questa azienda.</td></tr>') + '</tbody></table>';
   const L = $('tlk-list');
   L.querySelectorAll('[data-ed]').forEach(b => b.onclick = () => openLocker(b.dataset.ed));
@@ -5688,7 +5691,7 @@ function openLocker(lk) {
   const p = lk ? person(cur, lk) : null;
   openForm({
     title: p ? '✏️ Armadietto ' + UP(cur) + ' ' + p.locker : '➕ Nuovo armadietto ' + UP(cur),
-    body: '<div class="form-grid-3"><div><label>N° armadietto (3 cifre)</label><input name="lk" required pattern="\\d{1,3}" maxlength="3" inputmode="numeric" style="font-weight:800;font-size:16px" value="' + (p ? p.locker : nextLocker(cur)) + '"' + (p ? ' disabled' : '') + '></div><div style="grid-column:span 2"><label>Persona assegnata</label><input name="name" value="' + esc(p ? p.name : '') + '" placeholder="Nome e cognome"></div></div><div class="form-grid-2" style="margin-top:10px"><div><label>Note (reparto, taglia…)</label><input name="notes" value="' + esc(p ? p.notes : '') + '"></div><div style="padding-top:18px"><label style="display:flex;gap:6px;align-items:center;margin:0"><input type="checkbox" name="active" style="width:16px;height:16px"' + (!p || p.active ? ' checked' : '') + '> Attivo</label></div></div>',
+    body: '<div class="form-grid-3"><div><label>N° armadietto di ' + UP(cur) + ' (3 cifre)</label><input name="lk" required pattern="\\d{1,3}" maxlength="3" inputmode="numeric" style="font-weight:800;font-size:16px" value="' + (p ? p.locker : nextLocker(cur)) + '"' + (p ? ' disabled' : '') + '></div><div style="grid-column:span 2"><label>Persona assegnata</label><input name="name" value="' + esc(p ? p.name : '') + '" placeholder="Nome e cognome"></div></div><div class="form-grid-2" style="margin-top:10px"><div><label>Note (reparto, taglia…)</label><input name="notes" value="' + esc(p ? p.notes : '') + '"></div><div style="padding-top:18px"><label style="display:flex;gap:6px;align-items:center;margin:0"><input type="checkbox" name="active" style="width:16px;height:16px"' + (!p || p.active ? ' checked' : '') + '> Attivo</label></div></div>',
     hint: p ? 'Il numero non si modifica: è stampato sulle etichette.' : 'Il numero diventa parte del codice di ogni capo della persona.',
     onSubmit: f => {
       const locker = p ? p.locker : fval(f, 'lk').padStart(3, '0');
@@ -6333,7 +6336,7 @@ function reconcile() { // usata da "Ripara automaticamente": riallinea i contato
 document.addEventListener('DOMContentLoaded', init);
 
 return {
-  ensureState, afterLoad, refresh() { updateBadge(); if (isVisible()) renderSection(); }, onShow: renderSection, updateBadge,
+  ensureState, afterLoad, refresh() { CMV++; updateBadge(); if (isVisible()) renderSection(); }, onShow: renderSection, updateBadge,
   parse, scan, undoScan, code128, barcodeSvg, ensurePlan, replan, deliveryFor, washDemand, homeRow, homeSummaryBox, onOrderCheck,
   toReplace, life, limitOf, syncEvents, exportEvents, importEvents, reconcile, openReader, showSection, setCur, labelsFor,
   deleteCompanyData, eventsSince, applyEventUndo, voidEvent, renderWashPanel, slipAll, nextAfter, remoteEvent, _resetEvents: resetEvents,
@@ -8282,7 +8285,7 @@ window.IPLQR = IPLQR;
    ===================================================================== */
 const CloudEngine = (function () {
 'use strict';
-const VERSION = '8.25';
+const VERSION = '8.26';
 const DOMAIN = 'utenti.ipl-gestionale.it';
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -9246,7 +9249,9 @@ const giri = () => { const g = (ci().route || {}).giri; return Array.isArray(g) 
 const giroOf = id => (id && giri().find(g => g.id === id)) || null;
 const giroLabel = g => g ? g.name + ' · ' + g.van + ' · ' + g.start : 'Da assegnare';
 const depot = () => (typeof HQ_COORDS !== 'undefined' ? HQ_COORDS : [40.4239, 15.7356]);
-const okLL = c => c && isFinite(c.lat) && isFinite(c.lng) && Math.abs(+c.lat) > 0.01 && Math.abs(+c.lng) > 0.01;
+/* v8.25.1: una posizione a più di 400 km dalla sede è sicuramente sbagliata (indirizzo trovato male o coordinate scritte male):
+   per i giri vale come “senza posizione”, altrimenti i tempi di viaggio diventano centinaia di ore */
+const okLL = c => c && isFinite(c.lat) && isFinite(c.lng) && Math.abs(+c.lat) > 0.01 && Math.abs(+c.lng) > 0.01 && Math.abs(+c.lat) <= 90 && Math.abs(+c.lng) <= 180 && hav(depot(), [+c.lat, +c.lng]) <= 400;
 const ll = c => [+c.lat, +c.lng];
 function hav(a, b) { const r = x => x * Math.PI / 180, dLat = r(b[0] - a[0]), dLng = r(b[1] - a[1]); const s = Math.sin(dLat / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLng / 2) ** 2; return 2 * 6371 * Math.asin(Math.min(1, Math.sqrt(s))); }
 const toMin = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(String(t || '')); return m ? +m[1] * 60 + +m[2] : 450; };
@@ -12153,7 +12158,7 @@ const nf = (v, d) => Number(v || 0).toLocaleString('it-IT', { maximumFractionDig
 const toast = m => { try { DataGuard.toast(m); } catch (e) {} };
 const fmtD = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'numeric' }); } catch (e) { return d; } };
 const addDays = (d, n) => { const x = new Date(d + 'T12:00:00'); x.setDate(x.getDate() + n); return x.toISOString().slice(0, 10); };
-const hm = m => { m = Math.round(m); const dd = Math.floor(m / 1440); m -= dd * 1440; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0') + (dd > 0 ? ' (+' + dd + 'g)' : ''); };
+const hm = m => { m = Math.round(m); const dd = Math.floor(m / 1440); m -= dd * 1440; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0') + (dd === 1 ? ' del giorno dopo' : dd > 1 ? ' di ' + dd + ' giorni dopo' : ''); };   /* v8.25.1: non più “(+1g)” */
 const toMin = s => { const m = /^(\d{1,2}):(\d{2})/.exec(String(s || '')); return m ? +m[1] * 60 + +m[2] : null; };
 const canEdit = () => ['admin', 'ufficio', 'produzione', 'lavaggi'].includes(AppState.role);
 const DEF = { on: false, days: 1, regenDays: [1, 2, 3, 4, 5, 6], outOnEmit: true, checkOn: false, checkAt: '18:00', lastCheck: '', readyOn: true, margin: 15 };
@@ -12929,7 +12934,7 @@ const netOf = o => { const n = realNet(o); return n === 0 && isZeroDoc(o) ? estN
 const HQ = () => (typeof HQ_COORDS !== 'undefined' ? HQ_COORDS : [40.4239, 15.7356]);
 const RS = () => Object.assign({ speed: 50, factor: 1.35, service: 10 }, (AppState.companyInfo || {}).route || {});
 function hav(a, b) { const r = x => x * Math.PI / 180, dLa = r(b[0] - a[0]), dLo = r(b[1] - a[1]), s = Math.sin(dLa / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLo / 2) ** 2; return 12742 * Math.asin(Math.sqrt(s)); }
-const ll = c => (c && isFinite(+c.lat) && isFinite(+c.lng) && (+c.lat || +c.lng)) ? [+c.lat, +c.lng] : null;
+const ll = c => (c && isFinite(+c.lat) && isFinite(+c.lng) && (+c.lat || +c.lng) && hav(HQ(), [+c.lat, +c.lng]) <= 400) ? [+c.lat, +c.lng] : null;   /* v8.25.1: oltre 400 km dalla sede = posizione sbagliata */
 const distKm = c => { const p = ll(c); return p ? hav(HQ(), p) * RS().factor : null; };
 const stopCost = (c, C) => C.stop + ((distKm(c) || 0) * 2 * C.km) / Math.max(1, C.stops);
 /* finestrella */
@@ -13041,6 +13046,8 @@ function pxEdit(code, val) {
 
 /* =============== ⏱️ PROMESSA DI CONSEGNA =============== */
 /* stima semplice e prudente: pezzi non coperti dalle scorte → kg per famiglia → cicli in coda alle lavatrici libere → + finitura */
+/* v8.25.1: durate leggibili (mai “1366 ore”) */
+const durTxt = m => { m = Math.round(Math.abs(m)); if (m < 120) return m + ' min'; if (m < 2880) return nf(m / 60, 1) + ' ore'; const g = Math.floor(m / 1440), h = Math.round((m % 1440) / 60); return g + ' giorni' + (h ? ' e ' + h + ' ore' : ''); };
 function promise(d) {
   const wc = AppState.washingConfig || {}, lines = (d.lines || []).filter(l => +l.qty > 0); if (!lines.length) return null;
   const free = new Map();
@@ -13072,10 +13079,10 @@ function promise(d) {
     let fin = 0; try { fin = pf ? pf.finish(k) : (window.IPLWashPlan ? IPLWashPlan.finishMin(f, k) : 0); } catch (e) {} if (end + fin > ready) { ready = end + fin; washEnd = end; finT = fin; }
   });
   const deadline = days * 1440 + dl - lead, margin = deadline - ready, when = m => (m >= 1440 ? (m >= 2880 ? 'fra ' + Math.floor(m / 1440) + ' giorni alle ' : 'domani alle ') : 'alle ') + hm(m % 1440), before = m => m >= 1440 ? 'di ' + when(m) : 'delle ' + hm(m);
-  const base = nf(kg, 1) + ' kg da lavare in ' + cycles + (cycles === 1 ? ' ciclo' : ' cicli') + (fromStock ? ', ' + nf(fromStock) + ' pezzi dalle scorte' : '') + ' · lavaggio finito alle ' + hm(washEnd % 1440) + (finT ? ' + finitura ' + (finT >= 90 ? nf(finT / 60, 1) + ' ore' : finT + ' min') : '');
+  const base = nf(kg, 1) + ' kg da lavare in ' + cycles + (cycles === 1 ? ' ciclo' : ' cicli') + (fromStock ? ', ' + nf(fromStock) + ' pezzi dalle scorte' : '') + ' · lavaggio finito alle ' + hm(washEnd % 1440) + (finT ? ' + finitura ' + durTxt(finT) : '');
   const due = lead ? ' · da avere pronto ' + when(deadline) + ' (' + lead + ' min prima della partenza' + (tol ? ', tolleranza ' + tol + ' min' : '') + ')' : ' · consegna ' + when(deadline);
-  if (margin >= -tol) return { ok: true, ready, deadline, margin, msg: '✅ <b>Ce la fate</b>: pronto ' + when(ready) + (noTime && !days ? '' : due + ' (margine ' + (margin >= 120 ? nf(margin / 60, 1) + ' ore' : margin < 0 ? 'nella tolleranza, ' + (-margin) + ' min di ritardo' : margin + ' min') + ')') + '<small>' + base + '</small>' };
-  return { ok: false, ready, deadline, margin, first: hm((ready + lead) % 1440), nextDay: ready + lead >= 1440, msg: '⚠️ <b>A rischio</b>: non pronto prima ' + before(ready) + ', cioè ' + (-margin >= 120 ? nf(-margin / 60, 1) + ' ore' : -margin + ' min') + (lead ? ' dopo l\'ora in cui deve essere pronto (' + when(deadline) + ', ' + lead + ' min prima della partenza)' : ' dopo la consegna ' + when(deadline)) + '<small>' + base + '</small>' };
+  if (margin >= -tol) return { ok: true, ready, deadline, margin, msg: '✅ <b>Ce la fate</b>: pronto ' + when(ready) + (noTime && !days ? '' : due + ' (margine ' + (margin < 0 ? 'nella tolleranza, ' + (-margin) + ' min di ritardo' : durTxt(margin)) + ')') + '<small>' + base + '</small>' };
+  return { ok: false, ready, deadline, margin, first: hm((ready + lead) % 1440), nextDay: ready + lead >= 1440, msg: '⚠️ <b>A rischio</b>: non pronto prima ' + before(ready) + ', cioè ' + durTxt(-margin) + (lead ? ' dopo l\'ora in cui deve essere pronto (' + when(deadline) + ', ' + lead + ' min prima della partenza)' : ' dopo la consegna ' + when(deadline)) + '<small>' + base + '</small>' };
 }
 function drawPromise() {
   const m = $('modal-new-order'); if (!m) return; let box = $('plus-promise');
@@ -13351,7 +13358,7 @@ window.IPLPlus = IPLPlus;
 (function () {
 /**
  * ============================================================================
- *  LaundrySchedulerEngine.js — v1.2.0
+ *  LaundrySchedulerEngine.js — v1.2.1
  *  Motore di schedulazione per lavanderia industriale
  *  (Hybrid Flexible Flow-Shop + Multi-Constraint 1D Bin Packing con frazionamento)
  * ----------------------------------------------------------------------------
@@ -13383,6 +13390,9 @@ window.IPLPlus = IPLPlus;
  *   · resa del giorno (config.efficiency): persone più lente o più veloci su carico/scarico e calandra
  *   · nomi delle macchine nelle istruzioni, piano compatto da salvare (slimPlan / rehydratePlan)
  *  NOVITÀ 1.2: categories[x].washers = ['W1', ...] → quel ciclo può girare solo su quelle lavatrici
+ *  1.2.1: durate leggibili negli avvisi e nelle istruzioni ("1 g 2 h" invece di "1560 min"); se il lavoro
+ *         continua nei turni del giorno dopo non lo chiama più "oltre la fine del turno"; ritardo degli urgenti:
+ *         il più grande, non la somma (una somma di ritardi di ordini diversi non significa niente)
  *
  *  CONVENZIONI
  *   · tempi in minuti dalla mezzanotte (360 = 06:00); durate in minuti interi
@@ -13401,7 +13411,7 @@ window.IPLPlus = IPLPlus;
  * ============================================================================
  */
 
-const ENGINE_VERSION = '1.2.0';
+const ENGINE_VERSION = '1.2.1';
 const EPS = 1e-9;
 
 /** Tipi di operazione presenti nel Gantt. */
@@ -13639,6 +13649,15 @@ function formatClock(minute) {
   const hh = String(Math.floor(rest / 60)).padStart(2, '0');
   const mm = String(rest % 60).padStart(2, '0');
   return `${hh}:${mm}${day > 0 ? `+${day}g` : ''}`;
+}
+
+/** Minuti → durata leggibile: "45 min", "2 h 10 min", "1 g 3 h". */
+function formatDuration(minutes) {
+  const m = Math.max(0, Math.round(Number(minutes) || 0));
+  if (m < 60) return `${m} min`;
+  if (m < 1440) { const h = Math.floor(m / 60), r = m % 60; return r ? `${h} h ${r} min` : `${h} h`; }
+  const d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60);
+  return h ? `${d} g ${h} h` : `${d} g`;
 }
 
 /** Generatore pseudo-casuale deterministico (mulberry32): piani riproducibili. */
@@ -16205,7 +16224,7 @@ class LaundrySchedulerEngine {
       if (t.isSplit) push(t.completionMinute, 5, `Ordine ${t.orderId} (${t.customer}) COMPLETO: ricomponi i lotti ${t.lots.map((l) => l.batchId).join(' + ')}`);
       if (t.isUrgent) {
         const margin = t.dueMinute !== null ? Math.round(t.dueMinute - t.completionMinute) : null;
-        const verdict = margin === null ? '' : margin >= 0 ? ` (richiesto entro ${t.due}, margine ${margin} min)` : ` (richiesto entro ${t.due}, RITARDO ${-margin} min)`;
+        const verdict = margin === null ? '' : margin >= 0 ? ` (richiesto entro ${t.due}, margine ${formatDuration(margin)})` : ` (richiesto entro ${t.due}, RITARDO ${formatDuration(-margin)})`;
         push(t.completionMinute, 6, `URGENTE pronto: ordine ${t.orderId} di ${t.customer}${verdict}`);
       }
     }
@@ -16252,9 +16271,18 @@ class LaundrySchedulerEngine {
     const batchMap = new Map(optimized.batches.map((b) => [b.batchId, b]));
     const instructions = this._buildInstructions(P, optimized.timeline, batchMap, optimized.tracking);
     const kpis = optimized.kpis;
-    if (kpis.shiftOverrunMinutes > 0) warnings.push(`La produzione termina alle ${kpis.endOfProduction}: ${Math.round(kpis.shiftOverrunMinutes)} min oltre la fine del turno (${formatClock(P.shiftEndMinute)})`);
+    if (kpis.shiftOverrunMinutes > 0) {
+      const wins = this._windows() || [], endM = P.shiftEndMinute + kpis.shiftOverrunMinutes;
+      const nextShift = wins.find((w) => w.s > P.shiftEndMinute && w.s < endM);
+      warnings.push(nextShift
+        ? `Il lavoro non sta nei turni di oggi (fine ${formatClock(P.shiftEndMinute)}): continua nei turni successivi e finisce alle ${kpis.endOfProduction}`
+        : `La produzione termina alle ${kpis.endOfProduction}: ${formatDuration(kpis.shiftOverrunMinutes)} oltre la fine del turno (${formatClock(P.shiftEndMinute)})`);
+    }
     if (kpis.wetWaitViolations > 0) warnings.push(`${kpis.wetWaitViolations === 1 ? '1 carrello umido attende' : kpis.wetWaitViolations + ' carrelli umidi attendono'} la calandra oltre ${this.config.rules.maxWetWaitMinutes} min (massimo ${Math.round(kpis.maxWetCartWaitMinutes)} min)`);
-    if (kpis.lateUrgentOrders > 0) warnings.push(`${kpis.lateUrgentOrders === 1 ? '1 ordine urgente' : kpis.lateUrgentOrders + ' ordini urgenti'} in ritardo (totale ${Math.round(kpis.urgentTardinessMinutes)} min)`);
+    if (kpis.lateUrgentOrders > 0) {
+      const worst = Math.max(0, ...optimized.tracking.filter((x) => x.isUrgent && x.tardinessMinutes > 0).map((x) => x.tardinessMinutes));
+      warnings.push(`${kpis.lateUrgentOrders === 1 ? '1 ordine urgente in ritardo' : kpis.lateUrgentOrders + ' ordini urgenti in ritardo'} (${kpis.lateUrgentOrders === 1 ? 'di' : 'il più in ritardo di'} ${formatDuration(worst)})`);
+    }
     const unscheduled = P.rejected.concat(s1.unscheduled);
     if (unscheduled.length) warnings.push(`${unscheduled.length === 1 ? '1 ordine/lotto non pianificato' : unscheduled.length + ' ordini/lotti non pianificati'}: vedere unscheduledOrders`);
 
@@ -16762,7 +16790,7 @@ function undoEvent(idx) {
 const skipRec = (e, d) => ({ id: 'sk' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), date: d, o: 'SALTATO', m: e.machine, b: e.batchId, a: e.startMinute, z: e.endMinute, by: (AppState.currentUser || {}).username || AppState.role || '', at: Date.now() });
 function skipEvent(idx) {
   const R = LAST; if (!R) return; const e = R.plan.ganttTimeline[idx]; if (!e || e.operation !== 'LAVAGGIO' || runOfEvent(e, R.date)) return;
-  if (!confirm('Il Batch ' + e.batchId + ' su ' + nameOf(e.machine) + ' (' + e.start + ') non è stato fatto?\nQuei capi tornano da lavare e il resto della giornata si ripianifica.')) return;
+  if (!confirm('Il Batch ' + e.batchId + ' su ' + nameOf(e.machine) + ' (' + clk(e.start, R.date) + ') non è stato fatto?\nQuei capi tornano da lavare e il resto della giornata si ripianifica.')) return;
   RUNS().push(skipRec(e, R.date));
   StorageEngine.saveState('CICLO_NON_FATTO', nameOf(e.machine) + ' · Batch ' + e.batchId + ' torna da lavare'); invalidate(); regen();
 }
@@ -16846,6 +16874,28 @@ function draw() {
   if (VIEW === 'mach' && ITEMQ) filterItems();
 }
 
+/* v8.25.1: durate e orari leggibili (mai “1560 min” o “12:39+1g”), straordinario vero */
+const dur = m => { m = Math.max(0, Math.round(+m || 0)); if (m < 60) return m + ' min'; if (m < 1440) { const h = Math.floor(m / 60), x = m % 60; return h + ' h' + (x ? ' ' + x + ' min' : ''); } const g = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60); return g + ' g' + (h ? ' ' + h + ' h' : ''); };
+const whenM = (m, date) => { if (m == null || !isFinite(m)) return '—'; m = Math.round(m); const g = Math.floor(m / 1440), t = hm(m - g * 1440); return g === 0 ? t : dayLbl(addDays(date, g)) + ' ' + t; };
+/* minuti di straordinario davvero lavorati: macchine in funzione dopo la fine dell'ultimo turno di ogni giorno, entro lo straordinario ammesso */
+function overtimeOf(R) {
+  const p = P(), ot = Math.max(0, +p.overtime || 0); if (!ot || !R.plan) return 0;
+  const W = []; for (let k = 0; k <= Math.max(0, +p.ahead || 0) + 1; k++) { const L = shiftsFor(addDays(R.date, k)); if (L.length) { const e = L[L.length - 1][1]; W.push([e + 1440 * k, Math.min(e + ot, 1440) + 1440 * k]); } }
+  const U = []; R.plan.ganttTimeline.filter(e => e.operation !== 'RICONGIUNZIONE').map(e => [e.startMinute, e.endMinute]).sort((a, b) => a[0] - b[0])
+    .forEach(x => { const l = U[U.length - 1]; if (l && x[0] <= l[1]) l[1] = Math.max(l[1], x[1]); else U.push([x[0], x[1]]); });
+  let s = 0; W.forEach(w => U.forEach(u => { s += Math.max(0, Math.min(w[1], u[1]) - Math.max(w[0], u[0])); })); return Math.round(s);
+}
+/* “12:39+1g” del motore → “domani 12:39” (anche dentro avvisi e istruzioni) */
+const clk = (s, date) => String(s == null ? '' : s).replace(/(alle |entro le |le )?(\d{2}:\d{2})\+(\d+)g/g, (m, pre, x, n) => dayLbl(addDays(date, +n)) + ' ' + (pre || '') + x);
+/* avvisi del motore da mostrare: quello sugli “ordini urgenti in ritardo” (conta le singole voci) è sostituito dal riepilogo per consegna */
+const engWarns = (R, date) => R.plan.warnings.filter(w => !/urgent[ei] in ritardo/.test(w)).map(w => clk(w, date));
+/* consegne in ritardo raggruppate per ordine (il motore le divide per famiglia e ciclo) */
+function lateByOrder(R, list) { const m = new Map(); list.forEach(t => { const inf = R.D.info[t.orderId] || {}, k = inf.orderId || t.orderId; const x = m.get(k) || { label: inf.label || t.customer, c: -1e9, d: 1e9 }; x.c = Math.max(x.c, t.completionMinute == null ? -1e9 : t.completionMinute); x.d = Math.min(x.d, t.dueMinute == null ? 1e9 : t.dueMinute); m.set(k, x); }); return [...m.values()]; }
+/* il lavoro del giorno non sta nei suoi turni (+ straordinario): continua nei turni successivi */
+const spillOf = R => R.plan.kpis.endOfProductionMinute > R.cfg.horizon.endMinute + Math.max(0, +P().overtime || 0) + 1;
+/* consegne di oggi il cui giro è già partito quando si calcola il piano */
+const goneOf = R => R.date !== todayISO() ? [] : Object.values(R.D.info).filter(x => x.orderId && x.dep != null && x.date === R.date && x.dep < R.start);
+
 /* ---- 📋 Piano ---- */
 function viewPlan(d) {
   const R = compute(d), p = P(), e = effOf(d); LAST = R.error ? null : R;
@@ -16855,15 +16905,16 @@ function viewPlan(d) {
     '<details class="wpl-mini"><summary>altro…</summary><label>Turni del giorno <input type="text" data-pe="shifts" placeholder="' + esc(shiftTxt(shiftsFor(d)).replace(/–/g, '-')) + '" value="' + esc(e.shifts) + '"></label><label>Nota <input type="text" data-pe="note" value="' + esc(e.note) + '" placeholder="es. in calandra solo 2 persone"></label></details></div>';
   if (R.error) return h + '<div class="wpl-err">⚠️ ' + esc(R.error) + '</div>';
   h += fixedNote(d);
-  const K = R.plan.kpis, late = R.plan.orderTracking.filter(t => t.missedDeadline), soft = R.plan.orderTracking.filter(t => !t.missedDeadline && t.tardinessMinutes > 0);
+  const OVT = overtimeOf(R), K = R.plan.kpis, late = R.plan.orderTracking.filter(t => t.missedDeadline), soft = R.plan.orderTracking.filter(t => !t.missedDeadline && t.tardinessMinutes > 0), LO = lateByOrder(R, late);
   const cal = p.ironers.filter(x => x.status !== 'MAINTENANCE').map(x => nf(x.rateKgH * Math.max(0.1, (+e.iron || 100) / 100), 0) + ' kg/h').join(' + ');
   h += '<div class="wpl-kpis">' +
-    kpiTile('Fine lavoro', esc(K.endOfProduction) + (K.shiftOverrunMinutes > 0 ? ' <small>+' + Math.round(K.shiftOverrunMinutes) + ' min di straordinario</small>' : ''), K.shiftOverrunMinutes > 0, 'Fine dell\'ultimo turno: ' + hm(R.cfg.horizon.endMinute)) +
+    kpiTile('Fine lavoro', esc(whenM(K.endOfProductionMinute, d)) + (spillOf(R) ? ' <small>non sta nei turni del giorno: continua in quelli successivi</small>' : OVT > 0 ? ' <small>' + dur(OVT) + ' di straordinario</small>' : ''), spillOf(R) || OVT > 0, 'Fine dell\'ultimo turno: ' + hm(R.cfg.horizon.endMinute)) +
     kpiTile('Da lavare', nf(K.totalKgWashed, 0) + ' kg <small>' + K.washCycles + ' cicli · pieni al ' + nf(K.avgWasherSaturationPct, 0) + '%</small>') +
-    kpiTile('Calandra', K.calandraWindow ? esc(K.calandraWindow.start + '–' + K.calandraWindow.end) + ' <small>' + esc(cal) + (K.calandraStarvationMinutes >= 1 ? ' · ferma ' + nf(K.calandraStarvationMinutes, 0) + ' min' : '') + '</small>' : '—', K.calandraStarvationMinutes > 20) +
-    kpiTile('Consegne', late.length ? '🔴 ' + late.length + (late.length === 1 ? ' non pronta' : ' non pronte') : soft.length ? '🟠 ' + soft.length + ' in tolleranza' : '🟢 tutte in tempo', late.length > 0, 'Pronto entro = partenza del giro − ' + p.lead + ' min, tolleranza ' + p.tol + ' min') + '</div>';
-  const warns = R.plan.warnings.slice();
-  if (late.length) warns.unshift((late.length === 1 ? '1 consegna non sarà pronta' : late.length + ' consegne non saranno pronte') + ' per il giro: ' + late.slice(0, 6).map(t => esc(t.customer) + ' (pronta alle ' + esc(t.completion) + ', serviva entro le ' + esc(t.due) + ')').join(', ') + (late.length > 6 ? '…' : ''));
+    kpiTile('Calandra', K.calandraWindow ? esc(clk(K.calandraWindow.start, d) + '–' + clk(K.calandraWindow.end, d)) + ' <small>' + esc(cal) + (K.calandraStarvationMinutes >= 1 ? ' · ferma ' + nf(K.calandraStarvationMinutes, 0) + ' min' : '') + '</small>' : '—', K.calandraStarvationMinutes > 20) +
+    kpiTile('Consegne', late.length ? '🔴 ' + LO.length + (LO.length === 1 ? ' non pronta' : ' non pronte') : soft.length ? '🟠 ' + lateByOrder(R, soft).length + ' in tolleranza' : '🟢 tutte in tempo', late.length > 0, 'Pronto entro = partenza del giro − ' + p.lead + ' min, tolleranza ' + p.tol + ' min') + '</div>';
+  const warns = engWarns(R, d);
+  if (late.length) warns.unshift((LO.length === 1 ? '1 consegna non sarà pronta' : LO.length + ' consegne non saranno pronte') + ' per il giro: ' + LO.slice(0, 6).map(x => esc(x.label) + ' (pronta ' + esc(x.c > -1e9 ? whenM(x.c, d) : 'non in giornata') + ', serviva entro ' + esc(x.d < 1e9 ? whenM(x.d, d) : '—') + ')').join(', ') + (LO.length > 6 ? '…' : ''));
+  const gone = goneOf(R); if (gone.length) { const n = [...new Set(gone.map(x => x.label))]; warns.unshift('🚐 ' + (n.length === 1 ? 'Il giro di <b>' + esc(n[0]) + '</b> è già partito' : 'Per <b>' + n.length + '</b> consegne di oggi il giro è già partito (' + n.slice(0, 4).map(esc).join(', ') + (n.length > 4 ? '…' : '') + ')') + ': spostale su un giro successivo (🧭 Giri), altrimenti risultano in ritardo.'); }
   /* v8.25: avvisi più leggibili — i primi due in vista, gli altri a richiesta */
   if (warns.length) h += '<div class="wpl-warn">' + warns.slice(0, 2).map(w => '<div>⚠️ ' + w + '</div>').join('') + (warns.length > 2 ? '<details class="wpl-more-w"><summary>altri ' + (warns.length - 2) + ' avvisi</summary>' + warns.slice(2).map(w => '<div>⚠️ ' + w + '</div>').join('') + '</details>' : '') + '</div>';
   const X = (WC().extra || []).filter(x => x.date === d);
@@ -16885,7 +16936,7 @@ function viewPlan(d) {
         : st === 'PIANIFICATO' && ev.operation !== 'RISCALDAMENTO' ? '<button type="button" class="btn-light" data-pr="start" data-i="' + i + '" title="Il ciclo è partito adesso">▶</button>'
         : st === 'IN_CORSO' ? '<button type="button" class="btn-success" data-pr="end" data-i="' + i + '" title="Ciclo finito adesso">✔</button><button type="button" class="btn-light" data-pr="undo" data-i="' + i + '" title="Non è partito: riporta in coda">↺</button><button type="button" class="btn-light" data-pr="brk" data-i="' + i + '" title="Guasto: macchina in manutenzione e ripianifica">⚠</button>'
         : st === 'COMPLETATO' && runOfEvent(ev, d) ? '<button type="button" class="btn-light" data-pr="undo" data-i="' + i + '" title="Annulla">↺</button>' : '';
-      return '<div class="wpl-ev ' + cls + (lateB.has(ev.batchId) ? ' late' : '') + '"><span class="wpl-t">' + OPI[ev.operation] + ' ' + esc(ev.start) + '–' + esc(ev.end) + '</span><span class="wpl-w"><b>' + what + '</b>' +
+      return '<div class="wpl-ev ' + cls + (lateB.has(ev.batchId) ? ' late' : '') + '"><span class="wpl-t">' + OPI[ev.operation] + ' ' + esc(clk(ev.start, d)) + '–' + esc(clk(ev.end, d)) + '</span><span class="wpl-w"><b>' + what + '</b>' +
         (virt ? ' <small class="wpl-auto" title="Nessuno l\'ha segnato: si dà per fatto all\'ora prevista">come da piano</small>' : '') + (ev.kg ? ' · ' + nf(ev.kg) + ' kg' : '') + (ev.wetWaitMinutes > 0 ? ' · carrello ' + Math.round(ev.wetWaitMinutes) + ' min' : '') +
         ((ev.customers || []).length ? '<small>' + esc(ev.customers.join(', ')) + '</small>' : '') + '</span><span class="wpl-b">' + btn + '</span></div>';
     }).join('');
@@ -16893,7 +16944,7 @@ function viewPlan(d) {
   }).join('') + '</div>';
   if (idle.length) h += '<div class="wpl-idle"><span class="tute-mini">Senza cicli oggi:</span> ' + idle.map(mid => { const mm = allM.find(x => x.id === mid), maint = mm && mm.st === 'MAINTENANCE'; return '<button type="button" class="wpl-pill' + (maint ? ' maint' : '') + '" data-pm="' + esc(mid) + '" title="' + (maint ? 'In manutenzione: tocca per riattivare' : 'Operativa: tocca per metterla in manutenzione') + '">' + (maint ? '🔧 ' : '') + esc(nameOf(mid)) + '</button>'; }).join(' ') + '</div>';
   if (!T.length) h += '<p class="tute-mini">Niente da lavare per ' + esc(dayLbl(d)) + '.</p>';
-  h += '<details class="wpl-det"><summary>📋 Istruzioni per gli operatori (' + R.plan.operatorInstructions.length + ')</summary><ol class="wpl-ins">' + R.plan.operatorInstructions.map(l => '<li>' + esc(l) + '</li>').join('') + '</ol></details>';
+  h += '<details class="wpl-det"><summary>📋 Istruzioni per gli operatori (' + R.plan.operatorInstructions.length + ')</summary><ol class="wpl-ins">' + R.plan.operatorInstructions.map(l => '<li>' + esc(clk(l, d)) + '</li>').join('') + '</ol></details>';
   h += '<details class="wpl-det"><summary>🚐 Consegne: pronte per il giro?</summary>' + ordersTable(R) + '</details>';
   return h;
 }
@@ -16903,7 +16954,7 @@ function fixedNote(d) {
   const at = x => { const z = new Date(x); return String(z.getHours()).padStart(2, '0') + ':' + String(z.getMinutes()).padStart(2, '0'); };
   let h = '<div class="wpl-fixed">📌 Piano fissato alle <b>' + at(B.at) + '</b>: si ricalcola solo se cambia qualcosa (ordini, macchine, turni, cicli segnati)' + (p.auto !== false ? ' · 🤫 i cicli che nessuno segna si danno per fatti all\'ora prevista' : '') + '</div>';
   const c = B.ch; if (!c || !c.at || new Date(c.at).toDateString() !== new Date().toDateString()) return h;
-  const parts = c.moved.map(m => '<b>' + esc(m[0]) + '</b> ' + (m[2] == null ? 'non più pronta in giornata' : 'pronta alle ' + hm(m[2]) + ' <small>(prima ' + hm(m[1]) + ')</small>'));
+  const parts = c.moved.map(m => '<b>' + esc(m[0]) + '</b> ' + (m[2] == null ? 'non più pronta in giornata' : 'pronta ' + whenM(m[2], d) + ' <small>(prima ' + whenM(m[1], d) + ')</small>'));
   if (c.more) parts.push('altre ' + c.more);
   if (c.added) parts.push(c.added === 1 ? '1 consegna nuova' : c.added + ' consegne nuove');
   if (c.nb && c.nb[0] !== c.nb[1]) parts.push('lotti ' + c.nb[0] + ' → ' + c.nb[1]);
@@ -16913,8 +16964,9 @@ function ordersTable(R) {
   const rows = [];
   R.plan.orderTracking.forEach(t => {
     const inf = R.D.info[t.orderId] || {};
-    const st = t.missedDeadline ? '<b class="wpl-red">🔴 non pronta (+' + Math.round(t.tardinessMinutes) + ' min)</b>' : t.tardinessMinutes > 0 ? '<b class="wpl-or">🟠 in tolleranza (+' + Math.round(t.tardinessMinutes) + ')</b>' : t.completion ? '🟢 in tempo' : '⏳ da pianificare';
-    rows.push('<tr><td>' + esc(inf.label || t.customer) + (inf.kind === 'cliente' ? ' <small>capi del cliente</small>' : '') + '</td><td>' + esc(inf.cycle || inf.fam || '') + '</td><td style="text-align:right">' + nf(t.weightKg) + '</td><td>' + (inf.dep != null ? esc(hm(inf.dep)) + (inf.src === 'giro' ? ' 🚐' : '') : '—') + '</td><td>' + (t.due ? esc(t.due) : '—') + '</td><td>' + esc(t.completion || '—') + '</td><td>' + st + '</td></tr>');
+    const gone = inf.dep != null && inf.date === R.date && R.date === todayISO() && inf.dep < R.start;
+    const st = (gone ? '<b class="wpl-red">🚐 giro già partito</b><br>' : '') + (t.missedDeadline ? '<b class="wpl-red">🔴 non pronta (+' + esc(dur(t.tardinessMinutes)) + ')</b>' : t.tardinessMinutes > 0 ? '<b class="wpl-or">🟠 in tolleranza (+' + esc(dur(t.tardinessMinutes)) + ')</b>' : t.completion ? '🟢 in tempo' : '⏳ da pianificare');
+    rows.push('<tr><td>' + esc(inf.label || t.customer) + (inf.kind === 'cliente' ? ' <small>capi del cliente</small>' : '') + '</td><td>' + esc(inf.cycle || inf.fam || '') + '</td><td style="text-align:right">' + nf(t.weightKg) + '</td><td>' + (inf.dep != null ? esc(whenM(inf.dep, R.date)) + (inf.src === 'giro' ? ' 🚐' : '') : '—') + '</td><td>' + (t.dueMinute != null ? esc(whenM(t.dueMinute, R.date)) : '—') + '</td><td>' + (t.completionMinute != null ? esc(whenM(t.completionMinute, R.date)) : '—') + '</td><td>' + st + '</td></tr>');
   });
   return rows.length ? '<div class="wpl-scroll"><table class="wpl-tab"><thead><tr><th>Per</th><th>Ciclo</th><th>kg</th><th>Partenza</th><th>Pronto entro</th><th>Pronto alle</th><th>Stato</th></tr></thead><tbody>' + rows.join('') + '</tbody></table></div>' : '<p class="tute-mini">Nessuna consegna da lavare.</p>';
 }
@@ -17159,8 +17211,8 @@ function reportHtml(day) {
   const K = R.plan.kpis, dl = new Date(day + 'T12:00:00').toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
   let h = '<div class="ipl-doc-sheet wrep plrep" style="font-family:Arial,sans-serif;padding:4mm;font-size:11.5px">' +
     '<div style="display:flex;justify-content:space-between;border-bottom:2px solid #0f172a;padding-bottom:6px;margin-bottom:8px"><div><div style="font-size:15px;font-weight:900">' + esc(comp.name || 'IPL LAVANDERIE') + '</div><div style="font-size:11px">Piano della lavorazione · lavatrici, asciugatrici, calandra</div></div><div style="text-align:right"><div style="font-size:16px;font-weight:900">🧺 ' + esc(dl) + '</div><div style="font-size:11px">turni ' + esc(shiftTxt(shiftsFor(day))) + ' · resa calandra ' + esc(e.iron) + '% · carico/scarico ' + esc(e.hand) + '%' + (e.note ? ' · ' + esc(e.note) : '') + '</div><div style="font-size:10px">stampato il ' + new Date().toLocaleString('it-IT', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) + '</div></div></div>' +
-    '<table style="width:100%;border-collapse:collapse;margin-bottom:8px"><tr>' + [['Da lavare', nf(K.totalKgWashed, 0) + ' kg'], ['Cicli', K.washCycles], ['Inizio', hm(R.start)], ['Fine prevista', K.endOfProduction + (K.shiftOverrunMinutes > 0 ? ' (+' + Math.round(K.shiftOverrunMinutes) + ' min)' : '')], ['Calandra', K.calandraWindow ? K.calandraWindow.start + '–' + K.calandraWindow.end : '—'], ['Scarto previsto', nf(p.scrap) + '%']].map(([l, v]) => '<td style="' + T + '"><div style="font-size:9.5px;color:#475569">' + l + '</div><b style="font-size:13.5px">' + esc(v) + '</b></td>').join('') + '</tr></table>';
-  const warn = R.plan.warnings.concat(R.plan.orderTracking.filter(t => t.missedDeadline).map(t => 'Non pronto in tempo: ' + t.customer + ' (' + t.completion + ' invece di ' + t.due + ')'));
+    '<table style="width:100%;border-collapse:collapse;margin-bottom:8px"><tr>' + [['Da lavare', nf(K.totalKgWashed, 0) + ' kg'], ['Cicli', K.washCycles], ['Inizio', hm(R.start)], ['Fine prevista', whenM(K.endOfProductionMinute, day) + (spillOf(R) ? ' (continua nei turni successivi)' : overtimeOf(R) > 0 ? ' (' + dur(overtimeOf(R)) + ' di straordinario)' : '')], ['Calandra', K.calandraWindow ? clk(K.calandraWindow.start, day) + '–' + clk(K.calandraWindow.end, day) : '—'], ['Scarto previsto', nf(p.scrap) + '%']].map(([l, v]) => '<td style="' + T + '"><div style="font-size:9.5px;color:#475569">' + l + '</div><b style="font-size:13.5px">' + esc(v) + '</b></td>').join('') + '</tr></table>';
+  const warn = engWarns(R, day).concat(lateByOrder(R, R.plan.orderTracking.filter(t => t.missedDeadline)).map(x => 'Non pronto in tempo: ' + x.label + ' (' + (x.c > -1e9 ? whenM(x.c, day) : 'non in giornata') + ' invece di ' + (x.d < 1e9 ? whenM(x.d, day) : '—') + ')'));
   if (warn.length) h += '<div style="border:1px solid #f59e0b;background:#fffbeb;padding:4px 6px;margin-bottom:8px">' + warn.map(w => '⚠️ ' + esc(String(w).replace(/<[^>]+>/g, ''))).join('<br>') + '</div>';
   /* 1-2. cosa lavare */
   const others = Object.keys(R.D.info).some(id => !['noleggio', 'magazzino'].includes(R.D.info[id].kind));
@@ -17170,10 +17222,10 @@ function reportHtml(day) {
   const TL = R.plan.ganttTimeline, lanes = new Map(); TL.forEach(ev => { if (ev.operation === 'RICONGIUNZIONE') return; if (!lanes.has(ev.machine)) lanes.set(ev.machine, []); lanes.get(ev.machine).push(ev); });
   lanes.forEach((L, m) => {
     h += '<table style="width:100%;border-collapse:collapse;margin-bottom:6px;page-break-inside:avoid"><thead><tr style="background:#e2e8f0"><th style="' + T + 'text-align:left" colspan="5">' + esc(nameOf(m)) + '</th></tr><tr style="background:#f1f5f9"><th style="' + T + 'width:96px;text-align:left">Orario</th><th style="' + T + 'text-align:left">Cosa</th><th style="' + T + 'width:86px">Carico</th><th style="' + T + 'text-align:left">Clienti</th><th style="' + T + 'width:34px">Fatto</th></tr></thead><tbody>' +
-      L.map(ev => '<tr><td style="' + T + '">' + esc(ev.start + '–' + ev.end) + '</td><td style="' + T + '">' + (ev.operation === 'RISCALDAMENTO' ? 'Preriscaldo' : esc((ev.subBatchId || 'Batch ' + ev.batchId) + ' · ' + (ev.description || '')) ) + (ev.status !== 'PIANIFICATO' ? ' <small>(' + esc(ev.status.toLowerCase().replace(/_/g, ' ')) + ')</small>' : '') + '</td><td style="' + T + 'text-align:right">' + (ev.kg ? nf(ev.kg) + ' kg' + (ev.saturationPct != null ? ' (' + Math.round(ev.saturationPct) + '%)' : '') : '') + '</td><td style="' + T + 'font-size:10px">' + esc((ev.customers || []).join(', ')) + '</td><td style="' + T + 'text-align:center">☐</td></tr>').join('') + '</tbody></table>';
+      L.map(ev => '<tr><td style="' + T + '">' + esc(clk(ev.start, day) + '–' + clk(ev.end, day)) + '</td><td style="' + T + '">' + (ev.operation === 'RISCALDAMENTO' ? 'Preriscaldo' : esc((ev.subBatchId || 'Batch ' + ev.batchId) + ' · ' + (ev.description || '')) ) + (ev.status !== 'PIANIFICATO' ? ' <small>(' + esc(ev.status.toLowerCase().replace(/_/g, ' ')) + ')</small>' : '') + '</td><td style="' + T + 'text-align:right">' + (ev.kg ? nf(ev.kg) + ' kg' + (ev.saturationPct != null ? ' (' + Math.round(ev.saturationPct) + '%)' : '') : '') + '</td><td style="' + T + 'font-size:10px">' + esc((ev.customers || []).join(', ')) + '</td><td style="' + T + 'text-align:center">☐</td></tr>').join('') + '</tbody></table>';
   });
   if (!lanes.size) h += '<p>Nessun ciclo in programma.</p>';
-  h += '<div style="font-size:13px;font-weight:900;margin:8px 0 4px;page-break-before:auto">' + (others ? '4' : '3') + '. Istruzioni in ordine di orario</div><table style="width:100%;border-collapse:collapse">' + R.plan.operatorInstructions.map(l => '<tr><td style="' + T + 'width:28px;text-align:center">☐</td><td style="' + T + '">' + esc(l) + '</td></tr>').join('') + '</table>';
+  h += '<div style="font-size:13px;font-weight:900;margin:8px 0 4px;page-break-before:auto">' + (others ? '4' : '3') + '. Istruzioni in ordine di orario</div><table style="width:100%;border-collapse:collapse">' + R.plan.operatorInstructions.map(l => '<tr><td style="' + T + 'width:28px;text-align:center">☐</td><td style="' + T + '">' + esc(clk(l, day)) + '</td></tr>').join('') + '</table>';
   h += '<table style="width:100%;border-collapse:collapse;margin-top:12px"><tr><td style="' + T + 'height:46px;vertical-align:top;width:70%"><div style="font-size:10px;color:#475569">Note</div></td><td style="' + T + 'vertical-align:top"><div style="font-size:10px;color:#475569">Firma operatore</div></td></tr></table></div>';
   return h;
 }
