@@ -54,7 +54,7 @@
 <tr><td>4. Primo amministratore</td><td>Disattivi le iscrizioni libere, crei il tuo utente in Supabase → Authentication → Users e accedi al gestionale con il tuo <b>nome utente</b>: diventi amministratore.</td></tr>
 <tr><td>5. Importa i dati</td><td>Dal vecchio salvataggio cloud oppure dal file di backup. Si può ripetere senza creare doppioni; alla fine i conteggi vengono verificati sul server.</td></tr>
 <tr><td>6. Chiudi il vecchio archivio</td><td>Elimini la vecchia tabella, che conteneva anche le password leggibili. Fallo <b>solo dopo</b> aver importato i dati.</td></tr>
-<tr><td>7. Backup notturno</td><td>Repository privato <code>ipl-backup</code> su GitHub, file del backup, segreto <code>SUPABASE_DB_URL</code>, prima esecuzione.</td></tr>
+<tr><td>7. Backup notturno</td><td>Repository <b>privato</b> <code>ipl-backup</code> su GitHub (controlla in Settings → General che sia <b>Private</b>: i backup contengono tutti i dati e dalla v9.02 il backup si ferma se il repository è pubblico), file del backup, segreto <code>SUPABASE_DB_URL</code>, prima esecuzione.</td></tr>
 <tr><td>8. Cartella backup</td><td>Sul PC dell'ufficio scegli una cartella dentro Google Drive o OneDrive.</td></tr>
 <tr><td>9. Installa l'app</td><td>Vedi Parte 3.</td></tr>
 </table>
@@ -239,11 +239,19 @@
 <p>Vede Home, clienti, articoli e listini, zone, tute, statistiche e fatture, preventivi e direzione. Non vede Profili e Cloud; non ripristina documenti annullati.</p>
 
 <h2>Parte 10 – Aggiornamenti</h2>
+<div class="box warn"><b>Aggiornamento v9.02 (permessi per ruolo anche sul server, dati dell'autista non più sovrascritti):</b>
+<ol>
+<li>Carica i nuovi file su GitHub come sempre (punto 1 qui sotto). Se nel pacchetto c'è la cartella <code>vendor</code>, caricala intera (con la sottocartella <code>images</code>) accanto a <code>index.html</code>.</li>
+<li><b>Esegui il nuovo script del database in Supabase</b>: Supabase → <b>SQL Editor → New query</b>, incolla tutto il file <code>2_CONFIGURAZIONE/1_database_setup.sql</code> (oppure Configurazione guidata → passo 2 → 📋 Copia) e premi <b>Run</b>. Non cancella dati e si può rieseguire. Controllo: <code>select public.ipl_schema_version();</code> deve rispondere <b>9.02</b>.</li>
+<li>Finché non lo esegui il programma funziona come prima, ma Cloud &amp; Backup mostra “⚠️ Il database non ha ancora l'aggiornamento 9.02”.</li>
+<li>Nel repository dei backup su GitHub sostituisci <code>.github/workflows/backup.yml</code> con il nuovo <code>3_backup_notturno_backup.yml</code> e controlla che il repository sia <b>Private</b>: da ora il backup si ferma da solo se non lo è.</li>
+</ol>
+Da questa versione ogni ruolo può cambiare sul server solo i dati delle sezioni che vede (per esempio un autista non può cambiare listini, canoni o costi, né leggere preventivi e costi della Direzione). Se a qualcuno serve una sezione, concedila dalla scheda Profili: il suo dispositivo riscarica da solo i dati che prima non vedeva.</div>
 <div class="box warn"><b>Aggiornamento v8.04 (profilo Ufficio):</b> dopo aver caricato i nuovi file su GitHub, apri la <b>Configurazione guidata</b>: ti chiederà di <b>rieseguire lo script del database</b> (passo 2, non tocca i dati) e di <b>aggiornare la funzione admin-users</b> (passo 3: apri la funzione → Code → incolla il nuovo codice → Deploy).</div>
 <ol>
 <li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
 <li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
 </ol>
-<p class="sub">IPL Gestionale v9.01</p>
+<p class="sub">IPL Gestionale v9.02</p>
 </body>
 </html>
