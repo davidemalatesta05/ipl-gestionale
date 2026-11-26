@@ -239,6 +239,14 @@
 <p>Vede Home, clienti, articoli e listini, zone, tute, statistiche e fatture, preventivi e direzione. Non vede Profili e Cloud; non ripristina documenti annullati.</p>
 
 <h2>Parte 10 – Aggiornamenti</h2>
+<div class="box warn"><b>Aggiornamento v9.03 (sicurezza dei dispositivi e nuovo Centro Documenti):</b>
+<ol>
+<li>Carica i nuovi file su GitHub come sempre (punto 1 qui sotto), <b>compresa la cartella <code>vendor</code></b> (con la sottocartella <code>images</code>) accanto a <code>index.html</code>: da questa versione mappa ed Excel non usano più internet esterno.</li>
+<li><b>Esegui il nuovo script del database in Supabase</b>: Supabase → <b>SQL Editor → New query</b>, incolla tutto il file <code>2_CONFIGURAZIONE/1_database_setup.sql</code> (oppure Configurazione guidata → passo 2 → 📋 Copia) e premi <b>Run</b>. Non cancella dati e si può rieseguire. Controllo: <code>select public.ipl_schema_version();</code> deve rispondere <b>9.03</b>.</li>
+<li><b>Aggiorna la funzione admin-users</b> (versione 10): Supabase → <b>Edge Functions → admin-users → Code</b>, incolla tutto il file <code>2_CONFIGURAZIONE/2_funzione_admin-users.ts</code> e premi <b>Deploy</b>. Serve per “📴 Disconnetti tutti i dispositivi”, per disattivare la verifica in due passaggi di un altro amministratore e per far valere la verifica sulla gestione degli account.</li>
+<li>In Supabase controlla <b>Authentication → Sign In / Providers → Allow new users to sign up</b>: deve essere <b>spento</b> (se è acceso il programma lo segnala). Per la verifica in due passaggi controlla che <b>Authentication → Multi-Factor → TOTP</b> sia attivo (di base lo è).</li>
+</ol>
+Novità: <b>“Esci” cancella i dati salvati sul dispositivo</b> (prima avvisa se ci sono modifiche non inviate); il programma <b>si blocca dopo 15 minuti</b> di inattività sui telefoni e <b>60</b> sul PC (si cambia in Profili → 🔒 Blocco dopo inattività; 0 = mai) e si sblocca con la propria password; chi dimentica la password la fa reimpostare all'amministratore (🔑). Con <b>👤 Account</b> gli amministratori possono attivare la verifica in due passaggi con il codice QR. <b>Telefono perso?</b> Un altro amministratore la toglie da Profili (🔐✖); se sei l'unico amministratore: Supabase → <b>Authentication → Users</b> → il tuo utente → rimuovi il fattore MFA, poi entri con la sola password (meglio avere due amministratori). Dopo 5 password sbagliate sulla schermata di blocco: se ci sono modifiche non ancora inviate la sessione si chiude ma <b>i dati restano</b> sul dispositivo; rientrando con la password giusta partono.</div>
 <div class="box warn"><b>Aggiornamento v9.02 (permessi per ruolo anche sul server, dati dell'autista non più sovrascritti):</b>
 <ol>
 <li>Carica i nuovi file su GitHub come sempre (punto 1 qui sotto). Se nel pacchetto c'è la cartella <code>vendor</code>, caricala intera (con la sottocartella <code>images</code>) accanto a <code>index.html</code>.</li>
@@ -252,6 +260,6 @@ Da questa versione ogni ruolo può cambiare sul server solo i dati delle sezioni
 <li>Quando ricevi una nuova versione: GitHub → repository <code>ipl-gestionale</code> → <b>Add file → Upload files</b>, carica i nuovi file (sostituiscono i vecchi) e premi <b>Commit changes</b>.</li>
 <li>Sui dispositivi compare “È disponibile una nuova versione”: premi <b>Aggiorna ora</b>. I dati non si toccano.</li>
 </ol>
-<p class="sub">IPL Gestionale v9.02</p>
+<p class="sub">IPL Gestionale v9.03</p>
 </body>
 </html>
