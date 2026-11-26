@@ -1,5 +1,5 @@
 /* IPL Gestionale v8 — service worker: app installabile e funzionamento senza internet */
-const CACHE = 'ipl-v9.03';
+const CACHE = 'ipl-v9.03.1';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'favicon-64.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'Guida_IPL_Gestionale.html'];
 /* v9.02: librerie messe nella cartella vendor/ del sito (facoltative: se mancano il programma usa il CDN e qui non succede nulla) */
 const VENDOR = ['vendor/leaflet.js', 'vendor/leaflet.css', 'vendor/xlsx.full.min.js', 'vendor/images/layers.png', 'vendor/images/layers-2x.png', 'vendor/images/marker-icon.png', 'vendor/images/marker-icon-2x.png', 'vendor/images/marker-shadow.png'];
